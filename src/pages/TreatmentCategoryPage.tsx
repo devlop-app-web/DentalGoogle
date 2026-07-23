@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { 
   Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft, 
   Calendar, Phone, Cpu, Activity, UserCheck, Shield, ChevronRight
 } from 'lucide-react';
 import { TREATMENT_CATEGORIES, getCategoryBySlug } from '../data/treatmentsData';
 import { CLINIC_INFO } from '../data/homeData';
+import { PageWrapper } from '../components/ui/PageWrapper';
 
 interface TreatmentCategoryPageProps {
   onOpenBooking: () => void;
@@ -23,13 +25,13 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
 
   if (!category) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
+      <PageWrapper className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
         <h2 className="text-2xl font-bold text-slate-800">Treatment Category Not Found</h2>
         <p className="text-slate-500 text-sm mt-2">The requested dental category could not be located.</p>
-        <Link to="/treatments" className="mt-4 bg-[#0F6CBD] text-white px-5 py-2.5 rounded-xl font-bold text-sm">
+        <Link to="/treatments" className="mt-4 bg-[#0B4F6C] text-white px-5 py-2.5 rounded-xl font-bold text-sm">
           Return to Treatments Hub
         </Link>
-      </div>
+      </PageWrapper>
     );
   }
 
@@ -56,7 +58,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
+    <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       {/* Schema Script */}
       <script type="application/ld+json">
         {JSON.stringify(schemaData)}
@@ -66,9 +68,9 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
 
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#0F6CBD]">Home</Link>
+          <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/treatments" className="hover:text-[#0F6CBD]">Treatments</Link>
+          <Link to="/treatments" className="hover:text-[#0B4F6C] transition-colors">Treatments</Link>
           <span>/</span>
           <span className="text-slate-800 font-bold">{category.title}</span>
         </nav>
@@ -77,7 +79,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
         <div className="bg-gradient-to-r from-[#2E4F4F] via-[#243F3F] to-[#1D3232] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-4 relative z-10">
             <span className="inline-flex items-center gap-2 bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
               Specialized Care Category
             </span>
             <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
@@ -87,16 +89,18 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
               {category.shortDesc}
             </p>
             <div className="pt-2 flex flex-wrap gap-3">
-              <button
+              <motion.button
                 onClick={onOpenBooking}
-                className="bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all flex items-center space-x-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all flex items-center space-x-2 border border-cyan-400/20"
               >
                 <Calendar className="w-4 h-4 text-cyan-300" />
                 <span>Book Consultation</span>
-              </button>
+              </motion.button>
               <a
                 href={`tel:${CLINIC_INFO.phone.replace(/[^0-9]/g, '')}`}
-                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors flex items-center space-x-2"
+                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors flex items-center space-x-2 backdrop-blur-sm"
               >
                 <Phone className="w-4 h-4 text-teal-300" />
                 <span>{CLINIC_INFO.phone}</span>
@@ -104,11 +108,11 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
             </div>
           </div>
 
-          <div className="lg:col-span-4 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 h-60 sm:h-72">
+          <div className="lg:col-span-4 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 h-60 sm:h-72 group">
             <img 
               src="/assets/Clinic 2.jpeg" 
               alt={`Dr. Sheekha Shah DENTAL STUDIO ${category.title}`} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
         </div>
@@ -118,7 +122,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
           {/* Overview */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md space-y-4">
             <h2 className="text-2xl font-bold font-heading text-slate-800 flex items-center gap-2">
-              <Shield className="w-6 h-6 text-[#0F6CBD]" />
+              <Shield className="w-6 h-6 text-[#0B4F6C]" />
               Treatment Overview
             </h2>
             <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
@@ -148,7 +152,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
               <ul className="space-y-2">
                 {category.whoNeedsThis.map((item, i) => (
                   <li key={i} className="text-xs sm:text-sm text-slate-600 flex items-start space-x-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F6CBD] mt-2 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0B4F6C] mt-2 flex-shrink-0"></span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -182,12 +186,13 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {category.subcategories.map((sub) => (
-              <div 
+              <motion.div 
                 key={sub.id} 
+                whileHover={{ y: -4 }}
                 className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-3">
-                  <h3 className="text-lg font-bold font-heading text-slate-800 group-hover:text-[#0F6CBD] transition-colors">
+                  <h3 className="text-lg font-bold font-heading text-slate-800 group-hover:text-[#0B4F6C] transition-colors">
                     {sub.title}
                   </h3>
                   <p className="text-slate-600 text-xs leading-relaxed line-clamp-3">
@@ -198,13 +203,13 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
                 <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
                   <Link
                     to={`/treatments/${category.slug}/${sub.slug}`}
-                    className="text-xs font-bold text-[#0F6CBD] hover:text-[#0B5598] flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
+                    className="text-xs font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
                   >
                     <span>View Procedure Details</span>
                     <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -216,11 +221,11 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {category.procedureSteps.map((step, i) => (
-              <div key={i} className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2 relative">
-                <span className="text-2xl font-black text-[#0F6CBD]/20 block">0{i + 1}</span>
+              <motion.div key={i} whileHover={{ y: -2 }} className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2 relative">
+                <span className="text-2xl font-black text-[#0B4F6C]/20 block">0{i + 1}</span>
                 <h3 className="text-base font-bold text-slate-800">{step.title}</h3>
                 <p className="text-slate-600 text-xs leading-relaxed">{step.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -233,7 +238,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
             {category.technologyUsed.map((tech, i) => (
-              <div key={i} className="bg-teal-800/80 p-4 rounded-xl border border-teal-700/60 text-xs font-semibold text-teal-100 flex items-center space-x-2">
+              <div key={i} className="bg-teal-800/80 backdrop-blur-md p-4 rounded-xl border border-teal-700/60 text-xs font-semibold text-teal-100 flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4 text-teal-300 flex-shrink-0" />
                 <span>{tech}</span>
               </div>
@@ -244,7 +249,7 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
         {/* FAQs Section */}
         <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md space-y-6">
           <h2 className="text-2xl font-bold font-heading text-slate-800 flex items-center gap-2">
-            <HelpCircle className="w-6 h-6 text-[#0F6CBD]" />
+            <HelpCircle className="w-6 h-6 text-[#0B4F6C]" />
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
@@ -261,42 +266,45 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-slate-200">
           <Link
             to={`/treatments/${prevCategory.slug}`}
-            className="w-full sm:w-auto bg-white border border-slate-200 hover:border-[#0F6CBD] p-4 rounded-2xl shadow-sm text-left flex items-center space-x-3 group"
+            className="w-full sm:w-auto bg-white border border-slate-200 hover:border-[#0B4F6C] p-4 rounded-2xl shadow-sm text-left flex items-center space-x-3 group"
           >
-            <ArrowLeft className="w-5 h-5 text-slate-400 group-hover:text-[#0F6CBD] transition-colors" />
+            <ArrowLeft className="w-5 h-5 text-slate-400 group-hover:text-[#0B4F6C] transition-colors" />
             <div>
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Previous Category</span>
-              <span className="text-sm font-bold text-slate-800 group-hover:text-[#0F6CBD] transition-colors">{prevCategory.title}</span>
+              <span className="text-sm font-bold text-slate-800 group-hover:text-[#0B4F6C] transition-colors">{prevCategory.title}</span>
             </div>
           </Link>
 
           <Link
             to={`/treatments/${nextCategory.slug}`}
-            className="w-full sm:w-auto bg-white border border-slate-200 hover:border-[#0F6CBD] p-4 rounded-2xl shadow-sm text-right flex items-center space-x-3 group"
+            className="w-full sm:w-auto bg-white border border-slate-200 hover:border-[#0B4F6C] p-4 rounded-2xl shadow-sm text-right flex items-center space-x-3 group"
           >
             <div>
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Next Category</span>
-              <span className="text-sm font-bold text-slate-800 group-hover:text-[#0F6CBD] transition-colors">{nextCategory.title}</span>
+              <span className="text-sm font-bold text-slate-800 group-hover:text-[#0B4F6C] transition-colors">{nextCategory.title}</span>
             </div>
-            <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-[#0F6CBD] transition-colors" />
+            <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-[#0B4F6C] transition-colors" />
           </Link>
         </div>
 
         {/* Book Appointment CTA Banner */}
-        <div className="bg-gradient-to-br from-[#0F6CBD] to-[#0B5598] rounded-3xl p-8 sm:p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="bg-gradient-to-br from-[#0B4F6C] to-[#083A50] rounded-3xl p-8 sm:p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl border border-cyan-500/20">
           <div className="space-y-2 text-center sm:text-left">
             <h3 className="text-2xl font-bold font-heading">Schedule Your {category.title} Consultation</h3>
-            <p className="text-blue-100 text-sm">Experience gentle, high-precision care with Dr. Sheekha Shah.</p>
+            <p className="text-cyan-100 text-sm">Experience gentle, high-precision care with Dr. Sheekha Shah.</p>
           </div>
-          <button
+          <motion.button
             onClick={onOpenBooking}
-            className="bg-white text-[#0F6CBD] hover:bg-blue-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-white text-[#0B4F6C] hover:bg-cyan-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all shrink-0"
           >
             Book Appointment
-          </button>
+          </motion.button>
         </div>
 
       </div>
-    </div>
+    </PageWrapper>
   );
 };
+

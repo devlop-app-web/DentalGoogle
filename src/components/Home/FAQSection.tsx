@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, ChevronUp, Sparkles, Calendar, HelpCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Search, ChevronDown, ChevronUp, Sparkles, Calendar } from 'lucide-react';
 import { FAQS } from '../../data/homeData';
+import { buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface FAQSectionProps {
   onOpenBooking: () => void;
@@ -23,11 +25,17 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200 relative">
+    <section id="faq" className="py-20 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 50, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-10"
+        >
           <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>Got Questions?</span>
@@ -40,7 +48,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             Everything you need to know about dental insurance, appointment scheduling, zero-pain techniques, and treatment costs.
           </p>
-        </div>
+        </motion.div>
 
         {/* Search Bar & Category Filter */}
         <div className="space-y-4 mb-10">
@@ -59,7 +67,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 Clear
               </button>
@@ -69,25 +77,33 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-2">
             {['All', 'Cost & Insurance', 'Invisalign', 'Implants', 'Emergency', 'General'].map((cat) => (
-              <button
+              <motion.button
                 key={cat}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(cat)}
                 id={`faq-category-${cat.replace(/\s+/g, '-').toLowerCase()}`}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   selectedCategory === cat 
                     ? 'bg-[#0B4F6C] text-white shadow-2xs' 
                     : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
                 {cat}
-              </button>
+              </motion.button>
             ))}
           </div>
 
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-3"
+        >
           {filteredFaqs.length > 0 ? (
             filteredFaqs.map((faq) => {
               const isOpen = openFaqId === faq.id;
@@ -99,21 +115,32 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
                   <button
                     onClick={() => toggleFaq(faq.id)}
                     id={`faq-toggle-${faq.id}`}
-                    className="w-full p-5 text-left flex items-center justify-between font-extrabold text-sm sm:text-base text-slate-900 hover:text-[#0B4F6C] transition-colors"
+                    className="w-full p-5 text-left flex items-center justify-between font-extrabold text-sm sm:text-base text-slate-900 hover:text-[#0B4F6C] transition-colors cursor-pointer"
                   >
                     <span className="pr-4">{faq.question}</span>
-                    {isOpen ? (
-                      <ChevronUp className="w-5 h-5 text-[#0B4F6C] shrink-0" />
-                    ) : (
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
-                    )}
+                    </motion.div>
                   </button>
 
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                      <p>{faq.answer}</p>
-                    </div>
-                  )}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })
@@ -122,10 +149,16 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
               No questions found matching "{searchQuery}". Call us directly for immediate assistance!
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Book Appointment CTA after FAQs */}
-        <div className="mt-12 bg-white p-6 sm:p-8 rounded-3xl border border-cyan-200 text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 bg-white p-6 sm:p-8 rounded-3xl border border-cyan-200 text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md"
+        >
           <div className="text-left space-y-1">
             <h3 className="font-extrabold text-slate-900 text-base sm:text-lg font-heading">
               Have More Questions or Ready to Schedule?
@@ -135,17 +168,19 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
             </p>
           </div>
 
-          <button
+          <motion.button
+            {...buttonHover}
             onClick={onOpenBooking}
             id="faq-book-appointment-cta"
-            className="w-full sm:w-auto bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 whitespace-nowrap shrink-0"
+            className="w-full sm:w-auto bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 whitespace-nowrap shrink-0 cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-cyan-300" />
             <span>Book Appointment</span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+

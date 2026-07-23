@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
+import { ScrollProgress } from './components/ui/ScrollProgress';
+import { BackToTop } from './components/ui/BackToTop';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -14,6 +16,7 @@ import { PatientInfoPage } from './pages/PatientInfoPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 import { ContactPage } from './pages/ContactPage';
 import { BookAppointmentPage } from './pages/BookAppointmentPage';
+import { GeneralEnquiryPage } from './pages/GeneralEnquiryPage';
 
 import { AppointmentModal } from './components/Home/AppointmentModal';
 import { ClinicTourModal } from './components/Home/ClinicTourModal';
@@ -42,8 +45,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#1E293B] font-sans antialiased selection:bg-[#0F6CBD] selection:text-white relative">
+      <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#1E293B] font-sans antialiased selection:bg-[#0B4F6C] selection:text-white relative">
         
+        {/* Scroll Progress Indicator */}
+        <ScrollProgress />
+
         {/* Sticky Header Navigation */}
         <Header onOpenBooking={handleOpenBooking} />
 
@@ -113,6 +119,11 @@ export default function App() {
             />
 
             <Route 
+              path="/general-enquiry" 
+              element={<GeneralEnquiryPage />} 
+            />
+
+            <Route 
               path="/book-appointment" 
               element={<BookAppointmentPage />} 
             />
@@ -121,6 +132,9 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
+
+        {/* Back-to-top Floating Button */}
+        <BackToTop />
 
         {/* Sticky Call & WhatsApp Floating Action Buttons */}
         <FloatingActions onOpenBooking={handleOpenBooking} />
@@ -146,3 +160,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

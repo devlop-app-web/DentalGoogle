@@ -1,5 +1,7 @@
 import React from 'react';
-import { Cpu, ShieldCheck, Sparkles, CheckCircle2, Tv, Wind, Waves, Coffee } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Cpu, ShieldCheck, Sparkles, CheckCircle2, Wind, Waves, Coffee } from 'lucide-react';
+import { staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../../lib/motion';
 
 export const TechnologyAndComfort: React.FC = () => {
   const techItems = [
@@ -48,11 +50,17 @@ export const TechnologyAndComfort: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-50 relative border-t border-slate-200">
+    <section className="py-20 bg-slate-50 relative border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <motion.div 
+          initial={{ opacity: 0, y: 50, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-14"
+        >
           <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>State-Of-The-Art Equipment</span>
@@ -65,31 +73,42 @@ export const TechnologyAndComfort: React.FC = () => {
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             We invest in cutting-edge dental technology and luxury lounge amenities to deliver painless, precise, and relaxing dental care.
           </p>
-        </div>
+        </motion.div>
 
         {/* 6 Grid Cards featuring Clinic.jpeg, Clinic 2.jpeg, Waiting.jpeg, Waiting 2.jpeg */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={staggerContainer(0.14, 0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {techItems.map((item, idx) => {
             const IconComp = item.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                variants={staggerItemUp}
+                whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
               >
                 <div className="relative h-48 overflow-hidden bg-slate-100">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
 
                   <div className="absolute bottom-3 left-4 right-4 text-white flex items-center justify-between">
                     <span className="text-xs font-bold text-cyan-200">{item.subtitle}</span>
-                    <div className="w-8 h-8 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
+                    <motion.div 
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      className="w-8 h-8 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30"
+                    >
                       <IconComp className="w-4 h-4" />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 
@@ -108,12 +127,13 @@ export const TechnologyAndComfort: React.FC = () => {
                     <span>Hospital Safety Standard</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+

@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Calendar, UserCheck, Stethoscope, Sparkles, HeartPulse, ShieldCheck } from 'lucide-react';
+import { staggerContainer, staggerItemUp, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface PatientJourneyProps {
   onOpenBooking: () => void;
@@ -58,11 +60,17 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
   ];
 
   return (
-    <section className="py-20 bg-white relative border-t border-slate-200">
+    <section className="py-20 bg-white relative border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 50, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
+        >
           <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>Seamless Care Experience</span>
@@ -75,22 +83,34 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             From initial booking to long-term follow-up care, we ensure a transparent, comfortable, and stress-free dental experience.
           </p>
-        </div>
+        </motion.div>
 
         {/* Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+        <motion.div 
+          variants={staggerContainer(0.15, 0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative"
+        >
           {steps.map((step, idx) => {
             const IconComp = step.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                variants={staggerItemUp}
+                whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
                 className="bg-slate-50 hover:bg-white p-6 rounded-3xl border border-slate-200 hover:border-cyan-300 shadow-2xs hover:shadow-xl transition-all duration-300 relative group flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className={`w-12 h-12 rounded-2xl ${step.color} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}>
+                    <motion.div 
+                      whileHover={{ scale: 1.2, rotate: 6 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                      className={`w-12 h-12 rounded-2xl ${step.color} flex items-center justify-center shadow-md`}
+                    >
                       <IconComp className="w-6 h-6" />
-                    </div>
+                    </motion.div>
                     <span className="text-3xl font-extrabold font-heading text-slate-300 group-hover:text-[#0B4F6C] transition-colors">
                       {step.num}
                     </span>
@@ -113,23 +133,31 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
                 <div className="pt-2 border-t border-slate-200/80 flex items-center text-xs font-extrabold text-[#0B4F6C]">
                   <span>Step {idx + 1} of 6</span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA Banner */}
-        <div className="mt-12 text-center">
-          <button
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 text-center"
+        >
+          <motion.button
+            {...buttonHover}
             onClick={onOpenBooking}
-            className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-8 py-3.5 rounded-xl shadow-md transition-all inline-flex items-center space-x-2"
+            className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-8 py-3.5 rounded-xl shadow-md inline-flex items-center space-x-2 cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-cyan-300" />
             <span>Start Your Journey - Book Appointment</span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+

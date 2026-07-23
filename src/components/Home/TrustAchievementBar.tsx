@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Users, Award, ShieldCheck, Star, CheckCircle, Sparkles, Smile, Shield } from 'lucide-react';
+import { staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../../lib/motion';
 
 export const TrustAchievementBar: React.FC = () => {
   const metrics = [
@@ -52,26 +54,48 @@ export const TrustAchievementBar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Animated Counter Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+        <motion.div 
+          variants={staggerContainer(0.12, 0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-100"
+        >
           {metrics.map((m, idx) => {
             const IconComp = m.icon;
             return (
-              <div key={idx} className={`${idx > 0 ? 'pt-4 sm:pt-0' : ''} px-2 space-y-1 group`}>
+              <motion.div 
+                key={idx} 
+                variants={staggerItemUp}
+                whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                className={`${idx > 0 ? 'pt-4 sm:pt-0' : ''} px-2 space-y-1 group`}
+              >
                 <div className="flex items-center justify-center space-x-1.5">
-                  <IconComp className={`w-5 h-5 ${m.color} group-hover:scale-110 transition-transform`} />
+                  <motion.div
+                    whileHover={{ scale: 1.25, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    <IconComp className={`w-5 h-5 ${m.color}`} />
+                  </motion.div>
                   <span className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 tracking-tight">
                     {m.value}
                   </span>
                 </div>
                 <p className="text-xs font-extrabold text-slate-800">{m.label}</p>
                 <p className="text-[11px] font-medium text-slate-500">{m.sublabel}</p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Accreditation Bottom Pill Row */}
-        <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-slate-600 text-xs font-bold uppercase tracking-wider">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-slate-600 text-xs font-bold uppercase tracking-wider"
+        >
           <span className="flex items-center space-x-1.5">
             <CheckCircle className="w-4 h-4 text-[#0B4F6C]" />
             <span>ADA Accredited Clinic</span>
@@ -88,9 +112,10 @@ export const TrustAchievementBar: React.FC = () => {
             <CheckCircle className="w-4 h-4 text-[#0B4F6C]" />
             <span>ISO 9001:2015 Hygiene Standard</span>
           </span>
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+

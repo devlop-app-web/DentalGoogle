@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Phone, Clock, MapPin, Menu, X, Calendar, Sparkles, ChevronDown, 
   ChevronRight, MessageCircle, Stethoscope, Shield, Activity, Zap, 
@@ -54,8 +55,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     { path: '/about', label: 'About Us' },
     { path: '/treatments', label: 'Treatments', isMega: true },
     { path: '/smile-gallery', label: 'Smile Gallery' },
-    { path: '/patient-info', label: 'Patient Information' },
+    { path: '/patient-info', label: 'Patient Info' },
     { path: '/testimonials', label: 'Testimonials' },
+    { path: '/general-enquiry', label: 'General Enquiry' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -133,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1.5 relative shrink-0" id="desktop-navbar" ref={megaMenuRef}>
+          <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 relative shrink-0" id="desktop-navbar" ref={megaMenuRef}>
             {navLinks.map((link) => {
               const isActive = link.path === '/' 
                 ? location.pathname === '/' 
@@ -144,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   <div key={link.path} className="relative group">
                     <button
                       onClick={() => setTreatmentsMegaOpen(!treatmentsMegaOpen)}
-                      className={`px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 ${
+                      className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 ${
                         isActive 
                           ? 'text-[#0B4F6C] bg-cyan-50/90 font-bold' 
                           : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-50'
@@ -156,51 +158,59 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     </button>
 
                     {/* Mega Menu Dropdown Panel */}
-                    {treatmentsMegaOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-                          <div>
-                            <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                              <Sparkles className="w-4 h-4 text-[#0B4F6C]" />
-                              All Treatment Categories
-                            </h3>
-                            <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
-                          </div>
-                          <Link 
-                            to="/treatments" 
-                            onClick={() => setTreatmentsMegaOpen(false)}
-                            className="text-xs font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 bg-cyan-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
-                          >
-                            <span>View Treatments Hub</span>
-                            <ChevronRight className="w-3.5 h-3.5" />
-                          </Link>
-                        </div>
-
-                        {/* 12 Categories Grid */}
-                        <div className="grid grid-cols-3 gap-3 max-h-[420px] overflow-y-auto pr-1">
-                          {TREATMENT_CATEGORIES.map((cat) => (
-                            <Link
-                              key={cat.id}
-                              to={`/treatments/${cat.slug}`}
+                    <AnimatePresence>
+                      {treatmentsMegaOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 z-50"
+                        >
+                          <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                            <div>
+                              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                                <Sparkles className="w-4 h-4 text-[#0B4F6C]" />
+                                All Treatment Categories
+                              </h3>
+                              <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
+                            </div>
+                            <Link 
+                              to="/treatments" 
                               onClick={() => setTreatmentsMegaOpen(false)}
-                              className="p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all duration-200 text-left group/item flex items-start space-x-3"
+                              className="text-xs font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 bg-cyan-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
                             >
-                              <div className="p-2 rounded-xl bg-slate-100 group-hover/item:bg-cyan-50 transition-colors flex-shrink-0">
-                                {getCategoryIcon(cat.iconName)}
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-xs font-bold text-slate-800 group-hover/item:text-[#0B4F6C] block truncate">
-                                  {cat.title}
-                                </span>
-                                <span className="text-[11px] text-slate-500 line-clamp-1 block mt-0.5">
-                                  {cat.subcategories.length} sub-treatments
-                                </span>
-                              </div>
+                              <span>View Treatments Hub</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
                             </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                          </div>
+
+                          {/* 12 Categories Grid */}
+                          <div className="grid grid-cols-3 gap-3 max-h-[420px] overflow-y-auto pr-1">
+                            {TREATMENT_CATEGORIES.map((cat) => (
+                              <Link
+                                key={cat.id}
+                                to={`/treatments/${cat.slug}`}
+                                onClick={() => setTreatmentsMegaOpen(false)}
+                                className="p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all duration-200 text-left group/item flex items-start space-x-3"
+                              >
+                                <div className="p-2 rounded-xl bg-slate-100 group-hover/item:bg-cyan-50 transition-colors flex-shrink-0">
+                                  {getCategoryIcon(cat.iconName)}
+                                </div>
+                                <div className="min-w-0">
+                                  <span className="text-xs font-bold text-slate-800 group-hover/item:text-[#0B4F6C] block truncate">
+                                    {cat.title}
+                                  </span>
+                                  <span className="text-[11px] text-slate-500 line-clamp-1 block mt-0.5">
+                                    {cat.subcategories.length} sub-treatments
+                                  </span>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               }
@@ -209,7 +219,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                     isActive 
                       ? 'text-[#0B4F6C] bg-cyan-50/90 font-bold' 
                       : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-50'
@@ -249,17 +259,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             </a>
 
             {/* Book Appointment CTA */}
-            <button
+            <motion.button
               onClick={onOpenBooking}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               id="header-book-appointment-cta"
-              className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold uppercase tracking-wider px-5 xl:px-6 py-2.5 xl:py-3 rounded-2xl shadow-md shadow-cyan-900/20 hover:shadow-lg active:scale-[0.98] transition-all duration-200 flex items-center justify-center space-x-2.5 shrink-0 border border-cyan-500/20"
+              className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold uppercase tracking-wider px-5 xl:px-6 py-2.5 xl:py-3 rounded-2xl shadow-md shadow-cyan-900/20 hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2.5 shrink-0 border border-cyan-500/20"
             >
               <Calendar className="w-5 h-5 text-cyan-300 shrink-0" />
               <div className="flex flex-col items-center justify-center text-center leading-tight text-[11px] xl:text-[12px] font-extrabold tracking-wider">
                 <span className="block w-full text-center">BOOK</span>
                 <span className="block w-full text-center">APPOINTMENT</span>
               </div>
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile Navigation Toggle */}
@@ -303,67 +315,76 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
       </div>
 
       {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[108px] bg-white border-b border-slate-200 shadow-2xl p-5 z-50 max-h-[calc(100vh-120px)] overflow-y-auto animate-in slide-in-from-top duration-300">
-          <div className="flex flex-col space-y-1 mb-5">
-            {navLinks.map((link) => {
-              const isActive = link.path === '/' 
-                ? location.pathname === '/' 
-                : location.pathname.startsWith(link.path);
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden fixed inset-x-0 top-[108px] bg-white border-b border-slate-200 shadow-2xl p-5 z-50 max-h-[calc(100vh-120px)] overflow-y-auto"
+          >
+            <div className="flex flex-col space-y-1 mb-5">
+              {navLinks.map((link) => {
+                const isActive = link.path === '/' 
+                  ? location.pathname === '/' 
+                  : location.pathname.startsWith(link.path);
 
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold text-base transition-colors ${
-                    isActive 
-                      ? 'bg-cyan-50 text-[#0B4F6C] font-bold' 
-                      : 'text-slate-700 hover:bg-slate-50'
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  <ChevronRight className="w-4 h-4 text-slate-400" />
-                </Link>
-              );
-            })}
-          </div>
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold text-base transition-colors ${
+                      isActive 
+                        ? 'bg-cyan-50 text-[#0B4F6C] font-bold' 
+                        : 'text-slate-700 hover:bg-slate-50'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                  </Link>
+                );
+              })}
+            </div>
 
-          <div className="pt-4 border-t border-slate-100 flex flex-col space-y-3">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-base py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
-              id="mobile-drawer-book-btn"
-            >
-              <Calendar className="w-5 h-5 text-cyan-300" />
-              <span>Book Appointment</span>
-            </button>
+            <div className="pt-4 border-t border-slate-100 flex flex-col space-y-3">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenBooking();
+                }}
+                className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-base py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
+                id="mobile-drawer-book-btn"
+              >
+                <Calendar className="w-5 h-5 text-cyan-300" />
+                <span>Book Appointment</span>
+              </button>
 
-            <a
-              href={`tel:${phoneClean}`}
-              className="w-full border border-slate-200 text-slate-700 hover:text-[#0B4F6C] font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
-              id="mobile-drawer-call-btn"
-            >
-              <Phone className="w-4 h-4 text-[#0B4F6C]" />
-              <span>Call Clinic Direct</span>
-            </a>
+              <a
+                href={`tel:${phoneClean}`}
+                className="w-full border border-slate-200 text-slate-700 hover:text-[#0B4F6C] font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
+                id="mobile-drawer-call-btn"
+              >
+                <Phone className="w-4 h-4 text-[#0B4F6C]" />
+                <span>Call Clinic Direct</span>
+              </a>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
-              id="mobile-drawer-whatsapp-btn"
-            >
-              <MessageCircle className="w-4 h-4 fill-white" />
-              <span>WhatsApp Direct Chat</span>
-            </a>
-          </div>
-        </div>
-      )}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
+                id="mobile-drawer-whatsapp-btn"
+              >
+                <MessageCircle className="w-4 h-4 fill-white" />
+                <span>WhatsApp Direct Chat</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
+

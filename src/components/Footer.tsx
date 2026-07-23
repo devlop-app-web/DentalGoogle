@@ -21,6 +21,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Logo } from './Logo';
+import { CLINIC_INFO } from '../data/homeData';
 
 interface FooterProps {
   onOpenBooking: () => void;
@@ -41,6 +42,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const phoneClean = CLINIC_INFO.phone.replace(/[^0-9]/g, '');
+
   const quickLinks = [
     { label: 'Home', path: '/' },
     { label: 'About Us', path: '/about' },
@@ -48,9 +51,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     { label: 'Smile Gallery', path: '/smile-gallery' },
     { label: 'Patient Information', path: '/patient-info' },
     { label: 'Testimonials', path: '/testimonials' },
+    { label: 'General Enquiry', path: '/general-enquiry' },
     { label: 'Contact Us', path: '/contact' },
     { label: 'Book Appointment', action: onOpenBooking },
-    { label: 'General Enquiry', path: '/contact' },
   ];
 
   const treatments = [
@@ -71,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-600 hover:bg-pink-50' },
     { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-600 hover:bg-red-50' },
     { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:text-blue-700 hover:bg-blue-50' },
-    { name: 'WhatsApp', icon: MessageCircle, href: '#', color: 'hover:text-emerald-600 hover:bg-emerald-50' },
+    { name: 'WhatsApp', icon: MessageCircle, href: `https://wa.me/${phoneClean}`, color: 'hover:text-emerald-600 hover:bg-emerald-50' },
   ];
 
   return (
@@ -107,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               <span>Book Appointment</span>
             </button>
             <Link
-              to="/contact"
+              to="/general-enquiry"
               id="footer-banner-contact-cta"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-2xl border border-white/25 transition-all duration-200 flex items-center justify-center space-x-2 text-sm"
             >
@@ -258,8 +261,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 <MapPin className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Clinic Address</span>
-                  <span className="text-teal-100 font-mono text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
-                    [Replace with actual clinic address]
+                  <span className="text-teal-100 text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                    {CLINIC_INFO.address}
                   </span>
                 </div>
               </div>
@@ -269,9 +272,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 <Phone className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Phone</span>
-                  <span className="text-teal-100 font-mono text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
-                    [Replace with actual phone number]
-                  </span>
+                  <a href={`tel:${phoneClean}`} className="text-cyan-200 hover:underline font-mono text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                    {CLINIC_INFO.phone}
+                  </a>
                 </div>
               </div>
 
@@ -280,9 +283,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 <Mail className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Email</span>
-                  <span className="text-teal-100 font-mono text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
-                    [Replace with actual email]
-                  </span>
+                  <a href={`mailto:${CLINIC_INFO.email}`} className="text-cyan-200 hover:underline text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                    {CLINIC_INFO.email}
+                  </a>
                 </div>
               </div>
 
@@ -294,11 +297,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                   <div className="bg-[#2B4748] p-2.5 rounded-xl border border-[#4B7374] space-y-1 text-[11px] shadow-2xs">
                     <div className="flex justify-between text-teal-100">
                       <span className="font-semibold">Monday – Saturday:</span>
-                      <span className="font-mono text-cyan-200 font-bold">9:00 AM – 8:00 PM</span>
+                      <span className="font-mono text-cyan-200 font-bold">{CLINIC_INFO.hours.weekdays}</span>
                     </div>
                     <div className="flex justify-between text-teal-100 pt-1 border-t border-[#4B7374]/60">
                       <span className="font-semibold">Sunday:</span>
-                      <span className="font-bold text-amber-300">By Appointment Only</span>
+                      <span className="font-bold text-amber-300">{CLINIC_INFO.hours.sunday}</span>
                     </div>
                   </div>
                 </div>
@@ -354,3 +357,4 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     </footer>
   );
 };
+

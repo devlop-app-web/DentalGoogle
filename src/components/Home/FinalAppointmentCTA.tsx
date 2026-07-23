@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Calendar, Phone, MessageCircle, AlertTriangle, Sparkles, ChevronRight, ShieldCheck } from 'lucide-react';
 import { CLINIC_INFO } from '../../data/homeData';
+import { buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface FinalAppointmentCTAProps {
   onOpenBooking: () => void;
@@ -14,12 +16,32 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
     <section className="py-20 bg-gradient-to-br from-[#0B4F6C] via-[#083E55] to-[#052C3E] text-white relative overflow-hidden shadow-2xl">
       
       {/* Background Lighting Orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
+      <motion.div 
+        animate={{
+          scale: [1, 1.25, 1],
+          opacity: [0.15, 0.3, 0.15],
+          transition: { duration: 9, repeat: Infinity, ease: 'easeInOut' }
+        }}
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl pointer-events-none"
+      />
+      <motion.div 
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.15, 0.35, 0.15],
+          transition: { duration: 11, repeat: Infinity, ease: 'easeInOut' }
+        }}
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-400/20 rounded-full blur-3xl pointer-events-none"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-cyan-300/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 50, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={VIEWPORT_CONFIG}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-white/10 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-cyan-300/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+        >
           
           {/* Left Column: Headlines & Actions */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -47,47 +69,54 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
             {/* Action Buttons Grid */}
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
               {/* Book Appointment */}
-              <button
+              <motion.button
+                {...buttonHover}
                 onClick={onOpenBooking}
                 id="final-cta-book-btn"
-                className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-7 py-4 rounded-2xl shadow-xl transition-all duration-200 flex items-center justify-center space-x-2 uppercase tracking-wider"
+                className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-7 py-4 rounded-2xl shadow-xl flex items-center justify-center space-x-2 uppercase tracking-wider cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-[#0B4F6C]" />
                 <span>Book Appointment</span>
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </motion.button>
 
               {/* Call Now */}
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={`tel:${phoneFormatted}`}
                 id="final-cta-call-btn"
-                className="bg-white/15 hover:bg-white/25 text-white font-bold text-sm px-5 py-4 rounded-2xl border border-white/25 transition-all flex items-center justify-center space-x-2"
+                className="bg-white/15 hover:bg-white/25 text-white font-bold text-sm px-5 py-4 rounded-2xl border border-white/25 transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <Phone className="w-4 h-4 text-cyan-300" />
                 <span>Call Now</span>
-              </a>
+              </motion.a>
 
               {/* WhatsApp */}
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 id="final-cta-whatsapp-btn"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm px-5 py-4 rounded-2xl shadow transition-all flex items-center justify-center space-x-2"
+                className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm px-5 py-4 rounded-2xl shadow transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp</span>
-              </a>
+              </motion.a>
 
               {/* Emergency Appointment */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onOpenBooking}
                 id="final-cta-emergency-btn"
-                className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-4 rounded-2xl shadow transition-all flex items-center justify-center space-x-2"
+                className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm px-5 py-4 rounded-2xl shadow transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <AlertTriangle className="w-4 h-4 text-white" />
                 <span>Emergency Appointment</span>
-              </button>
+              </motion.button>
             </div>
 
           </div>
@@ -98,7 +127,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
               <img
                 src="/assets/CEO BG.png"
                 alt="Dr. Sheekha Shah Final CTA"
-                className="w-full h-[380px] sm:h-[420px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-[380px] sm:h-[420px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
@@ -110,9 +139,10 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
+
