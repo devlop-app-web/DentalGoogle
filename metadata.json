@@ -1,0 +1,6 @@
+{
+  "name": "Dr. Sheekha Shah DENTAL STUDIO",
+  "description": "Premier luxury dental studio by Dr. Sheekha Shah offering advanced cosmetic, implant, and aligner treatments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

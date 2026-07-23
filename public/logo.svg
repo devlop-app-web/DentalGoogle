@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Circle Background -->
+  <circle cx="250" cy="250" r="235" fill="#2E4F4F" />
+
+  <!-- White Stylized Tooth Contour matching exact uploaded logo -->
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main Outer S-curve Tooth Ribbon -->
+    <path d="M 205 82 
+             C 160 85, 130 120, 132 170 
+             C 134 235, 195 275, 255 315 
+             C 315 355, 355 405, 350 470
+             C 330 430, 320 370, 275 330
+             C 220 280, 180 240, 175 185
+             C 170 135, 205 95, 250 85
+             C 295 95, 330 135, 325 185
+             C 320 240, 280 280, 225 330
+             C 180 370, 170 430, 150 470
+             C 145 405, 185 355, 245 315
+             C 305 275, 366 235, 368 170
+             C 370 120, 340 85, 295 82
+             C 265 80, 235 80, 205 82 Z" 
+          fill="#FFFFFF" />
+  </g>
+</svg>
