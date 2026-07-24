@@ -51,7 +51,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     { label: 'Smile Gallery', path: '/smile-gallery' },
     { label: 'Patient Information', path: '/patient-info' },
     { label: 'Testimonials', path: '/testimonials' },
-    { label: 'General Enquiry', path: '/general-enquiry' },
     { label: 'Contact Us', path: '/contact' },
     { label: 'Book Appointment', action: onOpenBooking },
   ];
@@ -110,12 +109,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               <span>Book Appointment</span>
             </button>
             <Link
-              to="/general-enquiry"
+              to="/contact"
               id="footer-banner-contact-cta"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-2xl border border-white/25 transition-all duration-200 flex items-center justify-center space-x-2 text-sm cursor-pointer"
             >
               <Mail className="w-4 h-4 text-cyan-300" />
-              <span>General Enquiry</span>
+              <span>Contact & Enquiry</span>
             </Link>
           </div>
         </div>

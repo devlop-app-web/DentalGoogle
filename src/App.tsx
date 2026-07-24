@@ -15,7 +15,6 @@ import { PatientInfoPage } from './pages/PatientInfoPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 import { ContactPage } from './pages/ContactPage';
 import { BookAppointmentPage } from './pages/BookAppointmentPage';
-import { GeneralEnquiryPage } from './pages/GeneralEnquiryPage';
 
 import { AppointmentModal } from './components/Home/AppointmentModal';
 import { ClinicTourModal } from './components/Home/ClinicTourModal';
@@ -119,7 +118,7 @@ export default function App() {
 
             <Route 
               path="/general-enquiry" 
-              element={<GeneralEnquiryPage />} 
+              element={<Navigate to="/contact" replace />} 
             />
 
             <Route 

@@ -57,7 +57,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
     { path: '/smile-gallery', label: 'Smile Gallery' },
     { path: '/patient-info', label: 'Patient Info' },
     { path: '/testimonials', label: 'Testimonials' },
-    { path: '/general-enquiry', label: 'General Enquiry' },
     { path: '/contact', label: 'Contact' },
   ];
 
