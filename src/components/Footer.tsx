@@ -51,8 +51,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
     { label: 'Smile Gallery', path: '/smile-gallery' },
     { label: 'Patient Information', path: '/patient-info' },
     { label: 'Testimonials', path: '/testimonials' },
+    { label: 'Book Appointment', path: '/book-appointment' },
     { label: 'Contact Us', path: '/contact' },
-    { label: 'Book Appointment', action: onOpenBooking },
   ];
 
   const treatments = [
@@ -181,23 +181,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               <ul className="space-y-2 text-xs font-medium text-slate-300">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
-                    {link.action ? (
-                      <button
-                        onClick={link.action}
-                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 text-left w-full group cursor-pointer"
-                      >
-                        <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
-                        <span>{link.label}</span>
-                      </button>
-                    ) : (
-                      <Link
-                        to={link.path!}
-                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group cursor-pointer"
-                      >
-                        <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
-                        <span>{link.label}</span>
-                      </Link>
-                    )}
+                    <Link
+                      to={link.path}
+                      className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group cursor-pointer"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                      <span>{link.label}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
