@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Sparkles, Eye, ArrowRight, CheckCircle2, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { TRANSFORMATION_CASES } from '../../data/homeData';
 import { CLINIC_INFO } from '../../data/homeData';
+import { fadeInUp, staggerContainer, staggerCard, VIEWPORT_CONFIG } from '../../lib/motion';
 const clinicImg = '/assets/Image/Clinic.jpeg';
 const clinic2Img = '/assets/Image/Clinic 2.jpeg';
 const entryImg = '/assets/Image/Entry.jpeg';
