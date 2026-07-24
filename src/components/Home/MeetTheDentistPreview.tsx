@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { GraduationCap, Award, Calendar, ChevronRight, Play, ShieldCheck, Heart, Sparkles, Eye, X, ChevronLeft } from 'lucide-react';
+import { motion } from 'motion/react';
+import { GraduationCap, Award, Calendar, ChevronRight, Play, ShieldCheck, Heart, Sparkles } from 'lucide-react';
 import ceoBgImg from '@/public/assets/Image/CEO BG.png';
 import ceoJpegImg from '@/public/assets/Image/CEO.jpeg';
 import ceo2Img from '@/public/assets/Image/CEO2.png';
-import clinicImg from '@/public/assets/Image/Clinic.jpeg';
-import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
-import entryImg from '@/public/assets/Image/Entry.jpeg';
-import waitingImg from '@/public/assets/Image/Waiting.jpeg';
-import waiting2Img from '@/public/assets/Image/Waiting 2.jpeg';
-=======
-import { motion } from 'motion/react';
-import { GraduationCap, Award, Calendar, ChevronRight, Play, ShieldCheck, Heart, Sparkles } from 'lucide-react';
->>>>>>> 622861a99792ba88638bf39545a8789d89828d71
 import { ClinicTourModal } from './ClinicTourModal';
 import { fadeInLeft, fadeInRight, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
@@ -21,17 +12,9 @@ interface MeetTheDentistPreviewProps {
   onOpenClinicTour?: () => void;
 }
 
-interface GalleryImage {
-  src: string;
-  title: string;
-  category: string;
-  desc: string;
-}
-
 export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ onOpenBooking, onOpenClinicTour }) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
-  const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
   const handleTourClick = () => {
     if (onOpenClinicTour) {
@@ -41,39 +24,6 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
     }
   };
 
-  const clinicPhotos: GalleryImage[] = [
-    {
-      src: entryImg,
-      title: "Clinic Entrance & Foyer",
-      category: "Reception",
-      desc: "Welcoming luxury entry area designed for patient relaxation and comfort."
-    },
-    {
-      src: clinicImg,
-      title: "Treatment Room 1",
-      category: "Operatory",
-      desc: "State-of-the-art dental suite with ergonomic chairs and 3D digital scanners."
-    },
-    {
-      src: clinic2Img,
-      title: "Modern Operatory Suite 2",
-      category: "Surgical Suite",
-      desc: "Hospital-grade sterile surgical room for computer-guided implantology."
-    },
-    {
-      src: waitingImg,
-      title: "Patient Waiting Lounge",
-      category: "Lounge",
-      desc: "Peaceful, serene waiting environment equipped with modern amenities."
-    },
-    {
-      src: waiting2Img,
-      title: "Consultation & Diagnostics",
-      category: "Consultation",
-      desc: "Private room for digital smile simulations and transparent treatment plans."
-    }
-  ];
-
   return (
     <section id="about" className="py-20 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
 
@@ -81,13 +31,6 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
       <div className="absolute top-1/2 right-0 w-80 h-80 bg-cyan-100/40 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<<<<<<< HEAD
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
-
-          {/* Left Column: Doctor Photo & Real Clinic Photo Cards */}
-          <div className="lg:col-span-5 relative space-y-5">
-=======
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
           
@@ -99,7 +42,6 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
             viewport={VIEWPORT_CONFIG}
             className="lg:col-span-5 relative"
           >
->>>>>>> 622861a99792ba88638bf39545a8789d89828d71
             <div className="relative mx-auto max-w-md lg:max-w-none">
 
               {/* Doctor Main Portrait Card */}
@@ -107,7 +49,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
                 <img
                   src={ceoBgImg}
                   alt="Dr. Sheekha Shah DENTAL STUDIO Background"
-                  className="w-full h-[440px] sm:h-[480px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-[480px] sm:h-[520px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
 
@@ -121,7 +63,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </div>
 
               {/* Doctor Secondary Thumbnail Badge */}
-              {/* <div className="absolute -top-5 -left-5 bg-white p-3 rounded-2xl shadow-xl border border-slate-200 flex items-center space-x-3 hidden sm:flex">
+              <div className="absolute -top-5 -left-5 bg-white p-3 rounded-2xl shadow-xl border border-slate-200 flex items-center space-x-3 hidden sm:flex">
                 <img
                   src={ceo2Img}
                   alt="Dr. Sheekha Shah Professional Portrait"
@@ -131,7 +73,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
                   <span className="text-xs font-extrabold text-slate-900 block">AACD Accredited Fellow</span>
                   <span className="text-[10px] text-[#0B4F6C] font-extrabold">Top 1% Aesthetic Specialist</span>
                 </div>
-              </div> */}
+              </div>
 
               {/* Virtual Clinic Tour Button */}
               <motion.button
@@ -144,44 +86,6 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </motion.button>
 
             </div>
-<<<<<<< HEAD
-
-            {/* Premium Real Clinic Photo Grid */}
-            <div className="space-y-2.5 pt-2">
-              <div className="flex items-center justify-between px-1">
-                <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider flex items-center space-x-1.5">
-                  <Eye className="w-3.5 h-3.5 text-[#00B4D8]" />
-                  <span>Real Clinic Environment & Suites</span>
-                </span>
-                <span className="text-[10px] font-bold text-slate-400">Click image to expand</span>
-              </div>
-
-              <div className="grid grid-cols-5 gap-2 sm:gap-2.5">
-                {clinicPhotos.map((photo, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveLightboxIndex(index)}
-                    className="group relative rounded-2xl overflow-hidden border-2 border-white shadow-md hover:shadow-xl hover:border-[#0B4F6C] transition-all duration-300 aspect-square bg-slate-200 cursor-pointer focus:outline-none"
-                  >
-                    <img
-                      src={photo.src}
-                      alt={photo.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <Eye className="w-4 h-4 text-white drop-shadow-md" />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column: Information */}
-          <div className="lg:col-span-7 space-y-6">
-
-=======
           </motion.div>
 
           {/* Right Column: Information */}
@@ -192,8 +96,6 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
             viewport={VIEWPORT_CONFIG}
             className="lg:col-span-7 space-y-6"
           >
-            
->>>>>>> 622861a99792ba88638bf39545a8789d89828d71
             <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
               <span>Meet The Lead Specialist</span>
@@ -227,35 +129,27 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </div>
             </div>
 
-            {/* Doctor Image Thumbnails Gallery */}
-            {/* <div className="pt-2 flex items-center space-x-3">
-              <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Clinical Gallery:</span>
-              <div className="flex items-center space-x-2">
-                <img src={ceoBgImg} alt="Dr. Sheekha BG" className="w-10 h-10 rounded-xl object-cover border border-slate-300 shadow-2xs" />
-                <img src={ceoJpegImg} alt="Dr. Sheekha Clinical" className="w-10 h-10 rounded-xl object-cover border border-slate-300 shadow-2xs" />
-                <img src={ceo2Img} alt="Dr. Sheekha Portrait" className="w-10 h-10 rounded-xl object-cover border border-slate-300 shadow-2xs" />
-              </div>
-            </div> */}
-
             {/* Action Buttons */}
             <div className="pt-3 flex flex-wrap gap-3">
-              <button
+              <motion.button
+                {...buttonHover}
                 onClick={onOpenBooking}
                 id="meet-dentist-book-btn"
-                className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
+                className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-cyan-300" />
                 <span>Book Consultation With Dr. Shah</span>
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
+                {...buttonHover}
                 onClick={() => setShowProfileModal(true)}
                 id="meet-dentist-profile-btn"
-                className="bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-center space-x-1.5"
+                className="bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-center space-x-1.5 cursor-pointer"
               >
                 <span>Read Full Profile</span>
                 <ChevronRight className="w-4 h-4 text-[#0B4F6C]" />
-              </button>
+              </motion.button>
             </div>
 
           </motion.div>
@@ -264,76 +158,13 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
 
       </div>
 
-      {/* Lightbox Modal for Real Clinic Photos */}
-      {activeLightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setActiveLightboxIndex(null)}
-        >
-          <div
-            className="relative bg-slate-900 rounded-3xl max-w-4xl w-full overflow-hidden border border-slate-700/60 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setActiveLightboxIndex(null)}
-              className="absolute top-4 right-4 z-10 p-2 text-white/70 hover:text-white bg-black/40 hover:bg-black/60 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="relative h-[360px] sm:h-[480px] bg-slate-950 flex items-center justify-center">
-              <img
-                src={clinicPhotos[activeLightboxIndex].src}
-                alt={clinicPhotos[activeLightboxIndex].title}
-                className="max-h-full max-w-full object-contain"
-              />
-
-              {/* Prev / Next navigation */}
-              <button
-                onClick={() => setActiveLightboxIndex((prev) => (prev === 0 ? clinicPhotos.length - 1 : prev! - 1))}
-                className="absolute left-4 p-2.5 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white transition-colors border border-white/10"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                onClick={() => setActiveLightboxIndex((prev) => (prev === clinicPhotos.length - 1 ? 0 : prev! + 1))}
-                className="absolute right-4 p-2.5 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white transition-colors border border-white/10"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="p-5 sm:p-6 bg-slate-900 text-white flex items-center justify-between border-t border-slate-800">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-300">
-                  {clinicPhotos[activeLightboxIndex].category}
-                </span>
-                <h4 className="text-lg font-bold font-heading text-white">
-                  {clinicPhotos[activeLightboxIndex].title}
-                </h4>
-                <p className="text-xs text-slate-300 mt-1">
-                  {clinicPhotos[activeLightboxIndex].desc}
-                </p>
-              </div>
-
-              <div className="text-right">
-                <span className="text-xs text-slate-400 font-mono">
-                  {activeLightboxIndex + 1} / {clinicPhotos.length}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Full Profile Modal */}
       {showProfileModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white text-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setShowProfileModal(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-full hover:bg-slate-100"
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-full hover:bg-slate-100 cursor-pointer"
             >
               ✕
             </button>
@@ -365,16 +196,17 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </div>
 
               <div className="pt-2 flex gap-3">
-                <button
+                <motion.button
+                  {...buttonHover}
                   onClick={() => {
                     setShowProfileModal(false);
                     onOpenBooking();
                   }}
-                  className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold py-3.5 rounded-xl shadow text-xs sm:text-sm flex items-center justify-center space-x-2"
+                  className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold py-3.5 rounded-xl shadow text-xs sm:text-sm flex items-center justify-center space-x-2 cursor-pointer"
                 >
                   <Calendar className="w-4 h-4 text-cyan-300" />
                   <span>Book Consultation With Dr. Sheekha Shah</span>
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
