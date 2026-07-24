@@ -362,6 +362,58 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   ? location.pathname === '/' 
                   : location.pathname.startsWith(link.path);
 
+                if (link.isMega) {
+                  return (
+                    <div key={link.path} className="space-y-1.5 my-1">
+                      {/* Treatments Header Banner */}
+                      <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-cyan-50/80 border border-cyan-200/80 text-[#0B4F6C]">
+                        <Link
+                          to="/treatments"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center space-x-2 font-extrabold text-sm text-[#0B4F6C]"
+                        >
+                          <Sparkles className="w-4 h-4 text-[#00B4D8]" />
+                          <span>Treatments</span>
+                        </Link>
+                        <Link
+                          to="/treatments"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-[11px] font-extrabold text-[#0B4F6C] bg-white px-2.5 py-1 rounded-lg border border-cyan-200 shadow-2xs flex items-center space-x-1"
+                        >
+                          <span>Treatments Hub</span>
+                          <ChevronRight className="w-3 h-3 text-[#0B4F6C]" />
+                        </Link>
+                      </div>
+
+                      {/* Sub-list of all 12 Treatment Categories - Expanded by default */}
+                      <div className="pl-2 pr-1 py-1 space-y-1 max-h-[320px] overflow-y-auto border-l-2 border-cyan-300/60 ml-2.5">
+                        {TREATMENT_CATEGORIES.map((cat) => {
+                          const isCatActive = location.pathname === `/treatments/${cat.slug}`;
+
+                          return (
+                            <Link
+                              key={cat.id}
+                              to={`/treatments/${cat.slug}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={`flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                                isCatActive
+                                  ? 'bg-[#0B4F6C] text-white shadow-xs font-bold'
+                                  : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-100/80'
+                              }`}
+                            >
+                              <div className={`p-1.5 rounded-lg shrink-0 ${isCatActive ? 'bg-white/20' : 'bg-slate-100'}`}>
+                                {getCategoryIcon(cat.iconName)}
+                              </div>
+                              <span className="truncate flex-1">{cat.title}</span>
+                              <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isCatActive ? 'text-white' : 'text-slate-300'}`} />
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.path}
