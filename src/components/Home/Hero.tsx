@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Phone, ShieldCheck, Sparkles, Star, ChevronRight, CheckCircle2, Award, MessageCircle } from 'lucide-react';
 import { CLINIC_INFO, TREATMENTS } from '../../data/homeData';
-import { 
-  staggerContainer, 
-  staggerItemUp, 
-  staggerItemLeft, 
-  staggerItemRight, 
-  buttonHover, 
+import ceoBgImg from '@/public/assets/Image/CEO BG.png';
+import ceo2Img from '@/public/assets/Image/CEO2.png';
+import {
+  staggerContainer,
+  staggerItemUp,
+  staggerItemLeft,
+  staggerItemRight,
+  buttonHover,
   floatAnimation,
   VIEWPORT_CONFIG
 } from '../../lib/motion';
@@ -43,17 +45,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
   const phoneFormatted = CLINIC_INFO.phone.replace(/[^0-9+]/g, '');
 
   return (
-    <section 
+    <section
       onMouseMove={handleMouseMove}
       className="relative bg-gradient-to-b from-slate-50 via-cyan-50/20 to-white pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden"
     >
-      
+
       {/* Background Ambient Floating Glows */}
-      <motion.div 
+      <motion.div
         {...floatAnimation}
         className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-200/20 rounded-full blur-3xl pointer-events-none -z-10"
       />
-      <motion.div 
+      <motion.div
         animate={{
           y: [0, 20, 0],
           x: [0, -10, 0],
@@ -64,15 +66,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          
+
           {/* Left Column: Value Proposition & Action CTAs */}
-          <motion.div 
+          <motion.div
             variants={staggerContainer(0.12, 0.05)}
             initial="hidden"
             animate="visible"
             className="lg:col-span-7 space-y-6 text-center lg:text-left"
           >
-            
+
             {/* Badges Bar */}
             <motion.div variants={staggerItemUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               {/* Google Rating */}
@@ -164,7 +166,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
             {/* Quick Service Selection Bar */}
             <motion.div variants={staggerItemUp} className="pt-2 max-w-xl mx-auto lg:mx-0">
-              <form 
+              <form
                 onSubmit={handleQuickBook}
                 className="bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-cyan-200/80 shadow-lg shadow-cyan-900/5 flex flex-col sm:flex-row items-center gap-2.5"
               >
@@ -202,7 +204,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
           </motion.div>
 
           {/* Right Column: Doctor Image Hero Banner with Soft Parallax */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 80, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
@@ -212,16 +214,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             className="lg:col-span-5 relative transition-transform duration-300 ease-out"
           >
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              
+
               {/* Main Visual Image Frame with CEO BG.png */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-[#395B5C] via-[#2D4A4B] to-[#1E3435] group">
                 <img
-                  src="/assets/CEO BG.png"
-                  alt="Dr. Sheekha Shah Lead Dental Surgeon"
+                  src={ceoBgImg}
+                  alt="Dr. Sheekha Shah - DENTAL STUDIO Surgeon"
                   className="w-full h-[460px] sm:h-[500px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-1000 ease-out"
                   loading="eager"
                 />
-                
+
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#112324]/90 via-transparent to-transparent pointer-events-none"></div>
 
@@ -239,16 +241,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
               </div>
 
               {/* Floating Badge 1: Top Doctor Badge */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-5 -left-5 bg-white rounded-2xl p-3 shadow-xl border border-cyan-100 flex items-center space-x-3 hidden sm:flex"
+                className="absolute -top-4 -left-3 sm:-top-5 sm:-left-5 bg-white rounded-2xl p-2.5 sm:p-3 shadow-xl border border-cyan-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
               >
                 <img
-                  src="/assets/CEO2.png"
-                  alt="Dr. Sheekha Shah Avatar"
-                  className="w-11 h-11 rounded-full object-cover border-2 border-[#0B4F6C]"
+                  src={ceo2Img}
+                  alt="Dr. Sheekha Shah Profile"
+                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#0B4F6C]"
                 />
                 <div>
                   <span className="text-xs font-extrabold text-slate-800 block">16+ Years Experience</span>
@@ -257,18 +259,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
               </motion.div>
 
               {/* Floating Badge 2: Lifetime Warranty */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              <motion.div
+                initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -bottom-5 -right-5 bg-white rounded-2xl p-3.5 shadow-xl border border-cyan-100 hidden sm:flex items-center space-x-3"
+                className="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 bg-white rounded-2xl p-2.5 sm:p-3.5 shadow-xl border border-cyan-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
               >
-                <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center text-[#0B4F6C]">
-                  <ShieldCheck className="w-6 h-6 text-[#00B4D8]" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-50 flex items-center justify-center text-[#0B4F6C] shrink-0">
+                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B4D8]" />
                 </div>
                 <div>
-                  <span className="text-sm font-extrabold text-slate-900 block font-heading leading-tight">Lifetime Warranty</span>
-                  <span className="text-[10px] font-bold text-slate-500">On Crowns & Implants</span>
+                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 block font-heading leading-tight">Lifetime Warranty</span>
+                  <span className="text-[10px] font-bold text-slate-500 block">On Crowns & Implants</span>
                 </div>
               </motion.div>
 

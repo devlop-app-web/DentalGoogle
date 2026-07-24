@@ -1,6 +1,10 @@
 import React from 'react';
-import { X, ShieldCheck, Sparkles, CheckCircle, Airplay, Video, Heart } from 'lucide-react';
+import { X, ShieldCheck, CheckCircle } from 'lucide-react';
 import { CLINIC_INFO } from '../../data/homeData';
+import entryImg from '@/public/assets/Image/Entry.jpeg';
+import waitingImg from '@/public/assets/Image/Waiting.jpeg';
+import clinicImg from '@/public/assets/Image/Clinic.jpeg';
+import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
 
 interface ClinicTourModalProps {
   isOpen: boolean;
@@ -14,7 +18,7 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
-        
+
         <button
           onClick={onClose}
           id="tour-modal-close-btn"
@@ -39,46 +43,46 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
           <div className="grid grid-cols-2 gap-3">
             <div className="relative h-36 sm:h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
               <img
-                src="/assets/Entry.jpeg"
+                src={entryImg}
                 alt="Studio Main Entrance"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                Studio Entrance
-              </span>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-3">
+                <p className="text-white text-xs font-bold shadow-sm">Reception Foyer</p>
+              </div>
             </div>
 
             <div className="relative h-36 sm:h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
               <img
-                src="/assets/Waiting.jpeg"
+                src={waitingImg}
                 alt="Luxury Waiting Lounge"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                Serene Lounge
-              </span>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-3">
+                <p className="text-white text-xs font-bold shadow-sm">Patient Lounge</p>
+              </div>
             </div>
 
             <div className="relative h-36 sm:h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
               <img
-                src="/assets/Clinic.jpeg"
+                src={clinicImg}
                 alt="Digital Treatment Suite"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                3D Operatory Suite 1
-              </span>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-3">
+                <p className="text-white text-xs font-bold shadow-sm">Digital Operatory</p>
+              </div>
             </div>
 
             <div className="relative h-36 sm:h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
               <img
-                src="/assets/Clinic 2.jpeg"
+                src={clinic2Img}
                 alt="Advanced Operatory Suite"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                Advanced Operatory 2
-              </span>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-3">
+                <p className="text-white text-xs font-bold shadow-sm">Surgery Suite</p>
+              </div>
             </div>
           </div>
 
@@ -88,7 +92,7 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
               <ShieldCheck className="w-4 h-4 text-[#00A99D]" />
               <span>Hospital-Grade Sterilization Protocols</span>
             </h4>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium text-slate-700 pt-1">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { 
-  Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft, 
+import {
+  Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft,
   Calendar, Phone, Cpu, Activity, UserCheck, Shield, ChevronRight
 } from 'lucide-react';
 import { TREATMENT_CATEGORIES, getCategoryBySlug } from '../data/treatmentsData';
 import { CLINIC_INFO } from '../data/homeData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
 
 interface TreatmentCategoryPageProps {
   onOpenBooking: () => void;
@@ -109,9 +110,9 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
           </div>
 
           <div className="lg:col-span-4 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 h-60 sm:h-72 group">
-            <img 
-              src="/assets/Clinic 2.jpeg" 
-              alt={`Dr. Sheekha Shah DENTAL STUDIO ${category.title}`} 
+            <img
+              src={clinic2Img}
+              alt={`${category.title} Operatory`}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -186,8 +187,8 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {category.subcategories.map((sub) => (
-              <motion.div 
-                key={sub.id} 
+              <motion.div
+                key={sub.id}
                 whileHover={{ y: -4 }}
                 className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >

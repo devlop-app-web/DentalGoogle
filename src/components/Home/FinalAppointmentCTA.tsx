@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Phone, MessageCircle, AlertTriangle, Sparkles, ChevronRight, ShieldCheck } from 'lucide-react';
 import { CLINIC_INFO } from '../../data/homeData';
+import ceoBgImg from '@/public/assets/Image/CEO BG.png';
 import { buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface FinalAppointmentCTAProps {
@@ -14,9 +15,9 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
 
   return (
     <section className="py-20 bg-gradient-to-br from-[#0B4F6C] via-[#083E55] to-[#052C3E] text-white relative overflow-hidden shadow-2xl">
-      
+
       {/* Background Lighting Orbs */}
-      <motion.div 
+      <motion.div
         animate={{
           scale: [1, 1.25, 1],
           opacity: [0.15, 0.3, 0.15],
@@ -24,7 +25,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
         }}
         className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl pointer-events-none"
       />
-      <motion.div 
+      <motion.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.15, 0.35, 0.15],
@@ -34,18 +35,18 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.96 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={VIEWPORT_CONFIG}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="bg-white/10 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-cyan-300/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
         >
-          
+
           {/* Left Column: Headlines & Actions */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
+
             <div className="inline-flex items-center space-x-2 bg-cyan-400/20 text-cyan-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-cyan-300/30">
               <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
               <span>Transform Your Smile Today</span>
@@ -125,8 +126,8 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-sm lg:max-w-none rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-b from-[#2B4748] via-[#243E3F] to-[#1D3334] shadow-2xl group">
               <img
-                src="/assets/CEO BG.png"
-                alt="Dr. Sheekha Shah Final CTA"
+                src={ceoBgImg}
+                alt="Dr. Sheekha Shah - DENTAL STUDIO"
                 className="w-full h-[380px] sm:h-[420px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />

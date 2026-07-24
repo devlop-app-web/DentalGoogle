@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Award, GraduationCap, ShieldCheck, Sparkles, Play, Calendar } from 'lucide-react';
 import { DOCTORS } from '../../data/homeData';
+import ceoBgImg from '@/public/assets/Image/CEO BG.png';
 import { fadeInLeft, fadeInRight, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface DoctorIntroProps {
@@ -15,9 +16,9 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
 
   return (
     <section id="about" className="py-20 bg-white border-t border-slate-200/60 relative overflow-hidden">
-      
+
       {/* Gentle background accent */}
-      <motion.div 
+      <motion.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -27,12 +28,12 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Lead Doctor Highlight Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
-          
+
           {/* Doctor Portrait Image Card - Slide Left */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
@@ -40,15 +41,15 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
             className="lg:col-span-5 relative"
           >
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              
+
               <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-[#2E4F4F] via-[#243F3F] to-[#1D3232] relative group">
                 <img
-                  src="/assets/CEO BG.png"
-                  alt={leadDoctor.name}
+                  src={ceoBgImg}
+                  alt={DOCTORS[0].name}
                   className="w-full h-[520px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
 
                 <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -59,7 +60,7 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
               </div>
 
               {/* Floating Award Emblem */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={VIEWPORT_CONFIG}
@@ -91,14 +92,14 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
           </motion.div>
 
           {/* Right Column: Bio, Philosophy & Credentials - Slide Right */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
             variants={fadeInRight}
             className="lg:col-span-7 space-y-6"
           >
-            
+
             <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0F6CBD] uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-[#24BEC8]" />
               <span>Meet Our Specialists</span>

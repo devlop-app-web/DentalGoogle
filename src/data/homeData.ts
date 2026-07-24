@@ -1,6 +1,8 @@
 import { Treatment, Doctor, TransformationCase, Review, FAQItem } from '../types';
 import { generateDentalMacroImage } from '../utils/dentalImages';
 
+const ceoImg = '/assets/Image/CEO.jpeg';
+
 export const CLINIC_INFO = {
   name: "Dr. Sheekha Shah",
   studioName: "DENTAL STUDIO",
@@ -103,7 +105,7 @@ export const DOCTORS: Doctor[] = [
     experienceYears: 16,
     specialties: ["Smile Makeovers", "Dental Implants", "Porcelain Veneers", "Full Mouth Rehabilitation"],
     bio: "Dr. Sheekha Shah is a renowned aesthetic dentist and implantologist dedicated to gentle, pain-free techniques and state-of-the-art digital dentistry at DENTAL STUDIO.",
-    imageUrl: "/assets/CEO.jpeg",
+    imageUrl: ceoImg,
     quote: "A healthy, radiant smile redefines your confidence. At DENTAL STUDIO, we blend clinical perfection with artistic care.",
     education: [
       "Master of Dental Surgery (MDS), Cosmetic Dentistry & Implantology",

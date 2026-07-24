@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Sparkles, MoveHorizontal } from 'lucide-react';
 
 interface BeforeAfterSliderProps {
@@ -22,7 +22,74 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
 }) => {
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+  const [beforeLoaded, setBeforeLoaded] = useState<boolean>(false);
+  const [afterLoaded, setAfterLoaded] = useState<boolean>(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const beforeImgRef = useRef<HTMLImageElement>(null);
+  const afterImgRef = useRef<HTMLImageElement>(null);
+
+  const updateDimensions = useCallback(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const width = rect.width || containerRef.current.offsetWidth;
+      if (width > 0) {
+        setContainerWidth(width);
+      }
+    }
+  }, []);
+
+  // Reset states & trigger dimension calculations on image change
+  useEffect(() => {
+    setBeforeLoaded(false);
+    setAfterLoaded(false);
+    setSliderPosition(50);
+
+    updateDimensions();
+
+    const rafId = requestAnimationFrame(() => {
+      updateDimensions();
+    });
+
+    return () => cancelAnimationFrame(rafId);
+  }, [beforeImage, afterImage, updateDimensions]);
+
+  // Setup ResizeObserver, image completion checks, and Window listeners
+  useEffect(() => {
+    updateDimensions();
+
+    // Check if images are already cached
+    if (beforeImgRef.current?.complete) {
+      setBeforeLoaded(true);
+    }
+    if (afterImgRef.current?.complete) {
+      setAfterLoaded(true);
+    }
+
+    const handleResize = () => {
+      updateDimensions();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (containerRef.current && typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        updateDimensions();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('load', handleResize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, [updateDimensions]);
 
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -47,6 +114,8 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
   const handleMouseDown = () => setIsDragging(true);
   const handleMouseUp = () => setIsDragging(false);
 
+  const isReady = beforeLoaded && afterLoaded && containerWidth > 0;
+
   return (
     <div className={`relative select-none overflow-hidden rounded-3xl border border-slate-200/90 shadow-xl bg-slate-900 ${className}`}>
       {title && (
@@ -64,7 +133,9 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       {/* Main Container */}
       <div 
         ref={containerRef}
-        className="relative w-full h-80 sm:h-96 md:h-[420px] cursor-ew-resize overflow-hidden"
+        className={`relative w-full h-80 sm:h-96 md:h-[420px] cursor-ew-resize overflow-hidden transition-opacity duration-300 ${
+          isReady ? 'opacity-100' : 'opacity-90'
+        }`}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -75,8 +146,13 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       >
         {/* After Image (Background - Full Width) */}
         <img 
+          ref={afterImgRef}
           src={afterImage} 
-          alt="After Treatment" 
+          alt={afterLabel} 
+          onLoad={() => {
+            setAfterLoaded(true);
+            updateDimensions();
+          }}
           className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
         />
         <div className="absolute bottom-4 right-4 z-10 bg-emerald-600/90 backdrop-blur-md text-white text-xs font-black px-3 py-1 rounded-lg border border-emerald-400/40 shadow-md">
@@ -89,10 +165,15 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
           style={{ width: `${sliderPosition}%` }}
         >
           <img 
+            ref={beforeImgRef}
             src={beforeImage} 
-            alt="Before Treatment" 
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none max-w-none"
-            style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }}
+            alt={beforeLabel} 
+            onLoad={() => {
+              setBeforeLoaded(true);
+              updateDimensions();
+            }}
+            className="absolute inset-y-0 left-0 h-full object-cover object-center pointer-events-none max-w-none"
+            style={{ width: containerWidth > 0 ? `${containerWidth}px` : '100%' }}
           />
           <div className="absolute bottom-4 left-4 z-10 bg-slate-900/90 backdrop-blur-md text-slate-200 text-xs font-black px-3 py-1 rounded-lg border border-white/20 shadow-md">
             {beforeLabel}
@@ -122,3 +203,4 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
     </div>
   );
 };
+

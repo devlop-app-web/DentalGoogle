@@ -29,6 +29,14 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import { DOCTORS, CLINIC_INFO } from '../data/homeData';
+import ceoBgImg from '@/public/assets/Image/CEO BG.png';
+import ceoJpegImg from '@/public/assets/Image/CEO.jpeg';
+import ceo2Img from '@/public/assets/Image/CEO2.png';
+import entryImg from '@/public/assets/Image/Entry.jpeg';
+import waitingImg from '@/public/assets/Image/Waiting.jpeg';
+import waiting2Img from '@/public/assets/Image/Waiting 2.jpeg';
+import clinicImg from '@/public/assets/Image/Clinic.jpeg';
+import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
 import { PageWrapper } from '../components/ui/PageWrapper';
 import { AnimatedCounter } from '../components/ui/AnimatedCounter';
 import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
@@ -48,31 +56,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
     {
       title: "Studio Reception & Welcome Desk",
       category: "Reception",
-      src: "/assets/Entry.jpeg",
+      src: entryImg,
       desc: "Warm, serene entry foyer designed to make patients feel immediately relaxed and welcomed."
     },
     {
       title: "Patient Relaxation Lounge",
       category: "Lounge",
-      src: "/assets/Waiting.jpeg",
+      src: waitingImg,
       desc: "Luxurious, whisper-quiet seating zone equipped with ambient lighting and refreshments."
     },
     {
       title: "Private Consultation Suite",
       category: "Consultation",
-      src: "/assets/Waiting 2.jpeg",
+      src: waiting2Img,
       desc: "Comfortable private room for digital smile simulations and transparent treatment discussions."
     },
     {
       title: "Digital Operatory Suite 1",
       category: "Operatory",
-      src: "/assets/Clinic.jpeg",
+      src: clinicImg,
       desc: "Ergonomic clinical chair with overhead entertainment and iTero® 3D digital scanner."
     },
     {
       title: "Laser & Surgical Suite 2",
       category: "Operatory",
-      src: "/assets/Clinic 2.jpeg",
+      src: clinic2Img,
       desc: "Hospital-grade sterile surgical operatory for computer-guided implantology."
     }
   ];
@@ -80,7 +88,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
   return (
     <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
-        
+
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
           <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
@@ -92,7 +100,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             1. ABOUT HERO
         ========================================== */}
         <section id="about-hero" className="relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -174,12 +182,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-gradient-to-b from-[#0B4F6C] via-[#09415A] to-[#073348] relative w-full max-w-md group"
               >
-                <img 
-                  src="/assets/CEO BG.png" 
-                  alt="Dr. Sheekha Shah DENTAL STUDIO" 
+                <img
+                  src={ceoBgImg}
+                  alt="Dr. Sheekha Shah DENTAL STUDIO"
                   className="w-full h-[460px] sm:h-[500px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                
+
                 {/* Floating Badge */}
                 <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 text-white flex items-center justify-between shadow-xl">
                   <div className="flex items-center space-x-2.5">
@@ -204,7 +212,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             2. DR. SHEEKHA SHAH PROFILE
         ========================================== */}
         <section id="doctor-profile">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VIEWPORT_CONFIG}
@@ -215,9 +223,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
               <div className="relative w-full max-w-md">
                 <div className="absolute -inset-2 bg-gradient-to-tr from-[#0B4F6C] to-cyan-400 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500"></div>
                 <div className="relative rounded-3xl overflow-hidden border-2 border-slate-100 shadow-xl bg-slate-100">
-                  <img 
-                    src="/assets/CEO.jpeg" 
-                    alt="Dr. Sheekha Shah" 
+                  <img
+                    src={ceoJpegImg}
+                    alt="Dr. Sheekha Shah"
                     className="w-full h-[460px] object-cover object-top hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent p-6 text-white">
@@ -296,7 +304,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -341,8 +349,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
                 icon: HeartHandshake
               }
             ].map((milestone, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 variants={staggerItemUp}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md relative overflow-hidden flex flex-col justify-between group"
@@ -370,7 +378,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             4. QUALIFICATIONS & CERTIFICATIONS
         ========================================== */}
         <section id="qualifications" className="space-y-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VIEWPORT_CONFIG}
@@ -493,7 +501,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
                 icon: ShieldCheck
               }
             ].map((exp, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ y: -4 }}
                 className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-3 hover:shadow-md transition-all"
@@ -571,7 +579,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             7. MESSAGE FROM THE DENTIST
         ========================================== */}
         <section id="dentist-message">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VIEWPORT_CONFIG}
@@ -580,9 +588,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
           >
             <div className="lg:col-span-4 flex justify-center">
               <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-slate-800 shrink-0">
-                <img 
-                  src="/assets/CEO2.png" 
-                  alt="Dr. Sheekha Shah Signature" 
+                <img
+                  src={ceo2Img}
+                  alt="Dr. Sheekha Shah Signature"
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -626,15 +634,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {DOCTORS.map((doc) => (
-              <motion.div 
+              <motion.div
                 key={doc.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md flex flex-col justify-between group"
               >
                 <div className="h-64 sm:h-72 bg-slate-100 overflow-hidden relative">
-                  <img 
-                    src={doc.imageUrl} 
-                    alt={doc.name} 
+                  <img
+                    src={doc.imageUrl}
+                    alt={doc.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-full border border-white/20">
@@ -703,16 +711,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {clinicTourImages.map((img, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ y: -4 }}
                 onClick={() => setSelectedTourImage(img.src)}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm cursor-pointer group space-y-0"
               >
                 <div className="h-56 overflow-hidden relative">
-                  <img 
-                    src={img.src} 
-                    alt={img.title} 
+                  <img
+                    src={img.src}
+                    alt={img.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-full border border-white/20">
@@ -734,14 +742,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
           {/* Image Modal Lightbox */}
           <AnimatePresence>
             {selectedTourImage && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedTourImage(null)}
                 className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
@@ -773,21 +781,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             <div className="inline-flex bg-slate-200/80 p-1 rounded-2xl border border-slate-300/80 mt-2">
               <button
                 onClick={() => setActiveTechTab('tech')}
-                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
-                  activeTechTab === 'tech'
+                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'tech'
                     ? 'bg-[#0B4F6C] text-white shadow-md'
                     : 'text-slate-700 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 Advanced Equipment
               </button>
               <button
                 onClick={() => setActiveTechTab('sterilisation')}
-                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
-                  activeTechTab === 'sterilisation'
+                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'sterilisation'
                     ? 'bg-[#0B4F6C] text-white shadow-md'
                     : 'text-slate-700 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 Hospital Sterilisation
               </button>
@@ -923,7 +929,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             12. AWARDS & ACHIEVEMENTS
         ========================================== */}
         <section id="awards-achievements" className="space-y-8 pb-4">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={VIEWPORT_CONFIG}

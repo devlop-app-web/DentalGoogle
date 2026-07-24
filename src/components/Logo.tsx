@@ -1,4 +1,5 @@
 import React from 'react';
+import logoImg from '@/Logo2.png';
 
 interface LogoProps {
   className?: string;
@@ -16,12 +17,12 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <div className={`flex items-center gap-2.5 sm:gap-3 ${className}`}>
       {/* Official Uploaded Logo Image */}
-      <img 
-        src="/assets/Logo2.png" 
+      <img
+        src={logoImg}
         alt="Dr. Sheekha Shah DENTAL STUDIO Logo"
         className="flex-shrink-0 object-contain w-auto transition-transform duration-300 group-hover:scale-105"
-        style={{ 
-          height: `${size}px`, 
+        style={{
+          height: `${size}px`,
           maxHeight: '60px',
           aspectRatio: '1/1'
         }}

@@ -11,7 +11,7 @@ import { TechnologyAndComfort } from '../components/Home/TechnologyAndComfort';
 import { PatientJourney } from '../components/Home/PatientJourney';
 import { TestimonialsSection } from '../components/Home/TestimonialsSection';
 import { FAQSection } from '../components/Home/FAQSection';
-import { FinalAppointmentCTA } from '../components/Home/FinalAppointmentCTA';
+import { WelcomePopup } from '../components/Home/WelcomePopup';
 
 interface HomePageProps {
   onOpenBooking: () => void;
@@ -83,10 +83,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         onOpenBooking={onOpenBooking} 
       />
 
-      {/* 13. FINAL APPOINTMENT CALL TO ACTION */}
-      <FinalAppointmentCTA 
-        onOpenBooking={onOpenBooking} 
-      />
+      {/* 14. WELCOME POPUP */}
+      <WelcomePopup />
     </main>
   );
 };

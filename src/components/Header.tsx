@@ -19,8 +19,34 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [treatmentsMegaOpen, setTreatmentsMegaOpen] = useState(false);
   const megaMenuRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setTreatmentsMegaOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setTreatmentsMegaOpen(false);
+    }, 200);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -142,7 +168,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
               if (link.isMega) {
                 return (
-                  <div key={link.path} className="relative group">
+                  <div 
+                    key={link.path} 
+                    className="relative group"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <button
                       onClick={() => setTreatmentsMegaOpen(!treatmentsMegaOpen)}
                       className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 ${
@@ -164,6 +195,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.98 }}
                           transition={{ duration: 0.2 }}
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 z-50"
                         >
                           <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">

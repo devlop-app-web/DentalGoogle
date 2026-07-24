@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import { Sparkles, Eye, ArrowRight, CheckCircle2, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { TRANSFORMATION_CASES } from '../../data/homeData';
+import { CLINIC_INFO } from '../../data/homeData';
+const clinicImg = '/assets/Image/Clinic.jpeg';
+const clinic2Img = '/assets/Image/Clinic 2.jpeg';
+const entryImg = '/assets/Image/Entry.jpeg';
+const waitingImg = '/assets/Image/Waiting.jpeg';
+const waiting2Img = '/assets/Image/Waiting 2.jpeg';
 
 interface SmileGalleryPreviewProps {
   onOpenBooking: () => void;
@@ -16,7 +23,7 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       category: 'clinic',
       title: 'Modern Ergonomic Dental Suite',
       description: 'Sterile treatment operatory equipped with 3D digital scanners',
-      image: '/assets/Clinic.jpeg',
+      image: clinicImg,
       tag: 'Clinic Environment'
     },
     {
@@ -24,7 +31,7 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       category: 'clinic',
       title: 'Executive Patient Lounge',
       description: 'Serene waiting lounge designed for complete patient relaxation',
-      image: '/assets/Waiting.jpeg',
+      image: waitingImg,
       tag: 'Clinic Lounge'
     },
     {
@@ -41,7 +48,7 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       category: 'clinic',
       title: 'Secondary Treatment Operatory',
       description: 'HEPA 14 air scrubber purified treatment room',
-      image: '/assets/Clinic 2.jpeg',
+      image: clinic2Img,
       tag: 'Clinic Environment'
     },
     {
@@ -57,7 +64,7 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       category: 'clinic',
       title: 'Main Clinic Entrance & Reception',
       description: 'Welcoming entrance and reception counter',
-      image: '/assets/Entry.jpeg',
+      image: entryImg,
       tag: 'Clinic Reception'
     },
     {
@@ -73,19 +80,19 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       category: 'clinic',
       title: 'Luxury Waiting Suite',
       description: 'Private refreshments and peaceful ambiance',
-      image: '/assets/Waiting 2.jpeg',
+      image: waiting2Img,
       tag: 'Clinic Suite'
     }
   ];
 
-  const filteredItems = activeTab === 'all' 
-    ? galleryItems 
+  const filteredItems = activeTab === 'all'
+    ? galleryItems
     : galleryItems.filter(item => item.category === activeTab);
 
   return (
     <section className="py-20 bg-white relative border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
           <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider">
@@ -112,11 +119,10 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                  activeTab === tab.id
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${activeTab === tab.id
                     ? 'bg-[#0B4F6C] text-white shadow-md'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>

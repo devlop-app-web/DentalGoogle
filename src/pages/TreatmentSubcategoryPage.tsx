@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { 
-  Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft, 
+import {
+  Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft,
   Calendar, Phone, Cpu, UserCheck, Activity, Shield, ChevronRight
 } from 'lucide-react';
 import { getSubcategoryBySlug } from '../data/treatmentsData';
 import { CLINIC_INFO } from '../data/homeData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import waitingImg from '@/public/assets/Image/Waiting.jpeg';
 
 interface TreatmentSubcategoryPageProps {
   onOpenBooking: () => void;
@@ -113,9 +114,9 @@ export const TreatmentSubcategoryPage: React.FC<TreatmentSubcategoryPageProps> =
           </div>
 
           <div className="lg:col-span-4 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 h-60 sm:h-72 group">
-            <img 
-              src="/assets/Waiting.jpeg" 
-              alt={`Dr. Sheekha Shah DENTAL STUDIO ${subcategory.title}`} 
+            <img
+              src={waitingImg}
+              alt="Comfortable DENTAL STUDIO Recovery Lounge"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -236,11 +237,10 @@ export const TreatmentSubcategoryPage: React.FC<TreatmentSubcategoryPageProps> =
               <Link
                 key={sub.id}
                 to={`/treatments/${category.slug}/${sub.slug}`}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all ${
-                  sub.id === subcategory.id
+                className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all ${sub.id === subcategory.id
                     ? 'bg-[#0B4F6C] text-white border-[#0B4F6C]'
                     : 'bg-white text-slate-700 border-slate-200 hover:border-[#0B4F6C] hover:text-[#0B4F6C]'
-                }`}
+                  }`}
               >
                 {sub.title}
               </Link>

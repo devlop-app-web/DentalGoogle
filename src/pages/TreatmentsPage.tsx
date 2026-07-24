@@ -5,6 +5,7 @@ import { Sparkles, Search, CheckCircle, ArrowRight, Calendar, Shield, Phone } fr
 import { TREATMENT_CATEGORIES } from '../data/treatmentsData';
 import { CLINIC_INFO } from '../data/homeData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import clinicImg from '@/public/assets/Image/Clinic.jpeg';
 import { buttonHover, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
 
 interface TreatmentsPageProps {
@@ -14,7 +15,7 @@ interface TreatmentsPageProps {
 export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCategories = TREATMENT_CATEGORIES.filter(cat => 
+  const filteredCategories = TREATMENT_CATEGORIES.filter(cat =>
     cat.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     cat.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
     cat.subcategories.some(sub => sub.title.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -23,7 +24,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
   return (
     <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-12">
-        
+
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
           <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
@@ -32,14 +33,14 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
         </nav>
 
         {/* Page Hero */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="bg-gradient-to-r from-[#2E4F4F] via-[#243F3F] to-[#1D3232] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl"
         >
           <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-[#0B4F6C]/20 rounded-full blur-3xl pointer-events-none"></div>
-          
+
           <div className="max-w-3xl space-y-4 relative z-10">
             <span className="inline-flex items-center gap-2 bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-teal-300" />
@@ -69,7 +70,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
         </motion.div>
 
         {/* Real Studio Asset Feature Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
@@ -77,9 +78,9 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
           className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
         >
           <div className="lg:col-span-5 rounded-2xl overflow-hidden shadow-lg border border-slate-100 h-64 sm:h-80 group">
-            <img 
-              src="/assets/Clinic.jpeg" 
-              alt="Dr. Sheekha Shah DENTAL STUDIO Operatory" 
+            <img
+              src={clinicImg}
+              alt="Dr. Sheekha Shah DENTAL STUDIO Operatory"
               className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
             />
           </div>
@@ -114,7 +115,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
             </h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -122,8 +123,8 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {filteredCategories.map((cat) => (
-              <motion.div 
-                key={cat.id} 
+              <motion.div
+                key={cat.id}
                 variants={staggerItemUp}
                 whileHover={{ y: -6 }}
                 className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
@@ -190,7 +191,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
         </div>
 
         {/* Global CTA Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
