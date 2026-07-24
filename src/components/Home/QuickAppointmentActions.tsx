@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Calendar, Phone, MessageCircle, AlertTriangle, Video, ChevronRight, Clock, Sparkles } from 'lucide-react';
 import { CLINIC_INFO } from '../../data/homeData';
+import { fadeInUp, staggerContainer, staggerCard, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface QuickAppointmentActionsProps {
   onOpenBooking: () => void;
@@ -73,7 +75,13 @@ export const QuickAppointmentActions: React.FC<QuickAppointmentActionsProps> = (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <motion.div 
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="text-center max-w-2xl mx-auto mb-10 space-y-2"
+        >
           <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 px-3.5 py-1 rounded-full text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>Fast-Track Patient Access</span>
@@ -84,10 +92,16 @@ export const QuickAppointmentActions: React.FC<QuickAppointmentActionsProps> = (
           <p className="text-xs sm:text-sm text-slate-600">
             Choose your preferred method to connect with Dr. Sheekha Shah DENTAL STUDIO
           </p>
-        </div>
+        </motion.div>
 
         {/* 5 Card Action Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+        <motion.div 
+          variants={staggerContainer(0.08, 0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5"
+        >
           {actionCards.map((card) => {
             const IconComponent = card.icon;
             
@@ -124,29 +138,31 @@ export const QuickAppointmentActions: React.FC<QuickAppointmentActionsProps> = (
 
             if (card.href) {
               return (
-                <a 
-                  key={card.id} 
+                <motion.a 
+                  key={card.id}
+                  variants={staggerCard} 
                   href={card.href} 
                   target={card.href.startsWith('http') ? '_blank' : undefined} 
                   rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="block h-full"
+                  className="block h-full cursor-pointer"
                 >
                   {cardContent}
-                </a>
+                </motion.a>
               );
             }
 
             return (
-              <button 
-                key={card.id} 
+              <motion.button 
+                key={card.id}
+                variants={staggerCard} 
                 onClick={card.onClick} 
-                className="text-left w-full h-full block"
+                className="text-left w-full h-full block cursor-pointer"
               >
                 {cardContent}
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>
