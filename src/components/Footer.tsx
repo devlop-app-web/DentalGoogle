@@ -78,15 +78,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
   ];
 
   return (
-    <footer className="bg-[#395B5C] text-slate-100 border-t-2 border-[#2C4849] pt-12 pb-8 relative overflow-hidden shadow-2xl">
+    <footer className="bg-[#182C2D] text-slate-100 border-t-2 border-[#233F41] pt-12 pb-8 relative overflow-hidden shadow-2xl">
       {/* Ambient Lighting Accents */}
-      <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-cyan-400/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-emerald-300/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-cyan-500/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-teal-400/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top CTA Banner - Rich Accent Container */}
-        <div className="bg-gradient-to-r from-[#2B4748] via-[#243E3F] to-[#1D3334] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 border border-[#4E7879]">
+        <div className="bg-gradient-to-r from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 border border-cyan-500/30">
           <div className="space-y-2 text-center lg:text-left">
             <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md text-cyan-200 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-white/15">
               <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
@@ -95,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
             <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
               Ready to Transform Your Smile?
             </h3>
-            <p className="text-teal-100/90 text-sm max-w-xl leading-relaxed">
+            <p className="text-cyan-100/90 text-sm max-w-xl leading-relaxed">
               Experience modern, painless dental care crafted with precision and empathy by Dr. Sheekha Shah.
             </p>
           </div>
@@ -104,15 +104,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
             <button
               onClick={onOpenBooking}
               id="footer-banner-book-cta"
-              className="bg-white hover:bg-teal-50 text-[#2B4748] font-extrabold px-6 py-3.5 rounded-2xl shadow-md transition-all duration-200 flex items-center justify-center space-x-2 text-sm uppercase tracking-wider"
+              className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold px-6 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 text-sm uppercase tracking-wider cursor-pointer"
             >
-              <Calendar className="w-4 h-4 text-[#2B4748]" />
+              <Calendar className="w-4 h-4 text-[#0B4F6C]" />
               <span>Book Appointment</span>
             </button>
             <Link
               to="/general-enquiry"
               id="footer-banner-contact-cta"
-              className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-2xl border border-white/25 transition-all duration-200 flex items-center justify-center space-x-2 text-sm"
+              className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-2xl border border-white/25 transition-all duration-200 flex items-center justify-center space-x-2 text-sm cursor-pointer"
             >
               <Mail className="w-4 h-4 text-cyan-300" />
               <span>General Enquiry</span>
@@ -121,24 +121,24 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
         </div>
 
         {/* Four Column Main Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 pb-8 border-b border-[#4B7374]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 pb-8 border-b border-[#2A484A]">
           
           {/* Column 1: Branding & About */}
           <div className="space-y-4">
             <Logo size={44} showText={true} lightText={true} />
 
-            <div className="inline-flex items-center space-x-1.5 bg-[#2B4748] text-teal-200 border border-[#4B7374] px-3 py-1.5 rounded-full text-xs font-extrabold shadow-2xs">
+            <div className="inline-flex items-center space-x-1.5 bg-[#223B3C] text-cyan-200 border border-[#2E5052] px-3 py-1.5 rounded-full text-xs font-extrabold shadow-2xs">
               <ShieldCheck className="w-4 h-4 text-cyan-300" />
               <span>ISO 9001:2015 Certified Facility</span>
             </div>
 
-            <p className="text-teal-100/90 text-xs leading-relaxed font-medium">
+            <p className="text-slate-300 text-xs leading-relaxed font-medium">
               We provide state-of-the-art dental treatments using modern technology, personalized care, and evidence-based dentistry to help patients achieve healthy, confident smiles in a comfortable and welcoming environment.
             </p>
 
             {/* Social Media Links */}
             <div className="pt-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-teal-200/80 block mb-2.5">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300/90 block mb-2.5">
                 Connect With Us
               </span>
               <div className="flex items-center space-x-2">
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                       rel="noopener noreferrer"
                       title={social.name}
                       aria-label={social.name}
-                      className="w-9 h-9 rounded-xl bg-[#2B4748] text-teal-100 hover:text-white hover:bg-white/20 flex items-center justify-center transition-all duration-200 border border-[#4B7374] shadow-2xs hover:scale-105 active:scale-95"
+                      className="w-9 h-9 rounded-xl bg-[#223B3C] text-slate-200 hover:text-white hover:bg-[#0B4F6C] hover:border-cyan-400 flex items-center justify-center transition-all duration-200 border border-[#2E5052] shadow-2xs hover:scale-105 active:scale-95 cursor-pointer"
                     >
                       <Icon className="w-4 h-4" />
                     </a>
@@ -163,39 +163,39 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="border-t md:border-t-0 border-[#4B7374] pt-4 md:pt-0">
+          <div className="border-t md:border-t-0 border-[#2A484A] pt-4 md:pt-0">
             {/* Accordion Header for Mobile */}
             <button
               onClick={() => toggleSection('quickLinks')}
               className="w-full flex items-center justify-between md:cursor-default py-2 text-left"
             >
-              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-300 pb-1 inline-block">
+              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-400 pb-1 inline-block">
                 Quick Links
               </h4>
-              <span className="md:hidden text-teal-200">
+              <span className="md:hidden text-cyan-300">
                 {openSections.quickLinks ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </span>
             </button>
 
             {/* Accordion Content */}
             <div className={`mt-3 ${openSections.quickLinks ? 'block' : 'hidden md:block'}`}>
-              <ul className="space-y-2 text-xs font-medium text-teal-100">
+              <ul className="space-y-2 text-xs font-medium text-slate-300">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
                     {link.action ? (
                       <button
                         onClick={link.action}
-                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 text-left w-full group"
+                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 text-left w-full group cursor-pointer"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-cyan-300 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
                         <span>{link.label}</span>
                       </button>
                     ) : (
                       <Link
                         to={link.path!}
-                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group"
+                        className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group cursor-pointer"
                       >
-                        <ChevronRight className="w-3.5 h-3.5 text-cyan-300 group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
                         <span>{link.label}</span>
                       </Link>
                     )}
@@ -206,30 +206,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Column 3: Treatments */}
-          <div className="border-t md:border-t-0 border-[#4B7374] pt-4 md:pt-0">
+          <div className="border-t md:border-t-0 border-[#2A484A] pt-4 md:pt-0">
             {/* Accordion Header for Mobile */}
             <button
               onClick={() => toggleSection('treatments')}
               className="w-full flex items-center justify-between md:cursor-default py-2 text-left"
             >
-              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-300 pb-1 inline-block">
+              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-400 pb-1 inline-block">
                 Treatments
               </h4>
-              <span className="md:hidden text-teal-200">
+              <span className="md:hidden text-cyan-300">
                 {openSections.treatments ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </span>
             </button>
 
             {/* Accordion Content */}
             <div className={`mt-3 ${openSections.treatments ? 'block' : 'hidden md:block'}`}>
-              <ul className="space-y-2 text-xs font-medium text-teal-100">
+              <ul className="space-y-2 text-xs font-medium text-slate-300">
                 {treatments.map((treatment) => (
                   <li key={treatment.label}>
                     <Link
                       to={treatment.path}
-                      className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group"
+                      className="hover:text-white transition-colors flex items-center space-x-1.5 py-1 group cursor-pointer"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-cyan-300 group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform" />
                       <span>{treatment.label}</span>
                     </Link>
                   </li>
@@ -239,16 +239,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Column 4: Contact & Clinic Details */}
-          <div className="border-t md:border-t-0 border-[#4B7374] pt-4 md:pt-0">
+          <div className="border-t md:border-t-0 border-[#2A484A] pt-4 md:pt-0">
             {/* Accordion Header for Mobile */}
             <button
               onClick={() => toggleSection('contact')}
               className="w-full flex items-center justify-between md:cursor-default py-2 text-left"
             >
-              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-300 pb-1 inline-block">
+              <h4 className="text-white font-extrabold text-base font-heading tracking-tight border-b-2 border-cyan-400 pb-1 inline-block">
                 Contact & Clinic Details
               </h4>
-              <span className="md:hidden text-teal-200">
+              <span className="md:hidden text-cyan-300">
                 {openSections.contact ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </span>
             </button>
@@ -258,10 +258,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               
               {/* Address */}
               <div className="flex items-start space-x-2.5 text-xs">
-                <MapPin className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Clinic Address</span>
-                  <span className="text-teal-100 text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                  <span className="text-slate-200 text-[11px] block mt-0.5 bg-[#223B3C] px-2.5 py-1.5 rounded-lg border border-[#2E5052] shadow-2xs">
                     {CLINIC_INFO.address}
                   </span>
                 </div>
@@ -269,10 +269,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
 
               {/* Phone */}
               <div className="flex items-start space-x-2.5 text-xs">
-                <Phone className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
+                <Phone className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Phone</span>
-                  <a href={`tel:${phoneClean}`} className="text-cyan-200 hover:underline font-mono text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                  <a href={`tel:${phoneClean}`} className="text-cyan-300 hover:text-cyan-200 hover:underline font-mono text-[11px] block mt-0.5 bg-[#223B3C] px-2.5 py-1.5 rounded-lg border border-[#2E5052] shadow-2xs">
                     {CLINIC_INFO.phone}
                   </a>
                 </div>
@@ -280,10 +280,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
 
               {/* Email */}
               <div className="flex items-start space-x-2.5 text-xs">
-                <Mail className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
+                <Mail className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <div className="w-full">
                   <span className="font-bold text-white block">Email</span>
-                  <a href={`mailto:${CLINIC_INFO.email}`} className="text-cyan-200 hover:underline text-[11px] block mt-0.5 bg-[#2B4748] px-2.5 py-1.5 rounded-lg border border-[#4B7374] shadow-2xs">
+                  <a href={`mailto:${CLINIC_INFO.email}`} className="text-cyan-300 hover:text-cyan-200 hover:underline text-[11px] block mt-0.5 bg-[#223B3C] px-2.5 py-1.5 rounded-lg border border-[#2E5052] shadow-2xs">
                     {CLINIC_INFO.email}
                   </a>
                 </div>
@@ -291,15 +291,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
 
               {/* Timings */}
               <div className="flex items-start space-x-2.5 text-xs">
-                <Clock className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <div className="space-y-1 w-full">
                   <span className="font-bold text-white block">Clinic Timings</span>
-                  <div className="bg-[#2B4748] p-2.5 rounded-xl border border-[#4B7374] space-y-1 text-[11px] shadow-2xs">
-                    <div className="flex justify-between text-teal-100">
+                  <div className="bg-[#223B3C] p-2.5 rounded-xl border border-[#2E5052] space-y-1 text-[11px] shadow-2xs">
+                    <div className="flex justify-between text-slate-200">
                       <span className="font-semibold">Monday – Saturday:</span>
-                      <span className="font-mono text-cyan-200 font-bold">{CLINIC_INFO.hours.weekdays}</span>
+                      <span className="font-mono text-cyan-300 font-bold">{CLINIC_INFO.hours.weekdays}</span>
                     </div>
-                    <div className="flex justify-between text-teal-100 pt-1 border-t border-[#4B7374]/60">
+                    <div className="flex justify-between text-slate-200 pt-1 border-t border-[#2E5052]/80">
                       <span className="font-semibold">Sunday:</span>
                       <span className="font-bold text-amber-300">{CLINIC_INFO.hours.sunday}</span>
                     </div>
@@ -310,14 +310,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               {/* Get Directions Map Button */}
               <div className="pt-2">
                 <a
-                  href="https://maps.google.com"
+                  href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-[#2B4748] hover:bg-white hover:text-[#2B4748] text-teal-100 font-extrabold text-xs py-2.5 px-4 rounded-xl border border-[#4B7374] flex items-center justify-center space-x-2 transition-all duration-200 shadow-sm group"
+                  className="w-full bg-[#223B3C] hover:bg-cyan-400 hover:text-[#182C2D] text-slate-200 font-extrabold text-xs py-2.5 px-4 rounded-xl border border-[#2E5052] flex items-center justify-center space-x-2 transition-all duration-200 shadow-sm group cursor-pointer"
                 >
-                  <Map className="w-4 h-4 text-cyan-300 group-hover:text-[#2B4748] transition-colors" />
+                  <Map className="w-4 h-4 text-cyan-400 group-hover:text-[#182C2D] transition-colors" />
                   <span>Get Directions / Open Google Maps</span>
-                  <ExternalLink className="w-3 h-3 text-cyan-300 group-hover:text-[#2B4748] transition-colors" />
+                  <ExternalLink className="w-3 h-3 text-cyan-400 group-hover:text-[#182C2D] transition-colors" />
                 </a>
               </div>
 
@@ -327,23 +327,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
         </div>
 
         {/* Bottom Footer Section */}
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between text-xs text-teal-100/90 gap-4">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
           <p className="font-medium text-center sm:text-left">
             © 2026 Dr. Sheekha Shah Dental Studio. All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-teal-200">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-slate-300">
             <Link to="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="text-teal-300/40">•</span>
+            <span className="text-cyan-500/40">•</span>
             <Link to="/contact" className="hover:text-white transition-colors">Terms & Conditions</Link>
-            <span className="text-teal-300/40">•</span>
+            <span className="text-cyan-500/40">•</span>
             <Link to="/contact" className="hover:text-white transition-colors">Warranty Policy</Link>
-            <span className="text-teal-300/40">•</span>
+            <span className="text-cyan-500/40">•</span>
             <Link to="/contact" className="hover:text-white transition-colors">Medical Disclaimer</Link>
 
             <button
               onClick={scrollToTop}
-              className="ml-2 bg-[#2B4748] hover:bg-white hover:text-[#2B4748] text-teal-100 p-2 rounded-xl transition-all duration-200 flex items-center space-x-1 border border-[#4B7374] shadow-2xs"
+              className="ml-2 bg-[#223B3C] hover:bg-cyan-400 hover:text-[#182C2D] text-slate-200 p-2 rounded-xl transition-all duration-200 flex items-center space-x-1 border border-[#2E5052] shadow-2xs cursor-pointer"
               id="footer-back-to-top-btn"
               aria-label="Back to top"
             >

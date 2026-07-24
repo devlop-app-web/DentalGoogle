@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             className="flex items-center shrink-0 group focus:outline-none focus:ring-2 focus:ring-[#0B4F6C] rounded-lg p-0.5 text-left"
             id="header-brand-logo-link"
           >
-            <Logo size={40} showText={true} />
+            <Logo size={isScrolled ? 46 : 52} showText={true} />
           </Link>
 
           {/* Desktop Navigation Links */}
