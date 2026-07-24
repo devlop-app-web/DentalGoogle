@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Sparkles, Calendar, ChevronRight, Clock, CheckCircle2, Info } from 'lucide-react';
 import { TREATMENTS } from '../../data/homeData';
 import { Treatment } from '../../types';
+import { 
+  fadeInUp, 
+  staggerContainer, 
+  staggerCard, 
+  buttonHover, 
+  VIEWPORT_CONFIG 
+} from '../../lib/motion';
 
 interface FeaturedTreatmentsProps {
   onOpenBookingWithService: (serviceId: string) => void;
@@ -73,7 +81,13 @@ export const FeaturedTreatments: React.FC<FeaturedTreatmentsProps> = ({ onOpenBo
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <motion.div 
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-14"
+        >
           <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>Featured Clinical Offerings</span>
@@ -86,13 +100,20 @@ export const FeaturedTreatments: React.FC<FeaturedTreatmentsProps> = ({ onOpenBo
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             From preventive checkups to complete full-mouth smile makeovers, we utilize micro-endodontics, 3D CBCT scanners, and zero-pain protocols.
           </p>
-        </div>
+        </motion.div>
 
         {/* 6 Large Premium Image Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={staggerContainer(0.1, 0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {featuredCategories.map((treatment) => (
-            <div
+            <motion.div
               key={treatment.id}
+              variants={staggerCard}
               className="bg-white rounded-3xl border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-cyan-300 transition-all duration-300 flex flex-col overflow-hidden group"
             >
               
@@ -176,9 +197,9 @@ export const FeaturedTreatments: React.FC<FeaturedTreatmentsProps> = ({ onOpenBo
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
 
