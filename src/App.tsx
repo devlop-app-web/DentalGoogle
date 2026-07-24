@@ -4,7 +4,6 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { ScrollProgress } from './components/ui/ScrollProgress';
-import { BackToTop } from './components/ui/BackToTop';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -133,11 +132,8 @@ export default function App() {
           </Routes>
         </div>
 
-        {/* Back-to-top Floating Button */}
-        <BackToTop />
-
         {/* Sticky Call & WhatsApp Floating Action Buttons */}
-        <FloatingActions onOpenBooking={handleOpenBooking} />
+        <FloatingActions />
 
         {/* Footer */}
         <Footer onOpenBooking={handleOpenBooking} />
