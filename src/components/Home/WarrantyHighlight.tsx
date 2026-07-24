@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { ShieldCheck, Award, Sparkles, CheckCircle2, ChevronRight, FileText, Info } from 'lucide-react';
+import { scaleIn, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface WarrantyHighlightProps {
   onOpenBooking: () => void;
@@ -15,7 +17,13 @@ export const WarrantyHighlight: React.FC<WarrantyHighlightProps> = ({ onOpenBook
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-cyan-300/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        <motion.div 
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-cyan-300/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
           
           {/* Left: Badge & Description */}
           <div className="space-y-3 text-center lg:text-left flex-1">
@@ -65,7 +73,7 @@ export const WarrantyHighlight: React.FC<WarrantyHighlightProps> = ({ onOpenBook
             </button>
           </div>
 
-        </div>
+        </motion.div>
       </div>
 
       {/* Modal for Warranty Details */}

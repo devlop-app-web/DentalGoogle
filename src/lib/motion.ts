@@ -1,84 +1,117 @@
 import { Variants } from 'motion/react';
 
-// Cinematic Luxury Cubic-Bezier Easing
-export const LUXURY_EASE = [0.22, 1, 0.36, 1] as const;
+// Smooth Premium Ease-Out Curve
+export const SMOOTH_EASE = [0.25, 1, 0.5, 1] as const;
 
-// Standard Viewport Configuration
+// Standard Viewport Trigger Configuration (Triggers once when entering viewport)
 export const VIEWPORT_CONFIG = {
   once: true,
-  amount: 0.25,
+  amount: 0.15,
 };
 
-// Fade In Up (Bottom -> Up reveal)
+// Left-side content slide in from left + fade in
+export const fadeInLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -50,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: SMOOTH_EASE,
+    },
+  },
+};
+
+// Right-side content slide in from right + fade in
+export const fadeInRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 50,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: SMOOTH_EASE,
+    },
+  },
+};
+
+// Center content fade up + scale slightly
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 60,
-    scale: 0.96,
+    y: 35,
+    scale: 0.97,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 1.2,
-      ease: LUXURY_EASE,
+      duration: 0.7,
+      ease: SMOOTH_EASE,
     },
   },
 };
 
-// Fade In From Left
-export const fadeInLeft: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -80,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1.2,
-      ease: LUXURY_EASE,
-    },
-  },
-};
-
-// Fade In From Right
-export const fadeInRight: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 80,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1.2,
-      ease: LUXURY_EASE,
-    },
-  },
-};
-
-// Scale In (CTA / Highlight sections)
+// Center content scale in
 export const scaleIn: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.94,
-    y: 40,
+    y: 20,
   },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 1.3,
-      ease: LUXURY_EASE,
+      duration: 0.7,
+      ease: SMOOTH_EASE,
     },
   },
 };
 
-// Staggered Container
-export const staggerContainer = (staggerDelay = 0.14, delayChildren = 0.1): Variants => ({
+// Image zoom in + fade in
+export const imageZoomFade: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 1.08,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: SMOOTH_EASE,
+    },
+  },
+};
+
+// Button fade up (slightly delayed after content)
+export const buttonFadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: 0.15,
+      ease: SMOOTH_EASE,
+    },
+  },
+};
+
+// Staggered Cards Container (100ms staggered delay between children)
+export const staggerContainer = (staggerDelay = 0.1, delayChildren = 0.05): Variants => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -89,69 +122,47 @@ export const staggerContainer = (staggerDelay = 0.14, delayChildren = 0.1): Vari
   },
 });
 
-// Staggered Item Up
-export const staggerItemUp: Variants = {
+// Staggered Card Item
+export const staggerCard: Variants = {
   hidden: {
     opacity: 0,
-    y: 50,
-    scale: 0.96,
+    y: 35,
+    scale: 0.97,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 1.1,
-      ease: LUXURY_EASE,
+      duration: 0.7,
+      ease: SMOOTH_EASE,
     },
   },
 };
 
-// Staggered Item Left
+// Legacy compatibility variants
+export const staggerItemUp = staggerCard;
 export const staggerItemLeft: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -60,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1.1,
-      ease: LUXURY_EASE,
-    },
-  },
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: SMOOTH_EASE } },
 };
-
-// Staggered Item Right
 export const staggerItemRight: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 60,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1.1,
-      ease: LUXURY_EASE,
-    },
-  },
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: SMOOTH_EASE } },
 };
 
 // Pop In (For icons, badges, highlights)
 export const popIn: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.6,
+    scale: 0.7,
   },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 260,
-      damping: 20,
+      duration: 0.5,
+      ease: SMOOTH_EASE,
     },
   },
 };
@@ -159,33 +170,34 @@ export const popIn: Variants = {
 // Button Hover & Tap Presets
 export const buttonHover = {
   whileHover: {
-    y: -3,
+    y: -2,
     scale: 1.02,
-    transition: { type: 'spring', stiffness: 380, damping: 18 },
+    transition: { duration: 0.2, ease: 'easeOut' },
   },
   whileTap: {
-    scale: 0.97,
+    scale: 0.98,
   },
 };
 
 // Card Hover Preset
 export const cardHover = {
   whileHover: {
-    y: -8,
-    transition: { duration: 0.4, ease: LUXURY_EASE },
+    y: -6,
+    transition: { duration: 0.3, ease: SMOOTH_EASE },
   },
 };
 
 // Gentle Floating Motion for Background Ornaments
 export const floatAnimation = {
   animate: {
-    y: [0, -15, 0],
-    rotate: [0, 2, 0],
+    y: [0, -12, 0],
+    rotate: [0, 1.5, 0],
     transition: {
-      duration: 7,
+      duration: 6,
       repeat: Infinity,
       repeatType: 'mirror' as const,
       ease: 'easeInOut',
     },
   },
 };
+

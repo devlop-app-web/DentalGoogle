@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Sparkles, Eye, ArrowRight, CheckCircle2, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { fadeInUp, staggerContainer, staggerCard, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface SmileGalleryPreviewProps {
   onOpenBooking: () => void;
@@ -87,7 +89,13 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+        <motion.div 
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-10"
+        >
           <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
             <span>Visual Evidence of Quality</span>
@@ -122,13 +130,20 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Masonry-Style Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          variants={staggerContainer(0.08, 0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_CONFIG}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {filteredItems.map((item) => (
-            <div
+            <motion.div
               key={item.id}
+              variants={staggerCard}
               onClick={() => setActiveLightBox(item)}
               className="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
@@ -159,9 +174,9 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
                   {item.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Callout & View Full Gallery Button */}
         <div className="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { GraduationCap, Award, Calendar, ChevronRight, Play, ShieldCheck, Heart, Sparkles } from 'lucide-react';
 import { ClinicTourModal } from './ClinicTourModal';
+import { fadeInLeft, fadeInRight, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface MeetTheDentistPreviewProps {
   onOpenBooking: () => void;
@@ -30,7 +32,13 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
           
           {/* Left Column: Doctor Photo Frame */}
-          <div className="lg:col-span-5 relative">
+          <motion.div 
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_CONFIG}
+            className="lg:col-span-5 relative"
+          >
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
               {/* Doctor Main Portrait Card */}
@@ -65,19 +73,26 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </div>
 
               {/* Virtual Clinic Tour Button */}
-              <button
+              <motion.button
+                {...buttonHover}
                 onClick={handleTourClick}
-                className="absolute top-5 right-5 bg-white/95 backdrop-blur-md hover:bg-white text-slate-900 font-extrabold text-xs px-3.5 py-2.5 rounded-xl shadow-lg border border-slate-200 flex items-center space-x-2 transition-all active:scale-95"
+                className="absolute top-5 right-5 bg-white/95 backdrop-blur-md hover:bg-white text-slate-900 font-extrabold text-xs px-3.5 py-2.5 rounded-xl shadow-lg border border-slate-200 flex items-center space-x-2 transition-all cursor-pointer"
               >
                 <Play className="w-3.5 h-3.5 text-[#0B4F6C] fill-[#0B4F6C]" />
                 <span>Virtual Clinic Tour</span>
-              </button>
+              </motion.button>
 
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Information */}
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div 
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_CONFIG}
+            className="lg:col-span-7 space-y-6"
+          >
             
             <div className="inline-flex items-center space-x-2 bg-white border border-cyan-200 rounded-full px-4 py-1.5 text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-[#00B4D8]" />
@@ -143,7 +158,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               </button>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 
