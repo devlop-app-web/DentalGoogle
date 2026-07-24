@@ -140,10 +140,10 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
 
         {/* Masonry-Style Responsive Grid */}
         <motion.div
+          key={activeTab}
           variants={staggerContainer(0.08, 0.05)}
           initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_CONFIG}
+          animate="visible"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {filteredItems.map((item) => (
