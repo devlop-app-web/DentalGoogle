@@ -1,9 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Sparkles, Calendar, ArrowRight } from 'lucide-react';
-import { TRANSFORMATION_CASES } from '../data/homeData';
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  Sparkles, 
+  Calendar, 
+  ArrowRight, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Filter, 
+  Eye, 
+  Star, 
+  Quote, 
+  Award, 
+  Zap, 
+  Info, 
+  Activity,
+  Maximize2,
+  X,
+  Phone,
+  Heart,
+  UserCheck,
+  Building
+} from 'lucide-react';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { BeforeAfterSlider } from '../components/ui/BeforeAfterSlider';
+import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
+import { generateDentalMacroImage } from '../utils/dentalImages';
 
 interface SmileGalleryPageProps {
   onOpenBooking: () => void;
@@ -11,21 +33,218 @@ interface SmileGalleryPageProps {
 
 export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBooking }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [activeSliderIndex, setActiveSliderIndex] = useState<number>(0);
+  const [zoomModalCase, setZoomModalCase] = useState<{
+    title: string;
+    before: string;
+    after: string;
+    category: string;
+    desc: string;
+    duration: string;
+    doctorNote: string;
+  } | null>(null);
 
+  // Category list
   const categories = [
-    { id: 'all', label: 'All Transformations' },
-    { id: 'Veneers', label: 'Porcelain Veneers' },
-    { id: 'Invisalign', label: 'Invisalign Aligners' },
-    { id: 'Implants', label: 'Dental Implants' }
+    { id: 'all', label: 'All Cases', count: 18 },
+    { id: 'makeover', label: 'Smile Makeovers', count: 5 },
+    { id: 'implants', label: 'Dental Implants', count: 4 },
+    { id: 'veneers', label: 'Porcelain Veneers', count: 4 },
+    { id: 'whitening', label: 'Teeth Whitening', count: 2 },
+    { id: 'ortho', label: 'Braces & Aligners', count: 2 },
+    { id: 'fullmouth', label: 'Full-Mouth Rehab', count: 1 }
+  ];
+
+  // Spotlight Cases for Interactive Before/After Slider Section
+  const spotlightSliderCases = [
+    {
+      title: "Full Smile Makeover with 10 Feldspathic Veneers",
+      category: "Veneers & Aesthetics",
+      before: generateDentalMacroImage({ type: 'makeover', state: 'before' }),
+      after: generateDentalMacroImage({ type: 'makeover', state: 'after' }),
+      doctorNote: "Corrected asymmetrical zenith margins, fluorosis, and incisal chipping. Handcrafted 10 upper ceramic porcelain veneers matching natural facial acoustics.",
+      duration: "14 Days (2 Visits)"
+    },
+    {
+      title: "3D CBCT Computer-Guided Single Molar Implant",
+      category: "Dental Implants",
+      before: generateDentalMacroImage({ type: 'implant', state: 'before' }),
+      after: generateDentalMacroImage({ type: 'implant', state: 'after' }),
+      doctorNote: "Flapless guided surgical implant placement after traumatic tooth fracture. Custom zirconia abutment with flawless tissue cuff emergence.",
+      duration: "3.5 Months"
+    },
+    {
+      title: "Invisalign® SmartTrack® Clear Aligner Expansion",
+      category: "Orthodontics",
+      before: generateDentalMacroImage({ type: 'ortho', state: 'before' }),
+      after: generateDentalMacroImage({ type: 'ortho', state: 'after' }),
+      doctorNote: "Expanded narrow maxillary arch and resolved 6mm anterior crowding in 18 aligners with zero bracket irritation.",
+      duration: "7 Months"
+    }
+  ];
+
+  // Section 4: Featured Smile Makeovers
+  const makeoverCases = [
+    {
+      id: "mk-1",
+      patientName: "Sophia R., 29",
+      treatmentName: "10 Upper Porcelain Veneers + Diode Laser Gum Recontouring",
+      category: "makeover",
+      beforeImage: generateDentalMacroImage({ type: 'makeover', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'makeover', state: 'after' }),
+      duration: "14 Days",
+      description: "Corrected chipped lateral incisors, deep intrinsic discoloration, and uneven gumline with ultra-thin porcelain veneers by Dr. Sheekha Shah.",
+      doctorNote: "Utilized Digital Smile Design 3D facial modeling to create an organic, radiant smile arc tailored to her lip dynamics."
+    },
+    {
+      id: "mk-2",
+      patientName: "Elena M., 34",
+      treatmentName: "Full Upper Arch Ceramic Renewal & Midline Alignment",
+      category: "makeover",
+      beforeImage: generateDentalMacroImage({ type: 'makeover', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'makeover', state: 'after' }),
+      duration: "3 Weeks",
+      description: "Replaced discolored composite restorations with 8 hand-layered Swiss E-Max lithium disilicate porcelain veneers.",
+      doctorNote: "Achieved 100% shade harmonization with natural lower teeth and eliminated incisal wear."
+    }
+  ];
+
+  // Section 5: Dental Implant Cases
+  const implantCases = [
+    {
+      id: "imp-1",
+      patientName: "David K., 42",
+      treatmentName: "Maxillary Central Incisor Guided Implant Restoration",
+      category: "implants",
+      beforeImage: generateDentalMacroImage({ type: 'implant', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'implant', state: 'after' }),
+      duration: "3.5 Months",
+      description: "Restored fractured front tooth using Nobel Biocare® titanium implant, 3D CBCT guided surgery, and translucent zirconia crown.",
+      doctorNote: "Zero surgical flap incision required. Flawless papilla regeneration and natural gum aesthetics."
+    },
+    {
+      id: "imp-2",
+      patientName: "Marcus T., 58",
+      treatmentName: "All-on-4® Full Upper Fixed Implant Bridge",
+      category: "implants",
+      beforeImage: generateDentalMacroImage({ type: 'implant', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'implant', state: 'after' }),
+      duration: "4 Months",
+      description: "Replaced failing bridge with 4 precision-angled implants and immediate fixed provisional teeth in a single day.",
+      doctorNote: "Restored full masticatory function and eliminated the need for removable partial dentures."
+    }
+  ];
+
+  // Section 6: Veneer Cases
+  const veneerCases = [
+    {
+      id: "ven-1",
+      patientName: "Priya S., 31",
+      treatmentName: "6 Minimal-Prep Ultra-Thin Swiss Ceramic Veneers",
+      category: "veneers",
+      beforeImage: generateDentalMacroImage({ type: 'veneer', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'veneer', state: 'after' }),
+      duration: "10 Days",
+      description: "Masked tetracycline gray staining and microdontia with 0.3mm ultra-thin veneers preserving 98% natural tooth structure.",
+      doctorNote: "High translucency porcelain layered to mimic natural enamel light reflection."
+    },
+    {
+      id: "ven-2",
+      patientName: "Jonathan B., 36",
+      treatmentName: "Diastema (Gap) Closure & Incisal Edge Sculpting",
+      category: "veneers",
+      beforeImage: generateDentalMacroImage({ type: 'veneer', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'veneer', state: 'after' }),
+      duration: "2 Visits",
+      description: "Closed a 3.5mm central space and widened peg lateral incisors with 4 custom veneers.",
+      doctorNote: "Achieved ideal width-to-height Golden Ratio without orthodontic intervention."
+    }
+  ];
+
+  // Section 7: Teeth Whitening Cases
+  const whiteningCases = [
+    {
+      id: "wh-1",
+      patientName: "Chloe L., 26",
+      treatmentName: "Cold Light Laser Whitening (8 Shades Lighter)",
+      category: "whitening",
+      beforeImage: generateDentalMacroImage({ type: 'whitening', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'whitening', state: 'after' }),
+      duration: "60 Minutes",
+      description: "In-office high-potency cold light whitening treatment with bio-remineralizing enamel gel.",
+      doctorNote: "Achieved Shade B1 Hollywood brightness with zero post-treatment thermal sensitivity."
+    },
+    {
+      id: "wh-2",
+      patientName: "Michael V., 45",
+      treatmentName: "Deep Tobacco & Coffee Stain Eradication Protocol",
+      category: "whitening",
+      beforeImage: generateDentalMacroImage({ type: 'whitening', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'whitening', state: 'after' }),
+      duration: "1 Visit + Home Regimen",
+      description: "Combined in-office light-activated whitening gel with custom-molded maintenance trays.",
+      doctorNote: "Removed decade-old stubborn tar and tannin stains safely."
+    }
+  ];
+
+  // Section 8: Braces & Aligner Cases
+  const orthoCases = [
+    {
+      id: "ortho-1",
+      patientName: "Amanda T., 28",
+      treatmentName: "Invisalign® SmartTrack® Arch Expansion & Crowding Relief",
+      category: "ortho",
+      beforeImage: generateDentalMacroImage({ type: 'ortho', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'ortho', state: 'after' }),
+      duration: "7 Months",
+      description: "Corrected severe lower arch crowding and broadened smile smile line with 18 clear aligner sets.",
+      doctorNote: "Tracked weekly progress digitally via iTero® 3D cloud monitoring without missing work."
+    },
+    {
+      id: "ortho-2",
+      patientName: "Kevin P., 33",
+      treatmentName: "Adult Ceramic Aesthetic Braces for Deep Overbite",
+      category: "ortho",
+      beforeImage: generateDentalMacroImage({ type: 'ortho', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'ortho', state: 'after' }),
+      duration: "11 Months",
+      description: "Corrected a 70% deep overbite and premolar rotation using tooth-colored ceramic brackets.",
+      doctorNote: "Restored ideal incisal guidance and relieved nocturnal TMJ clenching tension."
+    }
+  ];
+
+  // Section 9: Full-Mouth Rehabilitation Cases
+  const fullMouthCases = [
+    {
+      id: "fm-1",
+      patientName: "Robert S., 62",
+      treatmentName: "28-Unit Full-Mouth Zirconia Crown & Onlay Reconstruction",
+      category: "fullmouth",
+      beforeImage: generateDentalMacroImage({ type: 'fullmouth', state: 'before' }),
+      afterImage: generateDentalMacroImage({ type: 'fullmouth', state: 'after' }),
+      duration: "5 Weeks (Multi-Phase)",
+      description: "Reconstructed severely worn dentition caused by severe nocturnal bruxism, restoring 4.5mm of lost facial vertical height.",
+      doctorNote: "Utilized neuromuscular bite recording and monolithic zirconia crowns for lifelong durability."
+    }
+  ];
+
+  // All combined cases for category filtering
+  const allCases = [
+    ...makeoverCases,
+    ...implantCases,
+    ...veneerCases,
+    ...whiteningCases,
+    ...orthoCases,
+    ...fullMouthCases
   ];
 
   const filteredCases = selectedCategory === 'all'
-    ? TRANSFORMATION_CASES
-    : TRANSFORMATION_CASES.filter(c => c.category.toLowerCase() === selectedCategory.toLowerCase());
+    ? allCases
+    : allCases.filter(c => c.category === selectedCategory);
 
   return (
     <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
         
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
@@ -34,109 +253,943 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
           <span className="text-slate-800 font-bold">Smile Gallery</span>
         </nav>
 
-        {/* Hero */}
-        <div className="bg-gradient-to-r from-[#2E4F4F] via-[#243F3F] to-[#1D3232] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
-          <div className="max-w-3xl space-y-4">
-            <span className="inline-flex items-center gap-2 bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-              Real Patient Transformations
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
-              Smile Makeover Gallery
-            </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-              Explore documented before and after cases handcrafted by Dr. Sheekha Shah at DENTAL STUDIO.
-            </p>
-          </div>
-        </div>
+        {/* ==========================================
+            1. GALLERY HERO
+        ========================================== */}
+        <section id="gallery-hero">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-gradient-to-r from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-cyan-500/20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+          >
+            {/* Ambient Lighting Accents */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap gap-2 pb-2">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                selectedCategory === cat.id
-                  ? 'bg-[#0B4F6C] text-white shadow-md'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Transformations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCases.map((c, index) => (
-            <motion.div 
-              key={c.id} 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              whileHover={{ y: -6 }}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 space-y-4 p-5 group"
-            >
-              <span className="inline-block text-[11px] font-extrabold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
-                {c.category}
+            <div className="lg:col-span-8 space-y-6 relative z-10">
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-cyan-300/30 text-cyan-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+                International Dental Clinic Gallery
               </span>
 
-              <h3 className="text-lg font-bold font-heading text-slate-800 group-hover:text-[#0B4F6C] transition-colors">{c.treatmentName}</h3>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.15] tracking-tight">
+                Real Patient Smiles. <br className="hidden sm:inline" />
+                <span className="text-cyan-300">Exceptional Artistry.</span>
+              </h1>
 
-              {/* Before & After Image Comparison */}
-              <div className="grid grid-cols-2 gap-2 relative">
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-40">
-                  <img src={c.beforeImage} alt={`Before ${c.patientName}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                    BEFORE
-                  </span>
+              <p className="text-cyan-100/90 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+                Explore documented before and after transformations handcrafted by <strong className="text-white font-semibold">Dr. Sheekha Shah</strong> at DENTAL STUDIO. Every smile is custom designed using 3D intraoral scans, digital smile architecture, and zero-pain micro-dentistry.
+              </p>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
+                  <span className="text-2xl font-extrabold text-cyan-300 block">10,000+</span>
+                  <span className="text-[11px] text-slate-200">Smiles Restored</span>
                 </div>
-                <div className="relative rounded-2xl overflow-hidden border border-teal-500 h-40">
-                  <img src={c.afterImage} alt={`After ${c.patientName}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <span className="absolute bottom-2 left-2 bg-teal-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                    AFTER
-                  </span>
+                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
+                  <span className="text-2xl font-extrabold text-cyan-300 block">99.4%</span>
+                  <span className="text-[11px] text-slate-200">Implant Success</span>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
+                  <span className="text-2xl font-extrabold text-cyan-300 block">100%</span>
+                  <span className="text-[11px] text-slate-200">3D Digital Design</span>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
+                  <span className="text-2xl font-extrabold text-cyan-300 block">16+ Yrs</span>
+                  <span className="text-[11px] text-slate-200">Mastery</span>
                 </div>
               </div>
 
-              <p className="text-slate-600 text-xs leading-relaxed">
-                {c.description}
-              </p>
+              {/* CTA Row */}
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <motion.button
+                  onClick={onOpenBooking}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center space-x-2 cursor-pointer"
+                  id="hero-book-btn"
+                >
+                  <Calendar className="w-4 h-4 text-[#0B4F6C]" />
+                  <span>Book Free 3D Smile Scan</span>
+                </motion.button>
+              </div>
+            </div>
 
-              <div className="pt-2 text-xs text-slate-600 flex justify-between items-center border-t border-slate-100">
-                <span>Duration: <strong>{c.durationMonths} Month(s)</strong></span>
+            {/* Hero Image Badge Showcase */}
+            <div className="lg:col-span-4 relative hidden lg:flex justify-center">
+              <div className="rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-slate-900/80 p-4 space-y-4 text-white text-center">
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300">
+                  <Award className="w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold font-heading">ISO 9001:2015 Accredited</h3>
+                  <p className="text-xs text-cyan-200 mt-1">Verified patient photo consent documentation on file.</p>
+                </div>
+                <div className="pt-2 border-t border-white/15 flex items-center justify-center space-x-2 text-xs font-semibold text-emerald-300">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>100% Genuine Clinical Cases</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ==========================================
+            2. TREATMENT CATEGORY FILTERS
+        ========================================== */}
+        <section id="category-filters" className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+            <div className="flex items-center space-x-2">
+              <Filter className="w-4 h-4 text-[#0B4F6C]" />
+              <h2 className="text-lg font-bold font-heading text-slate-900">Filter Cases by Treatment</h2>
+            </div>
+            <span className="text-xs font-semibold text-slate-500">
+              Showing <strong className="text-[#0B4F6C]">{filteredCases.length}</strong> verified cases
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2.5">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center space-x-2 cursor-pointer ${
+                  selectedCategory === cat.id
+                    ? 'bg-[#0B4F6C] text-white shadow-md border border-cyan-500/30'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90'
+                }`}
+                id={`filter-${cat.id}`}
+              >
+                <span>{cat.label}</span>
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                  selectedCategory === cat.id ? 'bg-cyan-400/20 text-cyan-200' : 'bg-slate-100 text-slate-500'
+                }`}>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            3. BEFORE-AND-AFTER SLIDERS
+        ========================================== */}
+        <section id="interactive-sliders" className="space-y-8">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+              Interactive View
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+              Interactive Before & After Comparison
+            </h2>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Drag or swipe the center divider left and right to inspect precision ceramic details and smile symmetry.
+            </p>
+          </div>
+
+          {/* Tab Switcher for Spotlight Cases */}
+          <div className="flex justify-center gap-2">
+            {spotlightSliderCases.map((spot, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveSliderIndex(idx)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  activeSliderIndex === idx
+                    ? 'bg-[#0B4F6C] text-white shadow-sm'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                Case #{idx + 1}: {spot.category}
+              </button>
+            ))}
+          </div>
+
+          {/* Interactive Before/After Component */}
+          <div className="max-w-4xl mx-auto space-y-4">
+            <BeforeAfterSlider 
+              beforeImage={spotlightSliderCases[activeSliderIndex].before}
+              afterImage={spotlightSliderCases[activeSliderIndex].after}
+              title={spotlightSliderCases[activeSliderIndex].title}
+              category={spotlightSliderCases[activeSliderIndex].category}
+            />
+
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <span className="text-[11px] font-bold text-[#0B4F6C] uppercase tracking-wider">
+                  Doctor's Clinical Note — Dr. Sheekha Shah
+                </span>
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                  "{spotlightSliderCases[activeSliderIndex].doctorNote}"
+                </p>
+              </div>
+              <div className="shrink-0 flex items-center space-x-3">
+                <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                  Treatment Time: {spotlightSliderCases[activeSliderIndex].duration}
+                </span>
                 <button
                   onClick={onOpenBooking}
-                  className="font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
+                  className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition-colors flex items-center space-x-1 cursor-pointer"
                 >
-                  <span>Book Similar Case</span>
+                  <span>Book Case</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Global CTA */}
-        <div className="bg-gradient-to-br from-[#0B4F6C] to-[#083A50] rounded-3xl p-8 sm:p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl border border-cyan-500/20">
-          <div className="space-y-2 text-center sm:text-left">
-            <h3 className="text-2xl font-bold font-heading">Ready for Your Own Transformation?</h3>
-            <p className="text-cyan-100 text-sm">Schedule a 3D digital smile scan with Dr. Sheekha Shah today.</p>
+            </div>
           </div>
-          <motion.button
-            onClick={onOpenBooking}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="bg-white text-[#0B4F6C] hover:bg-cyan-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 shrink-0"
+        </section>
+
+        {/* ==========================================
+            4. FEATURED SMILE MAKEOVERS
+        ========================================== */}
+        <section id="featured-makeovers" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Aesthetic Artistry
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Featured Smile Makeovers
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              Comprehensive aesthetic redesigns combining 3D facial proportioning with handcrafted ceramics.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {makeoverCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
+                      Smile Makeover
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  {/* Side-by-Side Images */}
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52 group/img">
+                      <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        BEFORE
+                      </span>
+                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52 group/img">
+                      <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        AFTER
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                    <span className="font-bold text-[#0B4F6C] block">Dr. Sheekha Shah's Clinical Strategy:</span>
+                    <p className="text-slate-600 italic">{caseItem.doctorNote}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                  <button 
+                    onClick={() => setZoomModalCase({
+                      title: caseItem.treatmentName,
+                      before: caseItem.beforeImage,
+                      after: caseItem.afterImage,
+                      category: "Smile Makeover",
+                      desc: caseItem.description,
+                      duration: caseItem.duration,
+                      doctorNote: caseItem.doctorNote
+                    })}
+                    className="text-xs font-bold text-slate-600 hover:text-[#0B4F6C] flex items-center space-x-1 cursor-pointer"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>Zoom High-Res</span>
+                  </button>
+
+                  <button
+                    onClick={onOpenBooking}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book Similar Case</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            5. DENTAL IMPLANT CASES
+        ========================================== */}
+        <section id="implant-cases" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Surgical Precision
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Dental Implant Cases
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              Computer-guided titanium and zirconia implants replacing missing teeth permanently with zero bone loss.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {implantCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-blue-700 uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                      Dental Implants
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52">
+                      <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        BEFORE
+                      </span>
+                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52">
+                      <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        AFTER
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                    <span className="font-bold text-[#0B4F6C] block">Surgical Execution Note:</span>
+                    <p className="text-slate-600 italic">{caseItem.doctorNote}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                  <span className="text-[11px] font-semibold text-slate-500 flex items-center space-x-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+                    <span>3D CBCT Guided</span>
+                  </span>
+                  <button
+                    onClick={onOpenBooking}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Consult Dr. Shah</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            6. VENEER CASES
+        ========================================== */}
+        <section id="veneer-cases" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Handcrafted Ceramics
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Porcelain Veneer Cases
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              Micro-thin Swiss ceramic veneers closing gaps, covering stains, and correcting minor rotations naturally.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {veneerCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-teal-700 uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
+                      Porcelain Veneers
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52">
+                      <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        BEFORE
+                      </span>
+                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52">
+                      <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        AFTER
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                    <span className="font-bold text-[#0B4F6C] block">Ceramic Layering Strategy:</span>
+                    <p className="text-slate-600 italic">{caseItem.doctorNote}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                  <span className="text-[11px] font-semibold text-slate-500 flex items-center space-x-1">
+                    <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+                    <span>0.3mm Ultra-Thin</span>
+                  </span>
+                  <button
+                    onClick={onOpenBooking}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book Veneer Consult</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            7. TEETH WHITENING CASES
+        ========================================== */}
+        <section id="whitening-cases" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Enamel Brightening
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Teeth Whitening Cases
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              In-office cold light laser whitening lightening enamel up to 8 shades with zero post-sensitivity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {whiteningCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-amber-700 uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-full border border-amber-100">
+                      Laser Whitening
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52">
+                      <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        BEFORE
+                      </span>
+                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52">
+                      <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        AFTER
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                    <span className="font-bold text-[#0B4F6C] block">Remineralization Protocol:</span>
+                    <p className="text-slate-600 italic">{caseItem.doctorNote}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                  <span className="text-[11px] font-semibold text-slate-500 flex items-center space-x-1">
+                    <Zap className="w-3.5 h-3.5 text-amber-500" />
+                    <span>60-Min In-Office</span>
+                  </span>
+                  <button
+                    onClick={onOpenBooking}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book Whitening</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            8. BRACES & ALIGNER CASES
+        ========================================== */}
+        <section id="ortho-cases" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Aesthetic Alignment
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Braces & Aligner Cases
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              Discreet Invisalign® clear aligner biomechanics and ceramic braces straightening crowded smiles.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {orthoCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-indigo-700 uppercase tracking-wider bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                      Invisalign® & Braces
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52">
+                      <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        BEFORE
+                      </span>
+                    </div>
+                    <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52">
+                      <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-1 rounded">
+                        AFTER
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                    <span className="font-bold text-[#0B4F6C] block">Digital Biomechanics Note:</span>
+                    <p className="text-slate-600 italic">{caseItem.doctorNote}</p>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex items-center justify-between border-t border-slate-100">
+                  <span className="text-[11px] font-semibold text-slate-500 flex items-center space-x-1">
+                    <Activity className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>iTero® 3D Scan Tracked</span>
+                  </span>
+                  <button
+                    onClick={onOpenBooking}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book Aligner Consult</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            9. FULL-MOUTH REHABILITATION CASES
+        ========================================== */}
+        <section id="fullmouth-cases" className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+                Complex Reconstructions
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
+                Full-Mouth Rehabilitation Cases
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 max-w-md">
+              Comprehensive bite restoration combining crowns, implants, and onlays for severe wear and TMJ relief.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8">
+            {fullMouthCases.map((caseItem) => (
+              <motion.div 
+                key={caseItem.id}
+                whileHover={{ y: -3 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg space-y-6 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+              >
+                <div className="lg:col-span-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-purple-700 uppercase tracking-wider bg-purple-50 px-3.5 py-1 rounded-full border border-purple-100">
+                      Full-Mouth Reconstruction
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                      Duration: {caseItem.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-bold font-heading text-slate-900">
+                    {caseItem.treatmentName}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
+
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 text-xs space-y-1.5">
+                    <span className="font-bold text-[#0B4F6C] text-sm block">Multi-Disciplinary Reconstruction Note:</span>
+                    <p className="text-slate-700 italic leading-relaxed">{caseItem.doctorNote}</p>
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      onClick={onOpenBooking}
+                      className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
+                    >
+                      <Calendar className="w-4 h-4 text-cyan-300" />
+                      <span>Book Full-Mouth Consultation with Dr. Shah</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-6 grid grid-cols-2 gap-3">
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-56 sm:h-64">
+                    <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                    <span className="absolute bottom-3 left-3 bg-slate-900/90 text-white text-xs font-black px-3 py-1 rounded">
+                      BEFORE
+                    </span>
+                  </div>
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-56 sm:h-64">
+                    <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                    <span className="absolute bottom-3 left-3 bg-emerald-600 text-white text-xs font-black px-3 py-1 rounded">
+                      AFTER
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            10. PATIENT TRANSFORMATION STORIES
+        ========================================== */}
+        <section id="patient-stories" className="space-y-8">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
+              Real Experiences
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+              Patient Transformation Stories
+            </h2>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Hear directly from patients whose lives, careers, and personal confidence were transformed at DENTAL STUDIO.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Jessica Martinez",
+                role: "Bride & Creative Director",
+                treatment: "10 Porcelain Veneers",
+                quote: "I was extremely self-conscious about my fluorosis stains before my wedding. Dr. Sheekha Shah redesigned my smile in just 2 visits. When I walked down the aisle, I couldn't stop smiling. It was the best investment I ever made!",
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
+              },
+              {
+                name: "Robert Sterling",
+                role: "Corporate Attorney",
+                treatment: "Guided Molar Implant",
+                quote: "I had severe dental phobia from a bad childhood procedure. Dr. Sheekha Shah's gentle, zero-pain technique and peaceful clinic atmosphere put me completely at ease. The implant procedure felt effortless.",
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
+              },
+              {
+                name: "Amanda Thorne",
+                role: "Software Architect",
+                treatment: "Invisalign® Clear Aligners",
+                quote: "No gross impression trays, no metal wires poking my cheeks! The 3D iTero scanner showed me my final teeth alignment before I even started. 7 months later, my teeth are flawless.",
+                rating: 5,
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200"
+              }
+            ].map((story, idx) => (
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -4 }}
+                className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md space-y-4 flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-1 text-amber-400">
+                    {[...Array(story.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+
+                  <Quote className="w-8 h-8 text-cyan-200" />
+
+                  <p className="text-xs text-slate-700 leading-relaxed italic">
+                    "{story.quote}"
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center space-x-3">
+                  <img src={story.image} alt={story.name} className="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                  <div>
+                    <h4 className="text-sm font-bold font-heading text-slate-900">{story.name}</h4>
+                    <span className="text-[11px] text-slate-500 block">{story.role}</span>
+                    <span className="text-[10px] font-bold text-[#0B4F6C]">{story.treatment}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==========================================
+            11. CLINICAL DISCLAIMER
+        ========================================== */}
+        <section id="clinical-disclaimer">
+          <div className="bg-slate-100 rounded-3xl p-6 sm:p-8 border border-slate-200/90 space-y-3">
+            <div className="flex items-center space-x-2 text-[#0B4F6C]">
+              <Info className="w-5 h-5 shrink-0" />
+              <h3 className="text-sm font-extrabold font-heading text-slate-900">Clinical Case Disclaimer & Patient Privacy</h3>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              All clinical before-and-after photographs presented in this Smile Gallery depict actual patients treated by Dr. Sheekha Shah and the clinical specialist team at DENTAL STUDIO. Results may vary depending on individual oral anatomy, bone density, periodontal health, and compliance with post-treatment care guidelines. Preliminary clinical examination and 3D CBCT diagnostic imaging are required prior to undertaking any surgical or restorative procedure. Patient consent documentation for clinical media publication is maintained on file in strict accordance with healthcare privacy standards.
+            </p>
+            <div className="flex flex-wrap items-center gap-4 pt-2 text-[11px] font-semibold text-slate-500 border-t border-slate-200/80">
+              <span className="flex items-center space-x-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Verified Patient Photos</span>
+              </span>
+              <span className="flex items-center space-x-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+                <span>ISO 9001:2015 Compliant</span>
+              </span>
+              <span className="flex items-center space-x-1">
+                <UserCheck className="w-3.5 h-3.5 text-teal-600" />
+                <span>Full Media Consent On File</span>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ==========================================
+            12. START YOUR SMILE TRANSFORMATION (CTA)
+        ========================================== */}
+        <section id="smile-transformation-cta">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VIEWPORT_CONFIG}
+            transition={{ duration: 0.8 }}
+            className="bg-gradient-to-br from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-cyan-500/20 relative overflow-hidden"
           >
-            <Calendar className="w-4 h-4 text-[#0B4F6C]" />
-            <span>Book Smile Scan</span>
-          </motion.button>
-        </div>
+            <div className="space-y-4 text-center lg:text-left max-w-2xl relative z-10">
+              <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-cyan-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+                Begin Your Journey
+              </span>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white leading-tight">
+                Ready to See Your Future Smile in 3D?
+              </h2>
+
+              <p className="text-cyan-100 text-sm sm:text-base leading-relaxed">
+                Book a complimentary 3D intraoral smile scan with Dr. Sheekha Shah at DENTAL STUDIO today. Preview your exact treatment outcome before making any commitment.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 text-xs text-cyan-200 font-semibold">
+                <span className="flex items-center space-x-1">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Free 3D Intraoral Scan</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>0% Interest Financing</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                  <span>Same-Day Virtual Consult</span>
+                </span>
+              </div>
+            </div>
+
+            <div className="shrink-0 flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto relative z-10">
+              <motion.button
+                onClick={onOpenBooking}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-2.5 cursor-pointer w-full sm:w-auto"
+                id="gallery-cta-book-btn"
+              >
+                <Calendar className="w-4 h-4 text-[#0B4F6C]" />
+                <span>Schedule 3D Scan</span>
+              </motion.button>
+
+              <a
+                href="tel:5559113368"
+                className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-6 py-4 rounded-xl border border-white/25 transition-colors flex items-center justify-center space-x-2 backdrop-blur-sm w-full sm:w-auto"
+              >
+                <Phone className="w-4 h-4 text-cyan-300" />
+                <span>Call (555) 911-DENT</span>
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* High-Res Image Zoom Modal */}
+        <AnimatePresence>
+          {zoomModalCase && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-md p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
+              onClick={() => setZoomModalCase(null)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 space-y-6 relative border border-slate-200 shadow-2xl my-auto"
+              >
+                <button 
+                  onClick={() => setZoomModalCase(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100 inline-block">
+                    {zoomModalCase.category}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold font-heading text-slate-900">
+                    {zoomModalCase.title}
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <span className="text-xs font-black text-slate-800 bg-slate-100 px-2.5 py-1 rounded inline-block">
+                      BEFORE TREATMENT
+                    </span>
+                    <div className="rounded-2xl overflow-hidden border border-slate-200 h-64 sm:h-72">
+                      <img src={zoomModalCase.before} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded inline-block">
+                      AFTER TREATMENT
+                    </span>
+                    <div className="rounded-2xl overflow-hidden border-2 border-emerald-500 h-64 sm:h-72">
+                      <img src={zoomModalCase.after} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+                  <p className="text-slate-700">{zoomModalCase.desc}</p>
+                  <p className="font-semibold text-[#0B4F6C]">Doctor's Strategy: {zoomModalCase.doctorNote}</p>
+                </div>
+
+                <div className="flex justify-end space-x-3">
+                  <button
+                    onClick={() => {
+                      setZoomModalCase(null);
+                      onOpenBooking();
+                    }}
+                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow transition-colors flex items-center space-x-2"
+                  >
+                    <Calendar className="w-4 h-4 text-cyan-300" />
+                    <span>Book Similar Transformation</span>
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </PageWrapper>
   );
 };
-

@@ -1,4 +1,5 @@
 import { Treatment, Doctor, TransformationCase, Review, FAQItem } from '../types';
+import { generateDentalMacroImage } from '../utils/dentalImages';
 
 export const CLINIC_INFO = {
   name: "Dr. Sheekha Shah",
@@ -134,8 +135,8 @@ export const TRANSFORMATION_CASES: TransformationCase[] = [
     id: "case-1",
     patientName: "Sophia R.",
     treatmentName: "Porcelain Veneers (8 Upper Teeth)",
-    beforeImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-    afterImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
+    beforeImage: generateDentalMacroImage({ type: 'makeover', state: 'before' }),
+    afterImage: generateDentalMacroImage({ type: 'makeover', state: 'after' }),
     durationMonths: 1,
     description: "Corrected chipped lateral incisors, deep discoloration, and uneven gumline with ultra-thin porcelain veneers by Dr. Sheekha Shah.",
     category: "Veneers"
@@ -144,8 +145,8 @@ export const TRANSFORMATION_CASES: TransformationCase[] = [
     id: "case-2",
     patientName: "David K.",
     treatmentName: "Invisalign® + Laser Whitening",
-    beforeImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
-    afterImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+    beforeImage: generateDentalMacroImage({ type: 'ortho', state: 'before' }),
+    afterImage: generateDentalMacroImage({ type: 'ortho', state: 'after' }),
     durationMonths: 8,
     description: "Resolved severe lower crowding and crossbite within 8 months, followed by 1-hour laser whitening.",
     category: "Invisalign"
@@ -154,8 +155,8 @@ export const TRANSFORMATION_CASES: TransformationCase[] = [
     id: "case-3",
     patientName: "Emily M.",
     treatmentName: "Single Tooth Implant + Crown",
-    beforeImage: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800",
-    afterImage: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=800",
+    beforeImage: generateDentalMacroImage({ type: 'implant', state: 'before' }),
+    afterImage: generateDentalMacroImage({ type: 'implant', state: 'after' }),
     durationMonths: 4,
     description: "Restored a missing molar with 3D CBCT guided implant placement and custom zirconic porcelain crown.",
     category: "Implants"
