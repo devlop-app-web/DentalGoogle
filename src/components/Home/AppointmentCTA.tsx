@@ -31,11 +31,11 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
   const selectedDoctor = DOCTORS.find(d => d.id === formData.preferredDoctorId) || DOCTORS[0];
 
   return (
-    <section id="appointment-cta-section" className="py-20 bg-gradient-to-br from-[#0F6CBD] via-[#125894] to-[#0B5598] text-white relative overflow-hidden">
+    <section id="appointment-cta-section" className="py-20 bg-gradient-to-br from-[#152929] via-[#1E3A3A] to-[#2E5B5B] text-white relative overflow-hidden">
       
       {/* Background Decorative Ripples */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-300/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#599E9D]/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -43,8 +43,8 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
           
           {/* Left Column: Reassurance & Value Banner */}
           <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold text-cyan-200 uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold text-teal-200 uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
               <span>Instant Online Booking</span>
             </div>
 
@@ -52,25 +52,25 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
               Book Your Consultation In Less Than 60 Seconds
             </h2>
 
-            <p className="text-blue-100 text-base leading-relaxed">
+            <p className="text-teal-100/90 text-base leading-relaxed">
               Experience personalized, zero-pain dental care. Select your preferred procedure, time, and specialist below.
             </p>
 
             <div className="space-y-3 pt-2 text-left">
-              <div className="flex items-center space-x-3 text-sm text-blue-100 font-medium">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="flex items-center space-x-3 text-sm text-teal-100/90 font-medium">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-teal-300 shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <span>Free 3D iTero® Scan Included ($250 Value)</span>
               </div>
-              <div className="flex items-center space-x-3 text-sm text-blue-100 font-medium">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="flex items-center space-x-3 text-sm text-teal-100/90 font-medium">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-teal-300 shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <span>Complimentary Insurance Benefits Check</span>
               </div>
-              <div className="flex items-center space-x-3 text-sm text-blue-100 font-medium">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="flex items-center space-x-3 text-sm text-teal-100/90 font-medium">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-teal-300 shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <span>No Same-Day Cancellation Fees</span>
@@ -79,9 +79,9 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
 
             {/* Direct Telephone Hotline */}
             <div className="pt-4 border-t border-white/10">
-              <span className="text-xs text-blue-200 block uppercase tracking-wider font-bold">Need Immediate Assistance?</span>
-              <a href={`tel:${CLINIC_INFO.phone.replace(/[^0-9]/g, '')}`} className="text-2xl font-extrabold text-white hover:text-cyan-200 transition-colors inline-flex items-center space-x-2 mt-1">
-                <Phone className="w-5 h-5 text-cyan-300" />
+              <span className="text-xs text-teal-200 block uppercase tracking-wider font-bold">Need Immediate Assistance?</span>
+              <a href={`tel:${CLINIC_INFO.phone.replace(/[^0-9]/g, '')}`} className="text-2xl font-extrabold text-white hover:text-teal-200 transition-colors inline-flex items-center space-x-2 mt-1">
+                <Phone className="w-5 h-5 text-teal-300" />
                 <span>{CLINIC_INFO.phone}</span>
               </a>
             </div>
@@ -98,7 +98,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                     <h3 className="text-xl font-bold font-heading text-[#1E293B]">
                       Schedule Appointment
                     </h3>
-                    <span className="text-xs font-bold text-[#0F6CBD] bg-blue-50 px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold text-[#2E5B5B] bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
                       Step 1 of 1 • Instant Confirmation
                     </span>
                   </div>
@@ -113,7 +113,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         id="appointment-service"
                         value={formData.serviceId}
                         onChange={(e) => setFormData({ ...formData, serviceId: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       >
                         {TREATMENTS.map((t) => (
                           <option key={t.id} value={t.id}>
@@ -131,7 +131,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         id="appointment-doctor"
                         value={formData.preferredDoctorId}
                         onChange={(e) => setFormData({ ...formData, preferredDoctorId: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       >
                         {DOCTORS.map((d) => (
                           <option key={d.id} value={d.id}>
@@ -154,7 +154,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         value={formData.preferredDate}
                         min={new Date().toISOString().split('T')[0]}
                         onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                         required
                       />
                     </div>
@@ -167,7 +167,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         id="appointment-time"
                         value={formData.preferredTimeSlot}
                         onChange={(e) => setFormData({ ...formData, preferredTimeSlot: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-semibold rounded-xl px-3.5 py-3 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       >
                         <option value="09:00 AM">09:00 AM (Morning)</option>
                         <option value="10:30 AM">10:30 AM (Morning)</option>
@@ -191,7 +191,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         required
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       />
                     </div>
 
@@ -206,7 +206,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       />
                     </div>
 
@@ -221,7 +221,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#0F6CBD] focus:outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm font-medium rounded-xl px-3.5 py-2.5 focus:ring-2 focus:ring-[#2E5B5B] focus:border-[#2E5B5B] focus:outline-none"
                       />
                     </div>
                   </div>
@@ -230,9 +230,9 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                     <button
                       type="submit"
                       id="appointment-submit-btn"
-                      className="w-full bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-extrabold text-base py-4 rounded-xl shadow-lg shadow-blue-600/20 active:scale-[0.99] transition-all duration-200 flex items-center justify-center space-x-2"
+                      className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-extrabold text-base py-4 rounded-xl shadow-lg shadow-[#2E5B5B]/20 active:scale-[0.99] transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer"
                     >
-                      <Calendar className="w-5 h-5 text-cyan-300" />
+                      <Calendar className="w-5 h-5 text-teal-200" />
                       <span>Confirm & Book Appointment</span>
                     </button>
                   </div>
@@ -244,7 +244,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                 </form>
               ) : (
                 <div className="py-8 text-center space-y-5 animate-in zoom-in-95 duration-300">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+                  <div className="w-16 h-16 rounded-full bg-teal-100 text-[#2E5B5B] flex items-center justify-center mx-auto shadow-md">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
 
@@ -260,7 +260,7 @@ export const AppointmentCTA: React.FC<AppointmentCTAProps> = ({ initialServiceId
                   <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left text-xs space-y-2 max-w-md mx-auto">
                     <div className="flex justify-between">
                       <span className="text-slate-500">Service:</span>
-                      <span className="font-bold text-[#0F6CBD]">{selectedService.title}</span>
+                      <span className="font-bold text-[#2E5B5B]">{selectedService.title}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-500">Doctor:</span>

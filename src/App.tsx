@@ -9,7 +9,6 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { TreatmentsPage } from './pages/TreatmentsPage';
 import { TreatmentCategoryPage } from './pages/TreatmentCategoryPage';
-import { TreatmentSubcategoryPage } from './pages/TreatmentSubcategoryPage';
 import { SmileGalleryPage } from './pages/SmileGalleryPage';
 import { PatientInfoPage } from './pages/PatientInfoPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
@@ -80,11 +79,6 @@ function AppContent() {
           <Route 
             path="/treatments/:categorySlug" 
             element={<TreatmentCategoryPage onOpenBooking={handleOpenBooking} />} 
-          />
-
-          <Route 
-            path="/treatments/:categorySlug/:subcategorySlug" 
-            element={<TreatmentSubcategoryPage onOpenBooking={handleOpenBooking} />} 
           />
 
           <Route 

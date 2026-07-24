@@ -106,9 +106,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* Top Utility Announcement Bar */}
-      <div className="bg-[#0B4F6C] text-white text-xs py-2 px-4 border-b border-cyan-500/20">
+      <div className="bg-[#2E5B5B] text-white text-xs py-2 px-4 border-b border-teal-400/20">
         <div className="max-w-[1536px] mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center space-x-4 sm:space-x-6 text-cyan-100 font-medium">
+          <div className="flex items-center space-x-4 sm:space-x-6 text-teal-100 font-medium">
             <a 
               href={whatsappUrl} 
               target="_blank"
@@ -120,8 +120,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <span>WhatsApp Direct</span>
             </a>
 
-            <div className="hidden md:flex items-center space-x-1.5 text-cyan-100/90">
-              <Clock className="w-3.5 h-3.5 text-[#00B4D8]" />
+            <div className="hidden md:flex items-center space-x-1.5 text-teal-100/90">
+              <Clock className="w-3.5 h-3.5 text-teal-300" />
               <span>Mon-Fri: {CLINIC_INFO.hours.weekdays}</span>
             </div>
           </div>
@@ -129,13 +129,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           <div className="flex items-center space-x-4">
             <a 
               href={`tel:${phoneClean}`} 
-              className="flex items-center space-x-1.5 text-emerald-300 hover:text-emerald-200 font-semibold text-xs py-0.5 transition-colors"
+              className="flex items-center space-x-1.5 text-teal-200 hover:text-white font-semibold text-xs py-0.5 transition-colors"
               id="top-bar-emergency-link"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>24/7 Emergency Dental Care</span>
             </a>
-            <span className="hidden sm:inline-block text-cyan-300/40">|</span>
+            <span className="hidden sm:inline-block text-teal-300/40">|</span>
             <div className="hidden lg:flex items-center space-x-1 text-amber-300 text-xs font-medium">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Free 3D iTero® Scan with First Visit</span>
@@ -153,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           {/* Logo & Brand Link */}
           <Link 
             to="/" 
-            className="flex items-center shrink-0 group focus:outline-none focus:ring-2 focus:ring-[#0B4F6C] rounded-lg p-0.5 text-left"
+            className="flex items-center shrink-0 group focus:outline-none focus:ring-2 focus:ring-[#2E5B5B] rounded-lg p-0.5 text-left"
             id="header-brand-logo-link"
           >
             <Logo size={isScrolled ? 46 : 52} showText={true} />
@@ -178,13 +178,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                       onClick={() => setTreatmentsMegaOpen(!treatmentsMegaOpen)}
                       className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 ${
                         isActive 
-                          ? 'text-[#0B4F6C] bg-cyan-50/90 font-bold' 
-                          : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-50'
+                          ? 'text-[#2E5B5B] bg-teal-50 font-bold' 
+                          : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-50'
                       }`}
                       id="mega-menu-trigger-btn"
                     >
                       <span>{link.label}</span>
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${treatmentsMegaOpen ? 'rotate-180 text-[#0B4F6C]' : 'text-slate-400'}`} />
+                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${treatmentsMegaOpen ? 'rotate-180 text-[#2E5B5B]' : 'text-slate-400'}`} />
                     </button>
 
                     {/* Mega Menu Dropdown Panel */}
@@ -202,7 +202,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                           <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
                             <div>
                               <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                                <Sparkles className="w-4 h-4 text-[#0B4F6C]" />
+                                <Sparkles className="w-4 h-4 text-[#2E5B5B]" />
                                 All Treatment Categories
                               </h3>
                               <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
@@ -210,7 +210,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                             <Link 
                               to="/treatments" 
                               onClick={() => setTreatmentsMegaOpen(false)}
-                              className="text-xs font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 bg-cyan-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
+                              className="text-xs font-bold text-[#2E5B5B] hover:text-[#204242] flex items-center space-x-1 bg-teal-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
                             >
                               <span>View Treatments Hub</span>
                               <ChevronRight className="w-3.5 h-3.5" />
@@ -226,11 +226,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                                 onClick={() => setTreatmentsMegaOpen(false)}
                                 className="p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all duration-200 text-left group/item flex items-start space-x-3"
                               >
-                                <div className="p-2 rounded-xl bg-slate-100 group-hover/item:bg-cyan-50 transition-colors flex-shrink-0">
+                                <div className="p-2 rounded-xl bg-slate-100 group-hover/item:bg-teal-50 transition-colors flex-shrink-0">
                                   {getCategoryIcon(cat.iconName)}
                                 </div>
                                 <div className="min-w-0">
-                                  <span className="text-xs font-bold text-slate-800 group-hover/item:text-[#0B4F6C] block truncate">
+                                  <span className="text-xs font-bold text-slate-800 group-hover/item:text-[#2E5B5B] block truncate">
                                     {cat.title}
                                   </span>
                                   <span className="text-[11px] text-slate-500 line-clamp-1 block mt-0.5">
@@ -253,8 +253,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   to={link.path}
                   className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                     isActive 
-                      ? 'text-[#0B4F6C] bg-cyan-50/90 font-bold' 
-                      : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-50'
+                      ? 'text-[#2E5B5B] bg-teal-50 font-bold' 
+                      : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-50'
                   }`}
                   id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
@@ -271,7 +271,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               href={`tel:${phoneClean}`}
               title="Call Clinic Direct"
               aria-label="Call Clinic"
-              className="w-10 h-10 rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-[#0B4F6C] flex items-center justify-center transition-all duration-200 border border-cyan-100/80 active:scale-95 shrink-0"
+              className="w-10 h-10 rounded-2xl bg-teal-50 hover:bg-teal-100 text-[#2E5B5B] flex items-center justify-center transition-all duration-200 border border-teal-100 flex-shrink-0 active:scale-95 shrink-0"
               id="header-phone-icon-btn"
             >
               <Phone className="w-4 h-4" />
@@ -296,9 +296,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               id="header-book-appointment-cta"
-              className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold uppercase tracking-wider px-5 xl:px-6 py-2.5 xl:py-3 rounded-2xl shadow-md shadow-cyan-900/20 hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2.5 shrink-0 border border-cyan-500/20"
+              className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-extrabold uppercase tracking-wider px-5 xl:px-6 py-2.5 xl:py-3 rounded-2xl shadow-md shadow-[#2E5B5B]/20 hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2.5 shrink-0 border border-teal-500/20 cursor-pointer"
             >
-              <Calendar className="w-5 h-5 text-cyan-300 shrink-0" />
+              <Calendar className="w-5 h-5 text-teal-200 shrink-0" />
               <div className="flex flex-col items-center justify-center text-center leading-tight text-[11px] xl:text-[12px] font-extrabold tracking-wider">
                 <span className="block w-full text-center">BOOK</span>
                 <span className="block w-full text-center">APPOINTMENT</span>
@@ -311,7 +311,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             <a
               href={`tel:${phoneClean}`}
               aria-label="Call Clinic"
-              className="sm:hidden w-8 h-8 rounded-lg bg-cyan-50 text-[#0B4F6C] flex items-center justify-center border border-cyan-100"
+              className="sm:hidden w-8 h-8 rounded-lg bg-teal-50 text-[#2E5B5B] flex items-center justify-center border border-teal-100"
             >
               <Phone className="w-4 h-4" />
             </a>
@@ -326,7 +326,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             </a>
             <button
               onClick={onOpenBooking}
-              className="sm:hidden bg-[#0B4F6C] text-white px-2.5 py-2 rounded-lg shadow-sm font-semibold text-xs flex items-center space-x-1 whitespace-nowrap"
+              className="sm:hidden bg-[#2E5B5B] text-white px-2.5 py-2 rounded-lg shadow-sm font-semibold text-xs flex items-center space-x-1 whitespace-nowrap"
               id="mobile-quick-book-btn"
             >
               <Calendar className="w-3.5 h-3.5" />
@@ -335,7 +335,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0B4F6C]"
+              className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#2E5B5B]"
               id="mobile-hamburger-toggle"
               aria-label="Toggle navigation drawer"
             >
@@ -366,27 +366,27 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   return (
                     <div key={link.path} className="space-y-1.5 my-1">
                       {/* Treatments Header Banner */}
-                      <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-cyan-50/80 border border-cyan-200/80 text-[#0B4F6C]">
+                      <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-teal-50 border border-teal-200 text-[#2E5B5B]">
                         <Link
                           to="/treatments"
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center space-x-2 font-extrabold text-sm text-[#0B4F6C]"
+                          className="flex items-center space-x-2 font-extrabold text-sm text-[#2E5B5B]"
                         >
-                          <Sparkles className="w-4 h-4 text-[#00B4D8]" />
+                          <Sparkles className="w-4 h-4 text-[#2E5B5B]" />
                           <span>Treatments</span>
                         </Link>
                         <Link
                           to="/treatments"
                           onClick={() => setMobileMenuOpen(false)}
-                          className="text-[11px] font-extrabold text-[#0B4F6C] bg-white px-2.5 py-1 rounded-lg border border-cyan-200 shadow-2xs flex items-center space-x-1"
+                          className="text-[11px] font-extrabold text-[#2E5B5B] bg-white px-2.5 py-1 rounded-lg border border-teal-200 shadow-2xs flex items-center space-x-1"
                         >
                           <span>Treatments Hub</span>
-                          <ChevronRight className="w-3 h-3 text-[#0B4F6C]" />
+                          <ChevronRight className="w-3 h-3 text-[#2E5B5B]" />
                         </Link>
                       </div>
 
                       {/* Sub-list of all 12 Treatment Categories - Expanded by default */}
-                      <div className="pl-2 pr-1 py-1 space-y-1 max-h-[320px] overflow-y-auto border-l-2 border-cyan-300/60 ml-2.5">
+                      <div className="pl-2 pr-1 py-1 space-y-1 max-h-[320px] overflow-y-auto border-l-2 border-teal-300/60 ml-2.5">
                         {TREATMENT_CATEGORIES.map((cat) => {
                           const isCatActive = location.pathname === `/treatments/${cat.slug}`;
 
@@ -397,8 +397,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                               onClick={() => setMobileMenuOpen(false)}
                               className={`flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                                 isCatActive
-                                  ? 'bg-[#0B4F6C] text-white shadow-xs font-bold'
-                                  : 'text-slate-700 hover:text-[#0B4F6C] hover:bg-slate-100/80'
+                                  ? 'bg-[#2E5B5B] text-white shadow-xs font-bold'
+                                  : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-100/80'
                               }`}
                             >
                               <div className={`p-1.5 rounded-lg shrink-0 ${isCatActive ? 'bg-white/20' : 'bg-slate-100'}`}>
@@ -421,7 +421,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold text-base transition-colors ${
                       isActive 
-                        ? 'bg-cyan-50 text-[#0B4F6C] font-bold' 
+                        ? 'bg-teal-50 text-[#2E5B5B] font-bold' 
                         : 'text-slate-700 hover:bg-slate-50'
                     }`}
                   >
@@ -438,19 +438,19 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   setMobileMenuOpen(false);
                   onOpenBooking();
                 }}
-                className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-base py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
+                className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-base py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
                 id="mobile-drawer-book-btn"
               >
-                <Calendar className="w-5 h-5 text-cyan-300" />
+                <Calendar className="w-5 h-5 text-teal-200" />
                 <span>Book Appointment</span>
               </button>
 
               <a
                 href={`tel:${phoneClean}`}
-                className="w-full border border-slate-200 text-slate-700 hover:text-[#0B4F6C] font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
+                className="w-full border border-slate-200 text-slate-700 hover:text-[#2E5B5B] font-semibold text-sm py-3 rounded-xl flex items-center justify-center space-x-2"
                 id="mobile-drawer-call-btn"
               >
-                <Phone className="w-4 h-4 text-[#0B4F6C]" />
+                <Phone className="w-4 h-4 text-[#2E5B5B]" />
                 <span>Call Clinic Direct</span>
               </a>
 

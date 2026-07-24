@@ -30,7 +30,7 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
 
         <div className="space-y-5">
           <div>
-            <span className="text-xs font-bold text-[#00A99D] uppercase tracking-wider block">Virtual Experience</span>
+            <span className="text-xs font-bold text-[#2E5B5B] uppercase tracking-wider block">Virtual Experience</span>
             <h3 className="text-2xl font-extrabold text-[#1E293B] font-heading">
               Dr. Sheekha Shah DENTAL STUDIO Tour & Safety Standards
             </h3>
@@ -89,25 +89,25 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
           {/* Sterilization Highlights */}
           <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
             <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center space-x-1">
-              <ShieldCheck className="w-4 h-4 text-[#00A99D]" />
+              <ShieldCheck className="w-4 h-4 text-[#2E5B5B]" />
               <span>Hospital-Grade Sterilization Protocols</span>
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium text-slate-700 pt-1">
               <div className="flex items-center space-x-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />
+                <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B] shrink-0" />
                 <span>Medical-grade Class B Autoclaves</span>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />
+                <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B] shrink-0" />
                 <span>Single-use sterile cassette instruments</span>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />
+                <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B] shrink-0" />
                 <span>HEPA 14 Continuous Air Scrubber</span>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />
+                <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B] shrink-0" />
                 <span>Distilled Purified Waterlines</span>
               </div>
             </div>
@@ -119,7 +119,7 @@ export const ClinicTourModal: React.FC<ClinicTourModalProps> = ({ isOpen, onClos
                 onClose();
                 onOpenBooking();
               }}
-              className="w-full bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold py-3.5 rounded-xl shadow-md text-sm"
+              className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold py-3.5 rounded-xl shadow-md text-sm cursor-pointer"
             >
               Book In-Person Clinic Tour
             </button>

@@ -207,8 +207,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
               { id: 'sec-googlereviews', label: '6. Google Reviews' },
               { id: 'sec-featuredstory', label: '7. Featured Story' },
               { id: 'sec-warranty', label: '8. Warranty Reviews' },
-              { id: 'sec-leavereview', label: '9. Leave Review' },
-              { id: 'sec-book', label: '10. Book Visit' },
+              { id: 'sec-leavereview', label: '9. Leave Review' }
             ].map((pill) => (
               <a
                 key={pill.id}
@@ -294,12 +293,12 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Big Rating Summary */}
             <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-800 to-[#0B4F6C] text-white p-8 rounded-2xl space-y-4 text-center shadow-xl">
               <span className="text-xs font-extrabold text-teal-300 uppercase tracking-wider block">Aggregate Score</span>
               <div className="text-6xl font-black font-heading text-white tracking-tight">4.9</div>
-              
+
               <div className="flex items-center justify-center text-amber-400 gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
@@ -658,11 +657,10 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
 
                     <button
                       onClick={() => handleVote(review.id)}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg transition-colors font-semibold ${
-                        votedReviews[review.id]
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg transition-colors font-semibold ${votedReviews[review.id]
                           ? 'bg-emerald-100 text-emerald-700 font-bold'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
+                        }`}
                     >
                       <ThumbsUp className="w-3 h-3" />
                       <span>{helpfulVotes[review.id] || 0}</span>
@@ -702,16 +700,14 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
                 <button
                   key={tab.id}
                   onClick={() => setActiveCategoryTab(tab.id as any)}
-                  className={`px-4 py-2.5 rounded-2xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${
-                    activeCategoryTab === tab.id
+                  className={`px-4 py-2.5 rounded-2xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${activeCategoryTab === tab.id
                       ? 'bg-[#0B4F6C] text-white shadow-md'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
+                    }`}
                 >
                   <span>{tab.label}</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
-                    activeCategoryTab === tab.id ? 'bg-white/20 text-teal-200' : 'bg-slate-200 text-slate-700'
-                  }`}>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${activeCategoryTab === tab.id ? 'bg-white/20 text-teal-200' : 'bg-slate-200 text-slate-700'
+                    }`}>
                     {tab.rating}
                   </span>
                 </button>
@@ -913,7 +909,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Before/After Visual Side */}
             <div className="lg:col-span-5 space-y-3">
               <span className="inline-block bg-[#0B4F6C] text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">
@@ -1079,7 +1075,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
               </motion.div>
             ) : (
               <form onSubmit={handleReviewSubmit} className="space-y-6">
-                
+
                 {/* Star Rating Picker */}
                 <div className="space-y-2 text-center">
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
@@ -1094,11 +1090,10 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
                         className="p-1 hover:scale-125 transition-transform"
                       >
                         <Star
-                          className={`w-8 h-8 ${
-                            star <= reviewForm.rating
+                          className={`w-8 h-8 ${star <= reviewForm.rating
                               ? 'fill-amber-400 text-amber-400'
                               : 'text-slate-300'
-                          }`}
+                            }`}
                         />
                       </button>
                     ))}
@@ -1174,67 +1169,6 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
           </div>
         </section>
 
-
-        {/* ==========================================
-            SECTION 10: BOOK AN APPOINTMENT (CTA)
-           ========================================== */}
-        <section id="sec-book" className="scroll-mt-24">
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={VIEWPORT_CONFIG}
-            className="bg-gradient-to-r from-[#1A3848] via-[#0B4F6C] to-[#125D7F] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8"
-          >
-            <div className="space-y-4 text-center lg:text-left max-w-2xl">
-              <span className="inline-flex items-center gap-2 bg-teal-400/20 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                Section 10: Begin Your Transformation
-              </span>
-
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white leading-tight">
-                Ready to Experience Award-Winning Dental Care?
-              </h2>
-
-              <p className="text-slate-200 text-sm leading-relaxed">
-                Join over 500+ satisfied local and international patients. Schedule your 1-on-1 consultation with Dr. Sheekha Shah today with zero waiting time guaranteed.
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-teal-200 pt-2">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-300" />
-                  Painless Anesthesia Protocol
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-300" />
-                  3D iTero® Scan Included
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-300" />
-                  0% EMI Financing Options
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0">
-              <button
-                onClick={onOpenBooking}
-                className="bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm px-8 py-4 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Book First Visit Slot</span>
-              </button>
-
-              <a
-                href="tel:+919876543210"
-                className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-6 py-3.5 rounded-2xl transition-all border border-white/20 flex items-center justify-center gap-2"
-              >
-                <PhoneCall className="w-4 h-4 text-teal-300" />
-                <span>Call Concierge Desk</span>
-              </a>
-            </div>
-          </motion.div>
-        </section>
 
       </div>
     </PageWrapper>

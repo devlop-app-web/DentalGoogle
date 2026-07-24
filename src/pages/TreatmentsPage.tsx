@@ -27,7 +27,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
 
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
+          <Link to="/" className="hover:text-[#2E5B5B] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-slate-800 font-bold">Treatments Hub</span>
         </nav>
@@ -37,9 +37,9 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-gradient-to-r from-[#2E4F4F] via-[#243F3F] to-[#1D3232] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl"
+          className="bg-gradient-to-r from-[#2E5B5B] via-[#204242] to-[#183333] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl"
         >
-          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-[#0B4F6C]/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-[#599E9D]/20 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="max-w-3xl space-y-4 relative z-10">
             <span className="inline-flex items-center gap-2 bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
@@ -62,7 +62,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
                   placeholder="Search treatments (e.g., Veneers, Root Canal, Aligners, Implants)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#0B4F6C]/30 shadow-lg border border-white/20"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#2E5B5B]/30 shadow-lg border border-white/20"
                 />
               </div>
             </div>
@@ -85,7 +85,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
             />
           </div>
           <div className="lg:col-span-7 space-y-4">
-            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
+            <span className="text-xs font-bold text-[#2E5B5B] uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
               State-of-the-Art Clinical Care
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800">
@@ -127,17 +127,17 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
                 key={cat.id}
                 variants={staggerItemUp}
                 whileHover={{ y: -6 }}
-                className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-md hover:shadow-xl hover:border-teal-300/40 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
+                    <span className="text-xs font-extrabold text-[#2E5B5B] uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
                       {cat.subcategories.length} Sub-Treatments
                     </span>
-                    <Shield className="w-5 h-5 text-teal-600" />
+                    <Shield className="w-5 h-5 text-[#2E5B5B]" />
                   </div>
 
-                  <h3 className="text-xl font-bold font-heading text-slate-800 group-hover:text-[#0B4F6C] transition-colors">
+                  <h3 className="text-xl font-bold font-heading text-slate-800 group-hover:text-[#2E5B5B] transition-colors">
                     {cat.title}
                   </h3>
 
@@ -154,8 +154,8 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
                       {cat.subcategories.slice(0, 4).map((sub) => (
                         <Link
                           key={sub.id}
-                          to={`/treatments/${cat.slug}/${sub.slug}`}
-                          className="text-[11px] font-medium bg-slate-50 hover:bg-cyan-50 text-slate-700 hover:text-[#0B4F6C] px-2.5 py-1 rounded-lg border border-slate-200/80 transition-colors"
+                          to={`/treatments/${cat.slug}`}
+                          className="text-[11px] font-medium bg-slate-50 hover:bg-teal-50 text-slate-700 hover:text-[#2E5B5B] px-2.5 py-1 rounded-lg border border-slate-200/80 transition-colors"
                         >
                           {sub.title}
                         </Link>
@@ -172,7 +172,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
                 <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
                   <Link
                     to={`/treatments/${cat.slug}`}
-                    className="text-xs font-bold text-[#0B4F6C] hover:text-[#083A50] flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
+                    className="text-xs font-bold text-[#2E5B5B] hover:text-[#204242] flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
                   >
                     <span>Explore Category</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -180,7 +180,7 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
 
                   <button
                     onClick={onOpenBooking}
-                    className="text-xs font-semibold text-slate-600 hover:text-[#0B4F6C] bg-slate-100 hover:bg-cyan-50 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                    className="text-xs font-semibold text-slate-600 hover:text-[#2E5B5B] bg-slate-100 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
                   >
                     Book Visit
                   </button>
@@ -196,11 +196,11 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-gradient-to-br from-[#0B4F6C] to-[#083A50] rounded-3xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-cyan-500/20"
+          className="bg-gradient-to-br from-[#2E5B5B] via-[#204242] to-[#152929] rounded-3xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-teal-400/20"
         >
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-2xl font-bold font-heading">Need Help Choosing the Right Treatment?</h3>
-            <p className="text-cyan-100 text-sm max-w-xl">
+            <p className="text-teal-100 text-sm max-w-xl">
               Schedule an in-person or virtual consultation with Dr. Sheekha Shah for personalized clinical guidance.
             </p>
           </div>
@@ -208,9 +208,9 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
             <motion.button
               {...buttonHover}
               onClick={onOpenBooking}
-              className="bg-white text-[#0B4F6C] hover:bg-cyan-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
+              className="bg-white text-[#2E5B5B] hover:bg-teal-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
             >
-              <Calendar className="w-4 h-4 text-[#0B4F6C]" />
+              <Calendar className="w-4 h-4 text-[#2E5B5B]" />
               <span>Book Appointment</span>
             </motion.button>
             <motion.a

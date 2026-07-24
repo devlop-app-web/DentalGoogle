@@ -84,7 +84,7 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
                 id="doctor-section-tour-btn"
                 className="absolute top-6 right-6 bg-white/90 backdrop-blur-md hover:bg-white text-slate-800 font-bold text-xs px-3.5 py-2 rounded-xl shadow-lg border border-slate-200 flex items-center space-x-2 transition-all cursor-pointer"
               >
-                <Play className="w-3.5 h-3.5 text-[#0F6CBD] fill-[#0F6CBD]" />
+                <Play className="w-3.5 h-3.5 text-[#2E5B5B] fill-[#2E5B5B]" />
                 <span>Virtual Clinic Tour</span>
               </motion.button>
 
@@ -100,8 +100,8 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
             className="lg:col-span-7 space-y-6"
           >
 
-            <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0F6CBD] uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#24BEC8]" />
+            <div className="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#2E5B5B] uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#2E5B5B]" />
               <span>Meet Our Specialists</span>
             </div>
 
@@ -110,7 +110,7 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
             </h2>
 
             {/* Doctor Quote Card */}
-            <div className="bg-slate-50 border-l-4 border-[#0F6CBD] p-5 rounded-r-2xl italic text-slate-700 text-sm sm:text-base leading-relaxed shadow-2xs">
+            <div className="bg-slate-50 border-l-4 border-[#2E5B5B] p-5 rounded-r-2xl italic text-slate-700 text-sm sm:text-base leading-relaxed shadow-2xs">
               "{leadDoctor.quote}"
             </div>
 
@@ -124,7 +124,7 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
               <div className="space-y-2">
                 {leadDoctor.education.map((edu, idx) => (
                   <div key={idx} className="flex items-start space-x-2 text-xs sm:text-sm font-semibold text-slate-700">
-                    <GraduationCap className="w-4 h-4 text-[#0F6CBD] shrink-0 mt-0.5" />
+                    <GraduationCap className="w-4 h-4 text-[#2E5B5B] shrink-0 mt-0.5" />
                     <span>{edu}</span>
                   </div>
                 ))}
@@ -132,20 +132,20 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
             </div>
 
             {/* Secondary Specialist Teaser */}
-            <div className="pt-4 border-t border-slate-100 flex items-center space-x-4 bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+            <div className="pt-4 border-t border-slate-100 flex items-center space-x-4 bg-teal-50/50 p-4 rounded-2xl border border-teal-100">
               <img
                 src={secondDoctor.imageUrl}
                 alt={secondDoctor.name}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#24BEC8]"
+                className="w-14 h-14 rounded-full object-cover border-2 border-[#2E5B5B]"
               />
               <div className="flex-1">
                 <span className="text-xs font-bold text-slate-800 block">{secondDoctor.name}</span>
-                <span className="text-[11px] text-[#0F6CBD] font-semibold block">{secondDoctor.role}</span>
+                <span className="text-[11px] text-[#2E5B5B] font-semibold block">{secondDoctor.role}</span>
                 <span className="text-[11px] text-slate-500">{secondDoctor.credentials}</span>
               </div>
               <button
                 onClick={onOpenBooking}
-                className="hidden sm:inline-flex text-xs font-bold text-[#0F6CBD] hover:underline cursor-pointer"
+                className="hidden sm:inline-flex text-xs font-bold text-[#2E5B5B] hover:underline cursor-pointer"
               >
                 Meet Dr. Chen →
               </button>
@@ -157,9 +157,9 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
                 {...buttonHover}
                 onClick={onOpenBooking}
                 id="about-book-doctor-btn"
-                className="bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
               >
-                <Calendar className="w-4 h-4 text-cyan-300" />
+                <Calendar className="w-4 h-4 text-teal-200" />
                 <span>Schedule Consultation With Dr. Sheekha Shah</span>
               </motion.button>
 
@@ -167,9 +167,9 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
                 {...buttonHover}
                 onClick={onOpenClinicTour}
                 id="about-clinic-sterilization-btn"
-                className="border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-sm px-5 py-3.5 rounded-xl flex items-center justify-center space-x-2 cursor-pointer"
+                className="border border-[#2E5B5B] bg-white hover:bg-teal-50/60 text-[#2E5B5B] font-bold text-sm px-5 py-3.5 rounded-xl flex items-center justify-center space-x-2 cursor-pointer"
               >
-                <ShieldCheck className="w-4 h-4 text-[#00A99D]" />
+                <ShieldCheck className="w-4 h-4 text-[#2E5B5B]" />
                 <span>Sterilization Standards</span>
               </motion.button>
             </div>

@@ -78,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             {/* Badges Bar */}
             <motion.div variants={staggerItemUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               {/* Google Rating */}
-              <div className="inline-flex items-center space-x-1.5 bg-white border border-cyan-200/80 rounded-full px-3.5 py-1.5 shadow-2xs text-xs font-bold text-slate-800">
+              <div className="inline-flex items-center space-x-1.5 bg-white border border-teal-200/80 rounded-full px-3.5 py-1.5 shadow-2xs text-xs font-bold text-slate-800">
                 <div className="flex items-center space-x-0.5 text-amber-400">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -86,25 +86,25 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 </div>
                 <span>4.9 / 5.0 Rating</span>
                 <span className="text-slate-300">•</span>
-                <span className="text-[#0B4F6C]">850+ Reviews</span>
+                <span className="text-[#2E5B5B]">850+ Reviews</span>
               </div>
 
               {/* Lifetime Warranty Badge */}
-              <div className="inline-flex items-center space-x-1.5 bg-cyan-900 text-cyan-100 border border-cyan-700 px-3 py-1 rounded-full text-xs font-extrabold shadow-2xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-cyan-300" />
+              <div className="inline-flex items-center space-x-1.5 bg-[#1E3A3A] text-teal-100 border border-[#2C5454] px-3 py-1 rounded-full text-xs font-extrabold shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-300" />
                 <span>Lifetime Warranty Protection</span>
               </div>
 
               {/* ISO Certified */}
-              <div className="inline-flex items-center space-x-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full text-xs font-extrabold">
-                <Award className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="inline-flex items-center space-x-1 bg-teal-50 text-teal-900 border border-teal-200 px-3 py-1 rounded-full text-xs font-extrabold">
+                <Award className="w-3.5 h-3.5 text-[#2E5B5B]" />
                 <span>ISO 9001:2015</span>
               </div>
             </motion.div>
 
             {/* Main Headline */}
             <motion.h1 variants={staggerItemUp} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] font-heading tracking-tight leading-[1.12]">
-              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B4F6C] via-[#0083B0] to-[#00B4D8]">Dental Care</span> By Dr. Sheekha Shah
+              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2E5B5B] via-[#3F7A79] to-[#599E9D]">Dental Care</span> By Dr. Sheekha Shah
             </motion.h1>
 
             {/* Subtitle */}
@@ -115,15 +115,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             {/* Key Value Bullets */}
             <motion.div variants={staggerItemUp} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-left max-w-xl mx-auto lg:mx-0">
               <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
                 <span>Zero-Pain Dentistry</span>
               </div>
               <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
                 <span>Free 3D iTero® Scan</span>
               </div>
               <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
                 <span>0% Interest EMI</span>
               </div>
             </motion.div>
@@ -134,9 +134,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 {...buttonHover}
                 onClick={onOpenBooking}
                 id="hero-book-consultation-btn"
-                className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-cyan-950/15 border border-cyan-400/30 flex items-center justify-center space-x-2 cursor-pointer"
+                className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-[#2E5B5B]/20 border border-teal-400/30 flex items-center justify-center space-x-2 cursor-pointer"
               >
-                <Calendar className="w-5 h-5 text-cyan-300" />
+                <Calendar className="w-5 h-5 text-teal-200" />
                 <span>Book Appointment</span>
                 <ChevronRight className="w-4 h-4 ml-0.5" />
               </motion.button>
@@ -145,9 +145,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 {...buttonHover}
                 href={`tel:${phoneFormatted}`}
                 id="hero-phone-call-btn"
-                className="bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl shadow-2xs hover:shadow flex items-center justify-center space-x-2"
+                className="bg-white hover:bg-teal-50/60 text-[#2E5B5B] border border-[#2E5B5B] font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl shadow-2xs hover:shadow flex items-center justify-center space-x-2"
               >
-                <Phone className="w-4 h-4 text-[#0B4F6C]" />
+                <Phone className="w-4 h-4 text-[#2E5B5B]" />
                 <span>Call Now</span>
               </motion.a>
 
@@ -168,17 +168,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             <motion.div variants={staggerItemUp} className="pt-2 max-w-xl mx-auto lg:mx-0">
               <form
                 onSubmit={handleQuickBook}
-                className="bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-cyan-200/80 shadow-lg shadow-cyan-900/5 flex flex-col sm:flex-row items-center gap-2.5"
+                className="bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-teal-200/80 shadow-lg shadow-teal-900/5 flex flex-col sm:flex-row items-center gap-2.5"
               >
                 <div className="w-full sm:w-auto flex-1 text-left">
-                  <label htmlFor="hero-quick-service" className="block text-[10px] font-extrabold text-[#0B4F6C] uppercase tracking-wider mb-0.5">
+                  <label htmlFor="hero-quick-service" className="block text-[10px] font-extrabold text-[#2E5B5B] uppercase tracking-wider mb-0.5">
                     Select Preferred Treatment
                   </label>
                   <select
                     id="hero-quick-service"
                     value={selectedQuickService}
                     onChange={(e) => setSelectedQuickService(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#0B4F6C] focus:outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#2E5B5B] focus:outline-none"
                   >
                     {TREATMENTS.map((t) => (
                       <option key={t.id} value={t.id}>
@@ -193,9 +193,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   id="hero-quick-submit-btn"
-                  className="w-full sm:w-auto bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"
+                  className="w-full sm:w-auto bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 text-teal-200" />
                   <span>Reserve Slot</span>
                 </motion.button>
               </form>
@@ -231,9 +231,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                   <div className="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-xs flex items-center justify-between shadow-lg">
                     <div>
                       <span className="font-extrabold block text-sm text-white">Dr. Sheekha Shah</span>
-                      <span className="text-cyan-200 text-[11px] font-semibold">Founder & Lead Cosmetic Surgeon</span>
+                      <span className="text-teal-200 text-[11px] font-semibold">Founder & Lead Cosmetic Surgeon</span>
                     </div>
-                    <span className="bg-[#10B981] text-white font-extrabold px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider shadow-2xs">
+                    <span className="bg-[#2E5B5B] text-white font-extrabold px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider shadow-2xs border border-teal-400/30">
                       Available Today
                     </span>
                   </div>
@@ -245,16 +245,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-4 -left-3 sm:-top-5 sm:-left-5 bg-white rounded-2xl p-2.5 sm:p-3 shadow-xl border border-cyan-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
+                className="absolute -top-4 -left-3 sm:-top-5 sm:-left-5 bg-white rounded-2xl p-2.5 sm:p-3 shadow-xl border border-teal-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
               >
                 <img
                   src={ceo2Img}
                   alt="Dr. Sheekha Shah Profile"
-                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#0B4F6C]"
+                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#2E5B5B]"
                 />
                 <div>
                   <span className="text-xs font-extrabold text-slate-800 block">16+ Years Experience</span>
-                  <span className="text-[10px] text-[#0B4F6C] font-extrabold block">12,500+ Happy Patients</span>
+                  <span className="text-[10px] text-[#2E5B5B] font-extrabold block">12,500+ Happy Patients</span>
                 </div>
               </motion.div>
 
@@ -263,10 +263,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 bg-white rounded-2xl p-2.5 sm:p-3.5 shadow-xl border border-cyan-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
+                className="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 bg-white rounded-2xl p-2.5 sm:p-3.5 shadow-xl border border-teal-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
               >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-50 flex items-center justify-center text-[#0B4F6C] shrink-0">
-                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B4D8]" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-50 flex items-center justify-center text-[#2E5B5B] shrink-0">
+                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#2E5B5B]" />
                 </div>
                 <div>
                   <span className="text-xs sm:text-sm font-extrabold text-slate-900 block font-heading leading-tight">Lifetime Warranty</span>

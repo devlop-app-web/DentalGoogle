@@ -64,7 +64,7 @@ export const FloatingActions: React.FC = () => {
         href={`tel:${phoneClean}`}
         id="floating-phone-btn"
         aria-label={`Call Dr. Sheekha Shah DENTAL STUDIO: ${CLINIC_INFO.phone}`}
-        className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#0F6CBD] hover:bg-[#0B5598] flex items-center justify-center text-white shadow-xl transition-all duration-300 border-2 border-white group relative cursor-pointer pointer-events-auto focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
+        className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#2E5B5B] hover:bg-[#204242] flex items-center justify-center text-white shadow-xl transition-all duration-300 border-2 border-white group relative cursor-pointer pointer-events-auto focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2"
         whileHover={{ scale: 1.12, boxShadow: '0 12px 25px -5px rgba(0, 0, 0, 0.25)' }}
         whileTap={{ scale: 0.92 }}
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -87,7 +87,7 @@ export const FloatingActions: React.FC = () => {
             onClick={scrollToTop}
             id="floating-back-to-top-btn"
             aria-label="Back to top"
-            className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#0B4F6C] hover:bg-[#083A50] flex items-center justify-center text-white shadow-xl transition-all duration-300 border-2 border-white group relative cursor-pointer pointer-events-auto focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
+            className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#2E5B5B] hover:bg-[#204242] flex items-center justify-center text-white shadow-xl transition-all duration-300 border-2 border-white group relative cursor-pointer pointer-events-auto focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2"
             whileHover={{ scale: 1.12, boxShadow: '0 12px 25px -5px rgba(0, 0, 0, 0.25)' }}
             whileTap={{ scale: 0.92 }}
             initial={{ opacity: 0, scale: 0.5, y: 15 }}
@@ -95,7 +95,7 @@ export const FloatingActions: React.FC = () => {
             exit={{ opacity: 0, scale: 0.5, y: 15 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-200" />
+            <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-teal-200" />
 
             {/* Tooltip Label */}
             <span className="absolute right-15 sm:right-16 top-1/2 -translate-y-1/2 bg-slate-900/95 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-xl border border-slate-700/60 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform group-hover:translate-x-0 translate-x-1">

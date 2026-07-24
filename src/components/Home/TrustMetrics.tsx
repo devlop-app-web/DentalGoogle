@@ -11,8 +11,8 @@ export const TrustMetrics: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 items-center text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
           
           <div className="pt-4 md:pt-0 px-2 space-y-1">
-            <div className="flex items-center justify-center space-x-2 text-[#0F6CBD]">
-              <Users className="w-5 h-5 text-[#24BEC8]" />
+            <div className="flex items-center justify-center space-x-2 text-[#2E5B5B]">
+              <Users className="w-5 h-5 text-[#2E5B5B]" />
               <span className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-800 tracking-tight">
                 12,500+
               </span>
@@ -21,8 +21,8 @@ export const TrustMetrics: React.FC = () => {
           </div>
 
           <div className="pt-4 md:pt-0 px-2 space-y-1">
-            <div className="flex items-center justify-center space-x-2 text-[#0F6CBD]">
-              <Award className="w-5 h-5 text-[#24BEC8]" />
+            <div className="flex items-center justify-center space-x-2 text-[#2E5B5B]">
+              <Award className="w-5 h-5 text-[#2E5B5B]" />
               <span className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-800 tracking-tight">
                 16+ Years
               </span>
@@ -31,8 +31,8 @@ export const TrustMetrics: React.FC = () => {
           </div>
 
           <div className="pt-4 md:pt-0 px-2 space-y-1">
-            <div className="flex items-center justify-center space-x-2 text-[#0F6CBD]">
-              <ShieldCheck className="w-5 h-5 text-[#00A99D]" />
+            <div className="flex items-center justify-center space-x-2 text-[#2E5B5B]">
+              <ShieldCheck className="w-5 h-5 text-[#2E5B5B]" />
               <span className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-800 tracking-tight">
                 99.8%
               </span>
@@ -55,19 +55,19 @@ export const TrustMetrics: React.FC = () => {
         {/* Partner / Certification Row */}
         <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-slate-400 text-xs font-bold uppercase tracking-wider">
           <span className="flex items-center space-x-1.5 text-slate-600">
-            <CheckCircle className="w-4 h-4 text-[#0F6CBD]" />
+            <CheckCircle className="w-4 h-4 text-[#2E5B5B]" />
             <span>ADA Accredited Clinic</span>
           </span>
           <span className="flex items-center space-x-1.5 text-slate-600">
-            <CheckCircle className="w-4 h-4 text-[#0F6CBD]" />
+            <CheckCircle className="w-4 h-4 text-[#2E5B5B]" />
             <span>AACD Fellow Specialists</span>
           </span>
           <span className="flex items-center space-x-1.5 text-slate-600">
-            <CheckCircle className="w-4 h-4 text-[#0F6CBD]" />
+            <CheckCircle className="w-4 h-4 text-[#2E5B5B]" />
             <span>Diamond Invisalign Provider</span>
           </span>
           <span className="flex items-center space-x-1.5 text-slate-600">
-            <CheckCircle className="w-4 h-4 text-[#0F6CBD]" />
+            <CheckCircle className="w-4 h-4 text-[#2E5B5B]" />
             <span>ISO 9001 Hygiene Certified</span>
           </span>
         </div>

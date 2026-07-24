@@ -2,36 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import welcomeImg from '@/public/assets/Image/Welcomepop.png';
 
+// Module-level JS runtime flag. Re-initialized to false on EVERY real browser page load (F5, Ctrl+Shift+R, new tab, direct URL).
+let hasShownWelcomeThisBrowserLoad = false;
+
 export const WelcomePopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Detect if this page load is a reload (F5 / Ctrl+Shift+R / Hard Refresh)
-    const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
-    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
-
-    if (isReload) {
-      // Clear session flag on refresh so the popup re-triggers for the user
-      sessionStorage.removeItem('hasSeenWelcomePopup');
+    // If the popup has already been evaluated/shown in this browser session runtime, exit immediately
+    if (hasShownWelcomeThisBrowserLoad) {
+      return;
     }
+    // Mark immediately so SPA route changes (e.g. Home -> About -> Home, clicking Home menu, Back/Forward) will NOT re-trigger
+    hasShownWelcomeThisBrowserLoad = true;
 
-    // Check if the user has already seen the popup in this tab session
-    const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup');
-
-    if (!hasSeenPopup) {
-      // Show popup after a 700ms delay (within 500-1000ms requirement)
-      const timer = setTimeout(() => {
-        setIsOpen(true);
+    // Show popup after a 700ms delay on real browser load
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+      requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setShowPopup(true);
-          });
+          setShowPopup(true);
         });
-      }, 700);
+      });
+    }, 700);
 
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -50,8 +46,6 @@ export const WelcomePopup: React.FC = () => {
     setShowPopup(false);
     setTimeout(() => {
       setIsOpen(false);
-      // Store in sessionStorage so it doesn't repeatedly open on internal client-side page navigation
-      sessionStorage.setItem('hasSeenWelcomePopup', 'true');
     }, 300); // Wait for the fade-out animation to complete
   };
 

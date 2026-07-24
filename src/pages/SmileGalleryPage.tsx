@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Sparkles, 
-  Calendar, 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Filter, 
-  Eye, 
-  Star, 
-  Quote, 
-  Award, 
-  Zap, 
-  Info, 
+import {
+  Sparkles,
+  Calendar,
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Filter,
+  Eye,
+  Star,
+  Quote,
+  Award,
+  Zap,
+  Info,
   Activity,
   Maximize2,
   X,
@@ -245,10 +245,10 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
   return (
     <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
-        
+
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
+          <Link to="/" className="hover:text-[#2E5B5B] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-slate-800 font-bold">Smile Gallery</span>
         </nav>
@@ -257,28 +257,28 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
             1. GALLERY HERO
         ========================================== */}
         <section id="gallery-hero">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-gradient-to-r from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-cyan-500/20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+            className="bg-gradient-to-r from-[#2E5B5B] via-[#204242] to-[#152929] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-teal-400/20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
           >
             {/* Ambient Lighting Accents */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/15 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="lg:col-span-8 space-y-6 relative z-10">
-              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-cyan-300/30 text-cyan-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-teal-300/30 text-teal-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-teal-300" />
                 International Dental Clinic Gallery
               </span>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.15] tracking-tight">
                 Real Patient Smiles. <br className="hidden sm:inline" />
-                <span className="text-cyan-300">Exceptional Artistry.</span>
+                <span className="text-teal-300">Exceptional Artistry.</span>
               </h1>
 
-              <p className="text-cyan-100/90 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+              <p className="text-teal-100/90 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
                 Explore documented before and after transformations handcrafted by <strong className="text-white font-semibold">Dr. Sheekha Shah</strong> at DENTAL STUDIO. Every smile is custom designed using 3D intraoral scans, digital smile architecture, and zero-pain micro-dentistry.
               </p>
 
@@ -355,17 +355,15 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center space-x-2 cursor-pointer ${
-                  selectedCategory === cat.id
+                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center space-x-2 cursor-pointer ${selectedCategory === cat.id
                     ? 'bg-[#0B4F6C] text-white shadow-md border border-cyan-500/30'
                     : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90'
-                }`}
+                  }`}
                 id={`filter-${cat.id}`}
               >
                 <span>{cat.label}</span>
-                <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
-                  selectedCategory === cat.id ? 'bg-cyan-400/20 text-cyan-200' : 'bg-slate-100 text-slate-500'
-                }`}>
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${selectedCategory === cat.id ? 'bg-cyan-400/20 text-cyan-200' : 'bg-slate-100 text-slate-500'
+                  }`}>
                   {cat.count}
                 </span>
               </button>
@@ -395,11 +393,10 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
               <button
                 key={idx}
                 onClick={() => setActiveSliderIndex(idx)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeSliderIndex === idx
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeSliderIndex === idx
                     ? 'bg-[#0B4F6C] text-white shadow-sm'
                     : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-                }`}
+                  }`}
               >
                 Case #{idx + 1}: {spot.category}
               </button>
@@ -408,7 +405,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           {/* Interactive Before/After Component */}
           <div className="max-w-4xl mx-auto space-y-4">
-            <BeforeAfterSlider 
+            <BeforeAfterSlider
               beforeImage={spotlightSliderCases[activeSliderIndex].before}
               afterImage={spotlightSliderCases[activeSliderIndex].after}
               title={spotlightSliderCases[activeSliderIndex].title}
@@ -460,7 +457,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {makeoverCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
@@ -507,7 +504,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                 </div>
 
                 <div className="pt-2 flex items-center justify-between border-t border-slate-100">
-                  <button 
+                  <button
                     onClick={() => setZoomModalCase({
                       title: caseItem.treatmentName,
                       before: caseItem.beforeImage,
@@ -556,7 +553,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {implantCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
@@ -639,7 +636,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {veneerCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
@@ -722,7 +719,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {whiteningCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
@@ -805,7 +802,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {orthoCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md space-y-4 p-6 flex flex-col justify-between group"
@@ -888,7 +885,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
           <div className="grid grid-cols-1 gap-8">
             {fullMouthCases.map((caseItem) => (
-              <motion.div 
+              <motion.div
                 key={caseItem.id}
                 whileHover={{ y: -3 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg space-y-6 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
@@ -990,7 +987,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                 image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200"
               }
             ].map((story, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ y: -4 }}
                 className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md space-y-4 flex flex-col justify-between"
@@ -1051,88 +1048,24 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
           </div>
         </section>
 
-        {/* ==========================================
-            12. START YOUR SMILE TRANSFORMATION (CTA)
-        ========================================== */}
-        <section id="smile-transformation-cta">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={VIEWPORT_CONFIG}
-            transition={{ duration: 0.8 }}
-            className="bg-gradient-to-br from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-cyan-500/20 relative overflow-hidden"
-          >
-            <div className="space-y-4 text-center lg:text-left max-w-2xl relative z-10">
-              <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-cyan-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                Begin Your Journey
-              </span>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white leading-tight">
-                Ready to See Your Future Smile in 3D?
-              </h2>
-
-              <p className="text-cyan-100 text-sm sm:text-base leading-relaxed">
-                Book a complimentary 3D intraoral smile scan with Dr. Sheekha Shah at DENTAL STUDIO today. Preview your exact treatment outcome before making any commitment.
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 text-xs text-cyan-200 font-semibold">
-                <span className="flex items-center space-x-1">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>Free 3D Intraoral Scan</span>
-                </span>
-                <span className="flex items-center space-x-1">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>0% Interest Financing</span>
-                </span>
-                <span className="flex items-center space-x-1">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-300" />
-                  <span>Same-Day Virtual Consult</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="shrink-0 flex flex-col sm:flex-row gap-3.5 w-full lg:w-auto relative z-10">
-              <motion.button
-                onClick={onOpenBooking}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-8 py-4 rounded-xl shadow-xl transition-all flex items-center justify-center space-x-2.5 cursor-pointer w-full sm:w-auto"
-                id="gallery-cta-book-btn"
-              >
-                <Calendar className="w-4 h-4 text-[#0B4F6C]" />
-                <span>Schedule 3D Scan</span>
-              </motion.button>
-
-              <a
-                href="tel:5559113368"
-                className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-6 py-4 rounded-xl border border-white/25 transition-colors flex items-center justify-center space-x-2 backdrop-blur-sm w-full sm:w-auto"
-              >
-                <Phone className="w-4 h-4 text-cyan-300" />
-                <span>Call (555) 911-DENT</span>
-              </a>
-            </div>
-          </motion.div>
-        </section>
-
         {/* High-Res Image Zoom Modal */}
         <AnimatePresence>
           {zoomModalCase && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-md p-4 sm:p-6 flex items-center justify-center overflow-y-auto"
               onClick={() => setZoomModalCase(null)}
             >
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
                 className="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 space-y-6 relative border border-slate-200 shadow-2xl my-auto"
               >
-                <button 
+                <button
                   onClick={() => setZoomModalCase(null)}
                   className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
                 >

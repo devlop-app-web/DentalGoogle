@@ -14,7 +14,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
   const phoneFormatted = CLINIC_INFO.phone.replace(/[^0-9+]/g, '');
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#0B4F6C] via-[#083E55] to-[#052C3E] text-white relative overflow-hidden shadow-2xl">
+    <section className="py-20 bg-gradient-to-br from-[#152929] via-[#1E3A3A] to-[#2E5B5B] text-white relative overflow-hidden shadow-2xl">
 
       {/* Background Lighting Orbs */}
       <motion.div
@@ -23,7 +23,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
           opacity: [0.15, 0.3, 0.15],
           transition: { duration: 9, repeat: Infinity, ease: 'easeInOut' }
         }}
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-3xl pointer-events-none"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#599E9D]/20 rounded-full blur-3xl pointer-events-none"
       />
       <motion.div
         animate={{
@@ -41,14 +41,14 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={VIEWPORT_CONFIG}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-white/10 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-cyan-300/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+          className="bg-white/10 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-teal-300/30 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
         >
 
           {/* Left Column: Headlines & Actions */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
 
-            <div className="inline-flex items-center space-x-2 bg-cyan-400/20 text-cyan-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-cyan-300/30">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+            <div className="inline-flex items-center space-x-2 bg-teal-400/20 text-teal-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-teal-300/30">
+              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
               <span>Transform Your Smile Today</span>
             </div>
 
@@ -56,12 +56,12 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
               Ready To Experience World-Class, Painless Dental Care?
             </h2>
 
-            <p className="text-cyan-100/90 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-teal-100/90 text-sm sm:text-base leading-relaxed max-w-xl">
               Schedule your comprehensive consultation with Dr. Sheekha Shah. Take advantage of zero-pain techniques, 3D digital oral scanning, and Lifetime Warranty protection.
             </p>
 
             {/* Trust Pills */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-bold text-cyan-100 pt-1">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-bold text-teal-100 pt-1">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> ISO 9001:2015 Certified</span>
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> Lifetime Warranty</span>
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-400" /> 0% Interest EMI</span>
@@ -74,9 +74,9 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
                 {...buttonHover}
                 onClick={onOpenBooking}
                 id="final-cta-book-btn"
-                className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-7 py-4 rounded-2xl shadow-xl flex items-center justify-center space-x-2 uppercase tracking-wider cursor-pointer"
+                className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-extrabold text-sm px-7 py-4 rounded-2xl shadow-xl flex items-center justify-center space-x-2 uppercase tracking-wider cursor-pointer border border-teal-400/30"
               >
-                <Calendar className="w-4 h-4 text-[#0B4F6C]" />
+                <Calendar className="w-4 h-4 text-teal-200" />
                 <span>Book Appointment</span>
                 <ChevronRight className="w-4 h-4" />
               </motion.button>
@@ -89,7 +89,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
                 id="final-cta-call-btn"
                 className="bg-white/15 hover:bg-white/25 text-white font-bold text-sm px-5 py-4 rounded-2xl border border-white/25 transition-all flex items-center justify-center space-x-2 cursor-pointer"
               >
-                <Phone className="w-4 h-4 text-cyan-300" />
+                <Phone className="w-4 h-4 text-teal-300" />
                 <span>Call Now</span>
               </motion.a>
 
@@ -134,7 +134,7 @@ export const FinalAppointmentCTA: React.FC<FinalAppointmentCTAProps> = ({ onOpen
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
 
               <div className="absolute bottom-4 left-4 right-4 text-center">
-                <span className="text-xs font-bold text-cyan-200 block">Dr. Sheekha Shah</span>
+                <span className="text-xs font-bold text-teal-200 block">Dr. Sheekha Shah</span>
                 <span className="text-[11px] text-slate-300">Lead Cosmetic Surgeon • DENTAL STUDIO</span>
               </div>
             </div>

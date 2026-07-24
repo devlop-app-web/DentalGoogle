@@ -38,8 +38,8 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto space-y-4 mb-10"
         >
-          <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0F6CBD] uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-[#24BEC8]" />
+          <div className="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#2E5B5B] uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#2E5B5B]" />
             <span>Advanced Care Offerings</span>
           </div>
 
@@ -65,8 +65,8 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                 onClick={() => setSelectedCategory(cat.id)}
                 id={`treatment-filter-${cat.id}`}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${selectedCategory === cat.id
-                    ? 'bg-[#0F6CBD] text-white shadow-md shadow-blue-600/20'
-                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                    ? 'bg-[#2E5B5B] text-white shadow-md shadow-[#2E5B5B]/20'
+                    : 'bg-white text-slate-600 hover:bg-teal-50/60 border border-slate-200'
                   }`}
               >
                 {cat.label}
@@ -84,7 +84,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
           className="mb-12 bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-12 items-center"
         >
           <div className="lg:col-span-7 p-6 sm:p-8 space-y-3">
-            <span className="text-xs font-extrabold text-[#2E4F4F] tracking-widest uppercase bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
+            <span className="text-xs font-extrabold text-[#2E5B5B] tracking-widest uppercase bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
               State-of-the-Art Care Facility
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800">
@@ -94,8 +94,8 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
               Every operatory suite at Dr. Sheekha Shah DENTAL STUDIO is equipped with ergonomic dental chairs, noise-canceling headphones, and soothing ambient lighting to ensure maximum comfort during every procedure.
             </p>
             <div className="flex items-center space-x-6 pt-2 text-xs font-semibold text-slate-700">
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-[#2E4F4F]" /> 100% Sterile Instrumentation</span>
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-[#2E4F4F]" /> HEPA 14 Air Scrubbers</span>
+              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-[#2E5B5B]" /> 100% Sterile Instrumentation</span>
+              <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-[#2E5B5B]" /> HEPA 14 Air Scrubbers</span>
             </div>
           </div>
           <div className="lg:col-span-5 h-64 lg:h-full min-h-[220px] relative overflow-hidden group">
@@ -121,7 +121,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
               key={treatment.id}
               variants={staggerItemUp}
               whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
-              className="bg-white rounded-3xl border border-slate-200/80 shadow-md shadow-slate-200/50 hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col overflow-hidden group"
+              className="bg-white rounded-3xl border border-slate-200/80 shadow-md shadow-slate-200/50 hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col overflow-hidden group"
             >
 
               {/* Image Container */}
@@ -136,14 +136,14 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
 
                 {/* Popular Pill */}
                 {treatment.popular && (
-                  <span className="absolute top-4 left-4 bg-gradient-to-r from-[#0F6CBD] to-[#24BEC8] text-white font-bold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                  <span className="absolute top-4 left-4 bg-[#2E5B5B] text-white font-bold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md border border-teal-400/30">
                     Most Requested
                   </span>
                 )}
 
                 {/* Starting Price Pill */}
                 <span className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md text-slate-800 font-extrabold text-xs px-3 py-1.5 rounded-xl border border-slate-200 shadow-md">
-                  From <span className="text-[#0F6CBD]">{treatment.startingPrice}</span>
+                  From <span className="text-[#2E5B5B]">{treatment.startingPrice}</span>
                 </span>
               </div>
 
@@ -151,11 +151,11 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2 text-xs font-semibold text-slate-400">
-                    <Clock className="w-3.5 h-3.5 text-[#24BEC8]" />
+                    <Clock className="w-3.5 h-3.5 text-[#2E5B5B]" />
                     <span>Duration: {treatment.duration}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#1E293B] font-heading group-hover:text-[#0F6CBD] transition-colors">
+                  <h3 className="text-xl font-bold text-[#1E293B] font-heading group-hover:text-[#2E5B5B] transition-colors">
                     {treatment.title}
                   </h3>
 
@@ -168,7 +168,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                 <div className="pt-2 border-t border-slate-100 space-y-1.5">
                   {treatment.features.slice(0, 3).map((feat, idx) => (
                     <div key={idx} className="flex items-center space-x-2 text-xs font-medium text-slate-700">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#00A99D] shrink-0" />
+                      <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B] shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -181,9 +181,9 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                     whileTap={{ scale: 0.98 }}
                     onClick={() => onOpenBookingWithService(treatment.id)}
                     id={`book-treatment-${treatment.id}`}
-                    className="flex-1 bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold text-xs py-3 rounded-xl shadow-sm transition-all duration-200 flex items-center justify-center space-x-1 cursor-pointer"
+                    className="flex-1 bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs py-3 rounded-xl shadow-sm transition-all duration-200 flex items-center justify-center space-x-1 cursor-pointer"
                   >
-                    <Calendar className="w-3.5 h-3.5 text-cyan-300" />
+                    <Calendar className="w-3.5 h-3.5 text-teal-200" />
                     <span>Book Service</span>
                   </motion.button>
 
@@ -192,10 +192,10 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setActiveModalTreatment(treatment)}
                     id={`details-treatment-${treatment.id}`}
-                    className="p-3 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-200 transition-colors cursor-pointer"
+                    className="p-3 bg-slate-50 hover:bg-teal-50/60 text-[#2E5B5B] font-semibold rounded-xl border border-slate-200 transition-colors cursor-pointer"
                     aria-label={`View details for ${treatment.title}`}
                   >
-                    <Info className="w-4 h-4 text-[#0F6CBD]" />
+                    <Info className="w-4 h-4 text-[#2E5B5B]" />
                   </motion.button>
                 </div>
 
@@ -231,7 +231,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
               </button>
 
               <div className="space-y-4">
-                <span className="bg-blue-50 text-[#0F6CBD] font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-md">
+                <span className="bg-teal-50 text-[#2E5B5B] font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-md border border-teal-100">
                   {activeModalTreatment.category} Care
                 </span>
 
@@ -250,11 +250,11 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
                   <div className="flex justify-between text-xs font-semibold text-slate-700">
                     <span>Typical Duration:</span>
-                    <span className="text-[#0F6CBD]">{activeModalTreatment.duration}</span>
+                    <span className="text-[#2E5B5B]">{activeModalTreatment.duration}</span>
                   </div>
                   <div className="flex justify-between text-xs font-semibold text-slate-700">
                     <span>Estimated Investment:</span>
-                    <span className="text-[#0F6CBD]">{activeModalTreatment.startingPrice}</span>
+                    <span className="text-[#2E5B5B]">{activeModalTreatment.startingPrice}</span>
                   </div>
                 </div>
 
@@ -263,7 +263,7 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                   <div className="grid grid-cols-2 gap-2">
                     {activeModalTreatment.features.map((f, i) => (
                       <div key={i} className="flex items-center space-x-2 text-xs font-semibold text-slate-700">
-                        <CheckCircle className="w-3.5 h-3.5 text-[#00A99D]" />
+                        <CheckCircle className="w-3.5 h-3.5 text-[#2E5B5B]" />
                         <span>{f}</span>
                       </div>
                     ))}
@@ -279,9 +279,9 @@ export const TreatmentsSection: React.FC<TreatmentsSectionProps> = ({ onOpenBook
                       setActiveModalTreatment(null);
                       onOpenBookingWithService(id);
                     }}
-                    className="w-full bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold py-3.5 rounded-xl shadow-md text-sm flex items-center justify-center space-x-2 cursor-pointer"
+                    className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold py-3.5 rounded-xl shadow-md text-sm flex items-center justify-center space-x-2 cursor-pointer"
                   >
-                    <Calendar className="w-4 h-4 text-cyan-300" />
+                    <Calendar className="w-4 h-4 text-teal-200" />
                     <span>Reserve Treatment Spot</span>
                   </motion.button>
                 </div>

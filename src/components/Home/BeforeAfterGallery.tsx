@@ -26,8 +26,8 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto space-y-4 mb-12"
         >
-          <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#0F6CBD] uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-[#24BEC8]" />
+          <div className="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200/80 rounded-full px-3.5 py-1.5 text-xs font-bold text-[#2E5B5B] uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#2E5B5B]" />
             <span>Proven Clinical Results</span>
           </div>
 
@@ -53,8 +53,8 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
                 id={`case-tab-${c.id}`}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                   activeCaseIndex === idx 
-                    ? 'bg-[#0F6CBD] text-white shadow-md' 
-                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                    ? 'bg-[#2E5B5B] text-white shadow-md' 
+                    : 'bg-white text-slate-600 hover:bg-teal-50/60 border border-slate-200'
                 }`}
               >
                 {c.patientName} • {c.category}
@@ -116,7 +116,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
                     className="absolute inset-y-0 z-30 pointer-events-none flex items-center justify-center"
                     style={{ left: `calc(${sliderPosition}% - 18px)` }}
                   >
-                    <div className="w-9 h-9 rounded-full bg-[#0F6CBD] text-white border-2 border-white shadow-xl flex items-center justify-center font-bold text-xs">
+                    <div className="w-9 h-9 rounded-full bg-[#2E5B5B] text-white border-2 border-white shadow-xl flex items-center justify-center font-bold text-xs">
                       ↔
                     </div>
                   </div>
@@ -142,7 +142,7 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
               {/* Right: Case Details & CTA */}
               <div className="lg:col-span-5 space-y-6">
                 <div>
-                  <span className="text-xs font-bold text-[#0F6CBD] uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-bold text-[#2E5B5B] uppercase tracking-wider block mb-1">
                     Patient Case Study
                   </span>
                   <h3 className="text-2xl font-extrabold text-[#1E293B] font-heading">
@@ -158,9 +158,9 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
+                  <div className="bg-teal-50 p-3 rounded-xl border border-teal-100">
                     <span className="text-slate-500 font-medium block">Treatment Duration</span>
-                    <span className="text-[#0F6CBD] font-bold text-base block">{currentCase.durationMonths} Months</span>
+                    <span className="text-[#2E5B5B] font-bold text-base block">{currentCase.durationMonths} Months</span>
                   </div>
                   <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
                     <span className="text-slate-500 font-medium block">Clinical Outcome</span>
@@ -173,9 +173,9 @@ export const BeforeAfterGallery: React.FC<BeforeAfterGalleryProps> = ({ onOpenBo
                     {...buttonHover}
                     onClick={onOpenBooking}
                     id="gallery-book-similar-btn"
-                    className="w-full bg-[#0F6CBD] hover:bg-[#0B5598] text-white font-bold py-3.5 rounded-xl shadow-md text-sm flex items-center justify-center space-x-2 cursor-pointer"
+                    className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold py-3.5 rounded-xl shadow-md text-sm flex items-center justify-center space-x-2 cursor-pointer"
                   >
-                    <Calendar className="w-4 h-4 text-cyan-300" />
+                    <Calendar className="w-4 h-4 text-teal-200" />
                     <span>Book Similar Smile Consultation</span>
                   </motion.button>
                 </div>

@@ -34,7 +34,7 @@ export const Logo: React.FC<LogoProps> = ({
           <span className={`font-extrabold text-base sm:text-lg md:text-xl tracking-tight ${lightText ? 'text-white' : 'text-slate-900'}`}>
             Dr. Sheekha Shah
           </span>
-          <span className={`text-[10px] sm:text-[11px] font-bold tracking-widest uppercase ${lightText ? 'text-cyan-200' : 'text-[#0B4F6C]'}`}>
+          <span className={`text-[10px] sm:text-[11px] font-bold tracking-widest uppercase ${lightText ? 'text-teal-200' : 'text-[#2E5B5B]'}`}>
             DENTAL STUDIO
           </span>
         </div>

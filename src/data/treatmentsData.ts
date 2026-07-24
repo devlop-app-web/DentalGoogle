@@ -1586,11 +1586,3 @@ export const TREATMENT_CATEGORIES: TreatmentCategory[] = [
 export function getCategoryBySlug(slug: string): TreatmentCategory | undefined {
   return TREATMENT_CATEGORIES.find(cat => cat.slug === slug || cat.id === slug);
 }
-
-export function getSubcategoryBySlug(categorySlug: string, subcategorySlug: string): { category: TreatmentCategory; subcategory: TreatmentSubcategory } | undefined {
-  const category = getCategoryBySlug(categorySlug);
-  if (!category) return undefined;
-  const subcategory = category.subcategories.find(sub => sub.slug === subcategorySlug || sub.id === subcategorySlug);
-  if (!subcategory) return undefined;
-  return { category, subcategory };
-}
