@@ -305,9 +305,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
           </div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={staggerContainer()}
             initial="hidden"
-            whileInView="show"
+            whileInView="visible"
             viewport={VIEWPORT_CONFIG}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
