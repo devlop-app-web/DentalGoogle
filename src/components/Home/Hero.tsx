@@ -189,8 +189,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
                 </div>
 
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  {...buttonHover}
                   type="submit"
                   id="hero-quick-submit-btn"
                   className="w-full sm:w-auto bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"

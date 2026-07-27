@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Star, ShieldCheck, Quote, ChevronLeft, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
 import { REVIEWS } from '../../data/homeData';
-import { buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
+import { buttonHover, cardHoverPremium, VIEWPORT_CONFIG } from '../../lib/motion';
 
 export const TestimonialsSection: React.FC = () => {
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
@@ -49,8 +49,9 @@ export const TestimonialsSection: React.FC = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
+          {...cardHoverPremium}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl relative"
+          className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl relative transition-shadow"
         >
           
           <Quote className="absolute top-6 right-8 w-16 h-16 text-cyan-100 pointer-events-none" />

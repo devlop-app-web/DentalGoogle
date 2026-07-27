@@ -176,15 +176,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   >
                     <button
                       onClick={() => setTreatmentsMegaOpen(!treatmentsMegaOpen)}
-                      className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 ${
+                      className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 relative group ${
                         isActive 
-                          ? 'text-[#2E5B5B] bg-teal-50 font-bold' 
-                          : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-50'
+                          ? 'text-[#2E5B5B] font-bold' 
+                          : 'text-slate-700 hover:text-[#2E5B5B]'
                       }`}
                       id="mega-menu-trigger-btn"
                     >
                       <span>{link.label}</span>
                       <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${treatmentsMegaOpen ? 'rotate-180 text-[#2E5B5B]' : 'text-slate-400'}`} />
+                      <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[2px] bg-[#2E5B5B] rounded-full transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
                     </button>
 
                     {/* Mega Menu Dropdown Panel */}
@@ -251,14 +252,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 relative group ${
                     isActive 
-                      ? 'text-[#2E5B5B] bg-teal-50 font-bold' 
-                      : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-50'
+                      ? 'text-[#2E5B5B] font-bold' 
+                      : 'text-slate-700 hover:text-[#2E5B5B]'
                   }`}
                   id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
+                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[2px] bg-[#2E5B5B] rounded-full transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
                 </Link>
               );
             })}

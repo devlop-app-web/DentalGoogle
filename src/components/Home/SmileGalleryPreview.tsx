@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Sparkles, Eye, ArrowRight, CheckCircle2, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { TRANSFORMATION_CASES } from '../../data/homeData';
 import { CLINIC_INFO } from '../../data/homeData';
-import { fadeInUp, staggerContainer, staggerCard, VIEWPORT_CONFIG } from '../../lib/motion';
+import { fadeInUp, staggerContainer, staggerCard, cardHoverPremium, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
 const clinicImg = '/assets/Image/Clinic.jpeg';
 const clinic2Img = '/assets/Image/Clinic 2.jpeg';
 const entryImg = '/assets/Image/Entry.jpeg';
@@ -150,8 +150,9 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
             <motion.div
               key={item.id}
               variants={staggerCard}
+              {...cardHoverPremium}
               onClick={() => setActiveLightBox(item)}
-              className="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-2xs transition-all duration-400 cursor-pointer flex flex-col justify-between"
             >
               <div className="relative h-56 overflow-hidden bg-slate-200">
                 <img
@@ -186,7 +187,8 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
 
         {/* Bottom Callout & View Full Gallery Button */}
         <div className="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
+          <motion.button
+            {...buttonHover}
             onClick={() => {
               if (onNavigateToGallery) {
                 onNavigateToGallery();
@@ -200,7 +202,7 @@ export const SmileGalleryPreview: React.FC<SmileGalleryPreviewProps> = ({ onOpen
             <ImageIcon className="w-4 h-4 text-cyan-300" />
             <span>View Complete Smile Gallery</span>
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
       </div>

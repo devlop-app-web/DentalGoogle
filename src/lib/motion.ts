@@ -161,7 +161,23 @@ export const popIn: Variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
+      ease: SMOOTH_EASE,
+    },
+  },
+};
+
+// Premium Smooth Slide Up
+export const smoothSlideUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
       ease: SMOOTH_EASE,
     },
   },
@@ -172,7 +188,8 @@ export const buttonHover = {
   whileHover: {
     y: -2,
     scale: 1.02,
-    transition: { duration: 0.2, ease: 'easeOut' },
+    boxShadow: "0px 8px 20px rgba(46, 91, 91, 0.15)",
+    transition: { duration: 0.25, ease: 'easeOut' },
   },
   whileTap: {
     scale: 0.98,
@@ -184,6 +201,24 @@ export const cardHover = {
   whileHover: {
     y: -6,
     transition: { duration: 0.3, ease: SMOOTH_EASE },
+  },
+};
+
+// Premium Card Hover Preset
+export const cardHoverPremium = {
+  whileHover: {
+    y: -6,
+    boxShadow: "0px 14px 28px rgba(0, 0, 0, 0.08)",
+    borderColor: "rgba(46, 91, 91, 0.25)",
+    transition: { duration: 0.4, ease: SMOOTH_EASE },
+  },
+};
+
+// Image Zoom on Hover
+export const imageZoomHover = {
+  whileHover: {
+    scale: 1.05,
+    transition: { duration: 0.7, ease: SMOOTH_EASE },
   },
 };
 

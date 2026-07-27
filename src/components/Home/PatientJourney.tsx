@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, UserCheck, Stethoscope, Sparkles, HeartPulse, ShieldCheck } from 'lucide-react';
-import { staggerContainer, staggerItemUp, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
+import { staggerContainer, staggerItemUp, buttonHover, cardHoverPremium, VIEWPORT_CONFIG } from '../../lib/motion';
 
 interface PatientJourneyProps {
   onOpenBooking: () => void;
@@ -62,9 +62,9 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
   return (
     <section className="py-20 bg-white relative border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.96 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={VIEWPORT_CONFIG}
@@ -86,7 +86,7 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
         </motion.div>
 
         {/* Timeline Grid */}
-        <motion.div 
+        <motion.div
           variants={staggerContainer(0.15, 0.08)}
           initial="hidden"
           whileInView="visible"
@@ -99,12 +99,12 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
               <motion.div
                 key={idx}
                 variants={staggerItemUp}
-                whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
-                className="bg-slate-50 hover:bg-white p-6 rounded-3xl border border-slate-200 hover:border-cyan-300 shadow-2xs hover:shadow-xl transition-all duration-300 relative group flex flex-col justify-between space-y-4"
+                {...cardHoverPremium}
+                className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-2xs transition-all duration-400 relative group flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <motion.div 
+                    <motion.div
                       whileHover={{ scale: 1.2, rotate: 6 }}
                       transition={{ type: 'spring', stiffness: 300 }}
                       className={`w-12 h-12 rounded-2xl ${step.color} flex items-center justify-center shadow-md`}
@@ -139,7 +139,7 @@ export const PatientJourney: React.FC<PatientJourneyProps> = ({ onOpenBooking })
         </motion.div>
 
         {/* CTA Banner */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
