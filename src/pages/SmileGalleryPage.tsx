@@ -1,31 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Sparkles,
-  Calendar,
-  ArrowRight,
-  CheckCircle2,
   ShieldCheck,
-  Filter,
-  Eye,
-  Star,
-  Quote,
-  Award,
   Zap,
-  Info,
   Activity,
   Maximize2,
-  X,
-  Phone,
-  Heart,
-  UserCheck,
-  Building
+  X
 } from 'lucide-react';
 import { PageWrapper } from '../components/ui/PageWrapper';
 import { PageBanner } from '../components/ui/PageBanner';
 import { BeforeAfterSlider } from '../components/ui/BeforeAfterSlider';
-import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
 import { generateDentalMacroImage } from '../utils/dentalImages';
 
 interface SmileGalleryPageProps {
@@ -33,7 +18,6 @@ interface SmileGalleryPageProps {
 }
 
 export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBooking }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeSliderIndex, setActiveSliderIndex] = useState<number>(0);
   const [zoomModalCase, setZoomModalCase] = useState<{
     title: string;
@@ -44,17 +28,6 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
     duration: string;
     doctorNote: string;
   } | null>(null);
-
-  // Category list
-  const categories = [
-    { id: 'all', label: 'All Cases', count: 18 },
-    { id: 'makeover', label: 'Smile Makeovers', count: 5 },
-    { id: 'implants', label: 'Dental Implants', count: 4 },
-    { id: 'veneers', label: 'Porcelain Veneers', count: 4 },
-    { id: 'whitening', label: 'Teeth Whitening', count: 2 },
-    { id: 'ortho', label: 'Braces & Aligners', count: 2 },
-    { id: 'fullmouth', label: 'Full-Mouth Rehab', count: 1 }
-  ];
 
   // Spotlight Cases for Interactive Before/After Slider Section
   const spotlightSliderCases = [
@@ -214,34 +187,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
     }
   ];
 
-  // Section 9: Full-Mouth Rehabilitation Cases
-  const fullMouthCases = [
-    {
-      id: "fm-1",
-      patientName: "Robert S., 62",
-      treatmentName: "28-Unit Full-Mouth Zirconia Crown & Onlay Reconstruction",
-      category: "fullmouth",
-      beforeImage: generateDentalMacroImage({ type: 'fullmouth', state: 'before' }),
-      afterImage: generateDentalMacroImage({ type: 'fullmouth', state: 'after' }),
-      duration: "5 Weeks (Multi-Phase)",
-      description: "Reconstructed severely worn dentition caused by severe nocturnal bruxism, restoring 4.5mm of lost facial vertical height.",
-      doctorNote: "Utilized neuromuscular bite recording and monolithic zirconia crowns for lifelong durability."
-    }
-  ];
 
-  // All combined cases for category filtering
-  const allCases = [
-    ...makeoverCases,
-    ...implantCases,
-    ...veneerCases,
-    ...whiteningCases,
-    ...orthoCases,
-    ...fullMouthCases
-  ];
-
-  const filteredCases = selectedCategory === 'all'
-    ? allCases
-    : allCases.filter(c => c.category === selectedCategory);
 
   return (
     <PageWrapper className="min-h-screen bg-slate-50">
@@ -255,44 +201,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
 
 
 
-        {/* ==========================================
-            2. TREATMENT CATEGORY FILTERS
-        ========================================== */}
-        <section id="category-filters" className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
-            <div className="flex items-center space-x-2">
-              <Filter className="w-4 h-4 text-[#0B4F6C]" />
-              <h2 className="text-lg font-bold font-heading text-slate-900">Filter Cases by Treatment</h2>
-            </div>
-            <span className="text-xs font-semibold text-slate-500">
-              Showing <strong className="text-[#0B4F6C]">{filteredCases.length}</strong> verified cases
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-2.5">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center space-x-2 cursor-pointer ${selectedCategory === cat.id
-                    ? 'bg-[#0B4F6C] text-white shadow-md border border-cyan-500/30'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90'
-                  }`}
-                id={`filter-${cat.id}`}
-              >
-                <span>{cat.label}</span>
-                <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${selectedCategory === cat.id ? 'bg-cyan-400/20 text-cyan-200' : 'bg-slate-100 text-slate-500'
-                  }`}>
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* ==========================================
-            3. BEFORE-AND-AFTER SLIDERS
-        ========================================== */}
+        {/* 3. BEFORE-AND-AFTER SLIDERS */}
         <section id="interactive-sliders" className="space-y-8">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
@@ -344,23 +253,12 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                 <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
                   Treatment Time: {spotlightSliderCases[activeSliderIndex].duration}
                 </span>
-                <a
-                  href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition-colors flex items-center space-x-1 cursor-pointer"
-                >
-                  <span>Book Case</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ==========================================
-            4. FEATURED SMILE MAKEOVERS
-        ========================================== */}
+        {/* 4. FEATURED SMILE MAKEOVERS */}
         <section id="featured-makeovers" className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
@@ -398,7 +296,6 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                   </h3>
                   <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
 
-                  {/* Side-by-Side Images */}
                   <div className="grid grid-cols-2 gap-3 pt-1">
                     <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52 group/img">
                       <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500" />
@@ -440,25 +337,13 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                     <Maximize2 className="w-3.5 h-3.5" />
                     <span>Zoom High-Res</span>
                   </button>
-
-                  <a
-                    href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Book Similar Case</span>
-                  </a>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ==========================================
-            5. DENTAL IMPLANT CASES
-        ========================================== */}
+        {/* 5. DENTAL IMPLANT CASES */}
         <section id="implant-cases" className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
@@ -526,22 +411,13 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                     <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
                     <span>3D CBCT Guided</span>
                   </span>
-                  <button
-                    onClick={onOpenBooking}
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Consult Dr. Shah</span>
-                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ==========================================
-            6. VENEER CASES
-        ========================================== */}
+        {/* 6. VENEER CASES */}
         <section id="veneer-cases" className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
@@ -609,22 +485,13 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                     <Sparkles className="w-3.5 h-3.5 text-teal-600" />
                     <span>0.3mm Ultra-Thin</span>
                   </span>
-                  <button
-                    onClick={onOpenBooking}
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Book Veneer Consult</span>
-                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ==========================================
-            7. TEETH WHITENING CASES
-        ========================================== */}
+        {/* 7. TEETH WHITENING CASES */}
         <section id="whitening-cases" className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
@@ -692,22 +559,13 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                     <Zap className="w-3.5 h-3.5 text-amber-500" />
                     <span>60-Min In-Office</span>
                   </span>
-                  <button
-                    onClick={onOpenBooking}
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Book Whitening</span>
-                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ==========================================
-            8. BRACES & ALIGNER CASES
-        ========================================== */}
+        {/* 8. BRACES & ALIGNER CASES */}
         <section id="ortho-cases" className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
@@ -775,201 +633,9 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                     <Activity className="w-3.5 h-3.5 text-indigo-600" />
                     <span>iTero® 3D Scan Tracked</span>
                   </span>
-                  <button
-                    onClick={onOpenBooking}
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow transition-colors flex items-center space-x-1.5 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Book Aligner Consult</span>
-                  </button>
                 </div>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* ==========================================
-            9. FULL-MOUTH REHABILITATION CASES
-        ========================================== */}
-        <section id="fullmouth-cases" className="space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-            <div>
-              <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
-                Complex Reconstructions
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">
-                Full-Mouth Rehabilitation Cases
-              </h2>
-            </div>
-            <p className="text-xs text-slate-500 max-w-md">
-              Comprehensive bite restoration combining crowns, implants, and onlays for severe wear and TMJ relief.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8">
-            {fullMouthCases.map((caseItem) => (
-              <motion.div
-                key={caseItem.id}
-                whileHover={{ y: -3 }}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg space-y-6 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-              >
-                <div className="lg:col-span-6 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-purple-700 uppercase tracking-wider bg-purple-50 px-3.5 py-1 rounded-full border border-purple-100">
-                      Full-Mouth Reconstruction
-                    </span>
-                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                      Duration: {caseItem.duration}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-bold font-heading text-slate-900">
-                    {caseItem.treatmentName}
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-500">Patient: {caseItem.patientName}</p>
-
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    {caseItem.description}
-                  </p>
-
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 text-xs space-y-1.5">
-                    <span className="font-bold text-[#0B4F6C] text-sm block">Multi-Disciplinary Reconstruction Note:</span>
-                    <p className="text-slate-700 italic leading-relaxed">{caseItem.doctorNote}</p>
-                  </div>
-
-                  <div className="pt-2">
-                    <a
-                      href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
-                    >
-                      <Calendar className="w-4 h-4 text-cyan-300" />
-                      <span>Book Full-Mouth Consultation with Dr. Shah</span>
-                    </a>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-6 grid grid-cols-2 gap-3">
-                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-56 sm:h-64">
-                    <img src={caseItem.beforeImage} alt="Before" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
-                    <span className="absolute bottom-3 left-3 bg-slate-900/90 text-white text-xs font-black px-3 py-1 rounded">
-                      BEFORE
-                    </span>
-                  </div>
-                  <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-56 sm:h-64">
-                    <img src={caseItem.afterImage} alt="After" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
-                    <span className="absolute bottom-3 left-3 bg-emerald-600 text-white text-xs font-black px-3 py-1 rounded">
-                      AFTER
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* ==========================================
-            10. PATIENT TRANSFORMATION STORIES
-        ========================================== */}
-        <section id="patient-stories" className="space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
-              Real Experiences
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-              Patient Transformation Stories
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Hear directly from patients whose lives, careers, and personal confidence were transformed at DENTAL STUDIO.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Jessica Martinez",
-                role: "Bride & Creative Director",
-                treatment: "10 Porcelain Veneers",
-                quote: "I was extremely self-conscious about my fluorosis stains before my wedding. Dr. Sheekha Shah redesigned my smile in just 2 visits. When I walked down the aisle, I couldn't stop smiling. It was the best investment I ever made!",
-                rating: 5,
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
-              },
-              {
-                name: "Robert Sterling",
-                role: "Corporate Attorney",
-                treatment: "Guided Molar Implant",
-                quote: "I had severe dental phobia from a bad childhood procedure. Dr. Sheekha Shah's gentle, zero-pain technique and peaceful clinic atmosphere put me completely at ease. The implant procedure felt effortless.",
-                rating: 5,
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
-              },
-              {
-                name: "Amanda Thorne",
-                role: "Software Architect",
-                treatment: "Invisalign® Clear Aligners",
-                quote: "No gross impression trays, no metal wires poking my cheeks! The 3D iTero scanner showed me my final teeth alignment before I even started. 7 months later, my teeth are flawless.",
-                rating: 5,
-                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200"
-              }
-            ].map((story, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -4 }}
-                className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md space-y-4 flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-1 text-amber-400">
-                    {[...Array(story.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
-                  </div>
-
-                  <Quote className="w-8 h-8 text-cyan-200" />
-
-                  <p className="text-xs text-slate-700 leading-relaxed italic">
-                    "{story.quote}"
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 flex items-center space-x-3">
-                  <img src={story.image} alt={story.name} className="w-10 h-10 rounded-full object-cover border border-slate-200" />
-                  <div>
-                    <h4 className="text-sm font-bold font-heading text-slate-900">{story.name}</h4>
-                    <span className="text-[11px] text-slate-500 block">{story.role}</span>
-                    <span className="text-[10px] font-bold text-[#0B4F6C]">{story.treatment}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* ==========================================
-            11. CLINICAL DISCLAIMER
-        ========================================== */}
-        <section id="clinical-disclaimer">
-          <div className="bg-slate-100 rounded-3xl p-6 sm:p-8 border border-slate-200/90 space-y-3">
-            <div className="flex items-center space-x-2 text-[#0B4F6C]">
-              <Info className="w-5 h-5 shrink-0" />
-              <h3 className="text-sm font-extrabold font-heading text-slate-900">Clinical Case Disclaimer & Patient Privacy</h3>
-            </div>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              All clinical before-and-after photographs presented in this Smile Gallery depict actual patients treated by Dr. Sheekha Shah and the clinical specialist team at DENTAL STUDIO. Results may vary depending on individual oral anatomy, bone density, periodontal health, and compliance with post-treatment care guidelines. Preliminary clinical examination and 3D CBCT diagnostic imaging are required prior to undertaking any surgical or restorative procedure. Patient consent documentation for clinical media publication is maintained on file in strict accordance with healthcare privacy standards.
-            </p>
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-[11px] font-semibold text-slate-500 border-t border-slate-200/80">
-              <span className="flex items-center space-x-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Verified Patient Photos</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-                <span>ISO 9001:2015 Compliant</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <UserCheck className="w-3.5 h-3.5 text-teal-600" />
-                <span>Full Media Consent On File</span>
-              </span>
-            </div>
           </div>
         </section>
 
@@ -992,7 +658,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
               >
                 <button
                   onClick={() => setZoomModalCase(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1030,17 +696,7 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
                   <p className="font-semibold text-[#0B4F6C]">Doctor's Strategy: {zoomModalCase.doctorNote}</p>
                 </div>
 
-                <div className="flex justify-end space-x-3">
-                  <a
-                    href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow transition-colors flex items-center space-x-2 cursor-pointer"
-                  >
-                    <Calendar className="w-4 h-4 text-cyan-300" />
-                    <span>Book Similar Transformation</span>
-                  </a>
-                </div>
+
               </motion.div>
             </motion.div>
           )}
