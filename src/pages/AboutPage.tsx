@@ -115,7 +115,6 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClinicTour }) => {
   const leadDoctor = DOCTORS[0];
-  const [activeTechTab, setActiveTechTab] = useState<'tech' | 'sterilisation'>('tech');
   const [selectedTourImage, setSelectedTourImage] = useState<string | null>(null);
 
   // Clinic Tour Images with real assets
@@ -702,108 +701,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
           </AnimatePresence>
         </section>
 
-        {/* ==========================================
-            10. TECHNOLOGY & STERILISATION
-        ========================================== */}
-        <section id="technology-sterilisation" className="space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
-              Clinical Rigor
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-              Technology & Sterilisation Protocols
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              We invest in world-leading technology and hospital-grade sterilization protocols to guarantee safety and comfort.
-            </p>
 
-            {/* Toggle Tab */}
-            <div className="inline-flex bg-slate-200/80 p-1 rounded-2xl border border-slate-300/80 mt-2">
-              <button
-                onClick={() => setActiveTechTab('tech')}
-                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'tech'
-                  ? 'bg-[#0B4F6C] text-white shadow-md'
-                  : 'text-slate-700 hover:text-slate-900'
-                  }`}
-              >
-                Advanced Equipment
-              </button>
-              <button
-                onClick={() => setActiveTechTab('sterilisation')}
-                className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'sterilisation'
-                  ? 'bg-[#0B4F6C] text-white shadow-md'
-                  : 'text-slate-700 hover:text-slate-900'
-                  }`}
-              >
-                Hospital Sterilisation
-              </button>
-            </div>
-          </div>
-
-          {activeTechTab === 'tech' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "iTero® Element 5D Digital Scanner",
-                  desc: "Captures 6,000 optical frames per second for high-precision 3D digital impressions without sticky impression trays."
-                },
-                {
-                  title: "Low-Dose CBCT 3D X-Ray",
-                  desc: "Ultra-low radiation high-resolution bone scanning providing pinpoint accuracy for implant placement and nerve mapping."
-                },
-                {
-                  title: "Diode Soft-Tissue Dental Lasers",
-                  desc: "Enables painless, bloodless gum contouring, cold sore healing, and accelerated periodontal sterilization."
-                },
-                {
-                  title: "Operating Microscope & Rotary Endodontics",
-                  desc: "25x optical magnification allowing complete root canal disinfection and tooth-saving micro-restorations."
-                }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm flex items-start space-x-4">
-                  <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-[#0B4F6C] flex items-center justify-center shrink-0 border border-cyan-100">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="text-base font-bold font-heading text-slate-900">{item.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Class B Vacuum Autoclave",
-                  desc: "Highest international medical grade sterilization guaranteeing 100% spore elimination under high pressure and temperature."
-                },
-                {
-                  title: "Ultrasonic Instrument Scrubbing",
-                  desc: "Multi-stage automated ultrasonic bath cleaning to remove microscopic debris prior to sterile pouch sealing."
-                },
-                {
-                  title: "Medical HEPA Air Purification",
-                  desc: "Continuous airborne virus, bacteria, and particulate filtration across all operatories and waiting areas."
-                },
-                {
-                  title: "Single-Use Sterile Pouches",
-                  desc: "Every instrument set is sealed in color-indicator pouches and opened strictly in front of the patient."
-                }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm flex items-start space-x-4">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-100">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="text-base font-bold font-heading text-slate-900">{item.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
 
         {/* ==========================================
             11. CORE VALUES
