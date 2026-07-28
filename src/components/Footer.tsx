@@ -295,7 +295,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               </div> */}
 
               {/* Get Directions Map Button */}
-              {/* <div className="pt-2">
+              <div className="pt-2">
                 <a
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
@@ -306,7 +306,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                   <span>Get Directions / Open Google Maps</span>
                   <ExternalLink className="w-3 h-3 text-teal-400 group-hover:text-white transition-colors" />
                 </a>
-              </div> */}
+              </div>
 
             </div>
           </div>
