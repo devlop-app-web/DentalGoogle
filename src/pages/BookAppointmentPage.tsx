@@ -44,6 +44,7 @@ import {
 } from 'lucide-react';
 import { CLINIC_INFO, TREATMENTS } from '../data/homeData';
 import { TREATMENT_CATEGORIES } from '../data/treatmentsData';
+import ceoJpegImg from '@/public/assets/Image/CEO.jpeg';
 import { PageWrapper } from '../components/ui/PageWrapper';
 import { PageBanner } from '../components/ui/PageBanner';
 import { fadeInUp, VIEWPORT_CONFIG } from '../lib/motion';
@@ -64,7 +65,7 @@ export const BookAppointmentPage: React.FC = () => {
       title: 'MDS - Master Endodontist & Implant Specialist',
       experience: '15+ Years Clinical Mastery',
       specialty: 'Microscopic Root Canal & Implantology',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400',
+      image: ceoJpegImg,
       tag: 'Lead Specialist'
     },
     {
@@ -73,7 +74,7 @@ export const BookAppointmentPage: React.FC = () => {
       title: 'MDS - Senior Orthodontist & Cosmetic Dentist',
       experience: '12+ Years Clinical Practice',
       specialty: 'Invisalign & Smile Architecture',
-      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=400',
+      image: '',
       tag: 'Aligner Certified'
     },
     {
@@ -82,7 +83,7 @@ export const BookAppointmentPage: React.FC = () => {
       title: 'Senior Clinical Team',
       experience: 'Priority Scheduling Desk',
       specialty: 'Recommended for Urgent & General Consultations',
-      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=400',
+      image: '',
       tag: 'Fastest Slot'
     }
   ];
@@ -569,11 +570,17 @@ export const BookAppointmentPage: React.FC = () => {
                     </span>
 
                     <div className="flex items-center gap-3">
-                      <img
-                        src={doc.image}
-                        alt={doc.name}
-                        className="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-xs"
-                      />
+                      {doc.id === 'dr-sheekha-shah' && doc.image ? (
+                        <img
+                          src={doc.image}
+                          alt={doc.name}
+                          className="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-xs"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center text-[#0B4F6C] shrink-0 shadow-xs">
+                          <User className="w-6 h-6" />
+                        </div>
+                      )}
                       <div>
                         <h4 className="text-sm font-extrabold text-slate-800">{doc.name}</h4>
                         <p className="text-[11px] text-[#0B4F6C] font-semibold">{doc.title}</p>

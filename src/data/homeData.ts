@@ -122,7 +122,7 @@ export const DOCTORS: Doctor[] = [
     experienceYears: 12,
     specialties: ["Invisalign® Aligners", "Airway Orthodontics", "Accelerated Tooth Movement"],
     bio: "Dr. Chen specializes in clear aligner biomechanics and facial aesthetics, helping teenagers and adults align their teeth seamlessly without compromising lifestyle.",
-    imageUrl: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "",
     quote: "Modern orthodontics isn't just about straight teeth; it's about facial balance and functional bite longevity.",
     education: [
       "Doctor of Dental Medicine, Harvard School of Dental Medicine",

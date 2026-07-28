@@ -26,7 +26,9 @@ import {
   ChevronRight,
   Eye,
   ThumbsUp,
-  ShieldAlert
+  ShieldAlert,
+  User,
+  Stethoscope
 } from 'lucide-react';
 import { DOCTORS, CLINIC_INFO } from '../data/homeData';
 import ceoBgImg from '@/public/assets/Image/CEO BG.png';
@@ -59,7 +61,7 @@ const specialistsData = [
     specialities: ["Wisdom Tooth Surgery", "Facial Trauma", "Oral Surgery"],
     description: "Expert in wisdom tooth surgery, facial trauma management, and complex oral surgical procedures.",
     experienceYears: 14,
-    imageUrl: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   },
   {
     id: "dr-shaily-shah",
@@ -68,7 +70,7 @@ const specialistsData = [
     specialities: ["Braces", "Clear Aligners", "Teeth Alignment"],
     description: "Specialist in braces, clear aligners, and correcting teeth alignment for all age groups.",
     experienceYears: 11,
-    imageUrl: "https://images.unsplash.com/photo-1594824813566-78a9327a5d3f?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   },
   {
     id: "dr-viral-shah",
@@ -77,7 +79,7 @@ const specialistsData = [
     specialities: ["Crowns & Bridges", "Full-Mouth Rehab", "Veneers"],
     description: "Specialist in crowns, bridges, dentures, veneers, full-mouth rehabilitation, and smile restoration.",
     experienceYears: 15,
-    imageUrl: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   },
   {
     id: "dr-jay-kothari",
@@ -86,7 +88,7 @@ const specialistsData = [
     specialities: ["Microscopic RCT", "Pain Management", "Tooth Preservation"],
     description: "Expert in microscopic root canal treatment, dental pain management, and tooth preservation.",
     experienceYears: 10,
-    imageUrl: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   },
   {
     id: "dr-manini-parikh",
@@ -95,7 +97,7 @@ const specialistsData = [
     specialities: ["Root Canal Therapy", "Endodontics", "Preservation"],
     description: "Specialist in advanced root canal therapy and conservative endodontic procedures.",
     experienceYears: 9,
-    imageUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   },
   {
     id: "dr-aayushi-akhani",
@@ -104,7 +106,7 @@ const specialistsData = [
     specialities: ["Pediatric Care", "Preventive Dentistry", "Kid Comfort"],
     description: "Specialist in children's dental care, preventive dentistry, and creating a comfortable dental experience for young patients.",
     experienceYears: 8,
-    imageUrl: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=800"
+    imageUrl: ""
   }
 ];
 
@@ -393,79 +395,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
         </section>
 
         {/* ==========================================
-            5. EXPERIENCE & EXPERTISE
-        ========================================== */}
-        <section id="experience-expertise" className="space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
-              Specialties
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-              Experience & Clinical Expertise
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
-              Combining 16+ years of hands-on surgical practice with advanced technological tools for flawless results.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Porcelain Veneers & Smile Design",
-                count: "5,000+ Veneers Placed",
-                desc: "Handcrafted, ultra-thin ceramic veneers that eliminate chips, gaps, and dark discolorations while preserving natural enamel.",
-                icon: Sparkles
-              },
-              {
-                title: "Guided Dental Implantology",
-                count: "3,500+ Implants Placed",
-                desc: "3D CBCT guided titanium implants with 99.4% long-term success for single teeth, bridges, or full-arch All-on-4® restoration.",
-                icon: Activity
-              },
-              {
-                title: "Single-Visit Painless Root Canals",
-                count: "4,200+ Teeth Saved",
-                desc: "Rotary endodontics under magnification that relieve acute toothache completely in 60 minutes with zero pain.",
-                icon: Zap
-              },
-              {
-                title: "Laser Teeth Whitening",
-                count: "6,000+ Whitening Sessions",
-                desc: "In-office high-potency cold light whitening brightening enamel up to 8 shades with zero post-treatment sensitivity.",
-                icon: Star
-              },
-              {
-                title: "Invisalign® Clear Aligners",
-                count: "1,200+ Cases Completed",
-                desc: "Removable 3D customized clear aligners that straighten crowded or spaced teeth comfortably and discreetly.",
-                icon: CheckCircle
-              },
-              {
-                title: "Full-Mouth Rehabilitation",
-                count: "800+ Full Restorations",
-                desc: "Comprehensive bite reconstruction combining crowns, implants, and veneers to restore complete oral function and youthfulness.",
-                icon: ShieldCheck
-              }
-            ].map((exp, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -4 }}
-                className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-3 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-[#0B4F6C] border border-cyan-100 flex items-center justify-center">
-                  <exp.icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold font-heading text-slate-900">{exp.title}</h3>
-                <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full inline-block border border-emerald-200">
-                  {exp.count}
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed">{exp.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* ==========================================
             6. TREATMENT PHILOSOPHY
         ========================================== */}
         <section id="treatment-philosophy" className="space-y-8">
@@ -587,11 +516,23 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
               >
                 <div>
                   <div className="h-64 sm:h-72 bg-slate-100 overflow-hidden relative">
-                    <img
-                      src={doc.imageUrl}
-                      alt={doc.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                    {doc.id === 'dr-sheekha-shah' && doc.imageUrl ? (
+                      <img
+                        src={doc.imageUrl}
+                        alt={doc.name}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-slate-100 via-teal-50/50 to-slate-200 flex flex-col items-center justify-center p-6 text-[#0B4F6C]">
+                        <div className="w-24 h-24 rounded-full bg-white shadow-md border-2 border-teal-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                          <User className="w-12 h-12 text-[#0B4F6C]" />
+                        </div>
+                        <div className="mt-3 flex items-center space-x-1.5 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full border border-teal-200 text-[#0B4F6C] text-xs font-bold shadow-2xs">
+                          <Stethoscope className="w-3.5 h-3.5" />
+                          <span>Specialist Doctor</span>
+                        </div>
+                      </div>
+                    )}
                     <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-full border border-white/20">
                       {doc.experienceYears}+ Yrs Exp
                     </div>

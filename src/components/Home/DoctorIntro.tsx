@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Award, GraduationCap, ShieldCheck, Sparkles, Play, Calendar } from 'lucide-react';
+import { Award, GraduationCap, ShieldCheck, Sparkles, Play, Calendar, User } from 'lucide-react';
 import { DOCTORS } from '../../data/homeData';
 import ceoBgImg from '@/public/assets/Image/CEO BG.png';
 import { fadeInLeft, fadeInRight, buttonHover, VIEWPORT_CONFIG } from '../../lib/motion';
@@ -133,11 +133,9 @@ export const DoctorIntro: React.FC<DoctorIntroProps> = ({ onOpenBooking, onOpenC
 
             {/* Secondary Specialist Teaser */}
             <div className="pt-4 border-t border-slate-100 flex items-center space-x-4 bg-teal-50/50 p-4 rounded-2xl border border-teal-100">
-              <img
-                src={secondDoctor.imageUrl}
-                alt={secondDoctor.name}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#2E5B5B]"
-              />
+              <div className="w-12 h-12 rounded-full bg-white border-2 border-[#2E5B5B] flex items-center justify-center text-[#2E5B5B] shrink-0 shadow-xs">
+                <User className="w-6 h-6" />
+              </div>
               <div className="flex-1">
                 <span className="text-xs font-bold text-slate-800 block">{secondDoctor.name}</span>
                 <span className="text-[11px] text-[#2E5B5B] font-semibold block">{secondDoctor.role}</span>
