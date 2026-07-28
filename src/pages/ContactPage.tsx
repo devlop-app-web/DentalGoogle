@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   MapPin,
   Phone,
   Mail,
-  Copy,
-  Check,
   Building2,
   Car,
   Plane,
@@ -23,20 +21,6 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
   const phoneClean = CLINIC_INFO.phone.replace(/[^0-9]/g, '');
   const emergencyPhoneClean = CLINIC_INFO.emergencyPhone.replace(/[^0-9]/g, '');
 
-  const [copiedAddress, setCopiedAddress] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
-
-  const handleCopy = (text: string, type: 'address' | 'phone') => {
-    navigator.clipboard.writeText(text);
-    if (type === 'address') {
-      setCopiedAddress(true);
-      setTimeout(() => setCopiedAddress(false), 2000);
-    } else {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    }
-  };
-
   return (
     <PageWrapper className="min-h-screen bg-slate-50">
       <PageBanner
@@ -47,32 +31,10 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
       />
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
 
-        {/* Quick Jump Links Bar */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
-            <span className="text-slate-400 uppercase tracking-wider shrink-0 text-[10px] font-bold">Jump to Section:</span>
-            {[
-              { id: 'sec-contactdetails', label: '1. Contact Details' },
-              { id: 'sec-googlemap', label: '2. Google Map' },
-            ].map((pill) => (
-              <a
-                key={pill.id}
-                href={`#${pill.id}`}
-                className="shrink-0 bg-white hover:bg-[#0B4F6C] hover:text-white text-slate-700 px-3 py-1.5 rounded-full border border-slate-200 shadow-xs transition-all"
-              >
-                {pill.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* ==========================================
-            SECTION 1: CLINIC CONTACT DETAILS
-           ========================================== */}
+        {/* CLINIC CONTACT DETAILS */}
         <section id="sec-contactdetails" className="scroll-mt-24 space-y-6">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 1</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800">
               Clinic Contact Details
             </h2>
             <p className="text-slate-600 text-sm mt-1">
@@ -99,14 +61,6 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                   📍 Landmark: 15 mins from International Airport (BOM). Complimentary Valet Parking available.
                 </p>
               </div>
-
-              <button
-                onClick={() => handleCopy(CLINIC_INFO.address, 'address')}
-                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl flex items-center justify-center space-x-2 transition-colors cursor-pointer"
-              >
-                {copiedAddress ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-slate-500" />}
-                <span>{copiedAddress ? 'Address Copied!' : 'Copy Full Address'}</span>
-              </button>
             </div>
 
             {/* Phone Support Card */}
@@ -134,14 +88,6 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                   </div>
                 </div>
               </div>
-
-              <button
-                onClick={() => handleCopy(CLINIC_INFO.phone, 'phone')}
-                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl flex items-center justify-center space-x-2 transition-colors cursor-pointer"
-              >
-                {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-slate-500" />}
-                <span>{copiedPhone ? 'Phone Copied!' : 'Copy Phone Number'}</span>
-              </button>
             </div>
 
             {/* Email Support Card */}
@@ -178,13 +124,10 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
           </div>
         </section>
 
-        {/* ==========================================
-            SECTION 2: GOOGLE MAP
-           ========================================== */}
+        {/* GOOGLE MAP */}
         <section id="sec-googlemap" className="scroll-mt-24 space-y-6">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800">
               Interactive Google Location Map
             </h2>
             <p className="text-slate-600 text-sm mt-1">
