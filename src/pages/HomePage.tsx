@@ -33,7 +33,13 @@ export const HomePage: React.FC<HomePageProps> = ({
         onSelectTreatment={onSelectTreatment}
       />
 
-      {/* 2. LIFETIME DENTAL WARRANTY HIGHLIGHT */}
+      {/* 2. MEET THE DENTIST PREVIEW */}
+      <MeetTheDentistPreview 
+        onOpenBooking={onOpenBooking} 
+        onOpenClinicTour={onOpenClinicTour} 
+      />
+
+      {/* 3. LIFETIME DENTAL WARRANTY HIGHLIGHT */}
       <WarrantyHighlight 
         onOpenBooking={onOpenBooking} 
       />
@@ -48,12 +54,6 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 6. WHY CHOOSE US */}
       <WhyChooseUs />
-
-      {/* 7. MEET THE DENTIST PREVIEW */}
-      <MeetTheDentistPreview 
-        onOpenBooking={onOpenBooking} 
-        onOpenClinicTour={onOpenClinicTour} 
-      />
 
       {/* 8. SMILE GALLERY PREVIEW */}
       <SmileGalleryPreview 

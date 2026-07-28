@@ -15,7 +15,26 @@ import {
   VIEWPORT_CONFIG
 } from '../../lib/motion';
 
-const sliderImages = [clinicImg, clinic2Img, waiting2Img];
+const heroSlides = [
+  {
+    image: clinicImg,
+    title: "Ahmedabad's Premier Cosmetic Dentistry & Smile Clinic",
+    description: "Experience painless, technology-driven dental care with Dr. Sheekha Shah. From smile makeovers to advanced dental implants, we create confident smiles in a comfortable and welcoming environment.",
+    features: ["Zero-Pain Dentistry", "Digital Smile Design", "Lifetime Warranty*"]
+  },
+  {
+    image: clinic2Img,
+    title: "Precision Dentistry Powered by Advanced Technology",
+    description: "Discover world-class dental treatments using modern digital equipment, personalised care, and minimally invasive techniques for healthier, brighter smiles.",
+    features: ["3D Digital Scanning", "Advanced Dental Implants", "Same-Day Consultation"]
+  },
+  {
+    image: waiting2Img,
+    title: "Relax. Smile. You're in Expert Hands.",
+    description: "Enjoy a calm, patient-first dental experience where comfort meets clinical excellence. Every visit is designed to make your treatment stress-free and reassuring.",
+    features: ["Comfortable Clinic", "Friendly Care Team", "Trusted by 12,500+ Patients"]
+  }
+];
 
 interface HeroProps {
   onOpenBookingWithService?: (serviceId: string) => void;
@@ -29,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
@@ -48,13 +67,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
   return (
     <section className="relative w-full h-[90vh] min-h-[700px] flex items-center overflow-hidden bg-slate-900">
-      
+
       {/* Full-width Background Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="popLayout">
           <motion.img
             key={currentSlide}
-            src={sliderImages[currentSlide]}
+            src={heroSlides[currentSlide].image}
             alt="Clinic Environment"
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,10 +82,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             className="absolute inset-0 w-full h-full object-cover"
           />
         </AnimatePresence>
-        
+
         {/* Dark Premium Gradient Overlay */}
-        <div 
-          className="absolute inset-0 z-10" 
+        <div
+          className="absolute inset-0 z-10"
           style={{
             background: 'linear-gradient(90deg, rgba(8,22,34,0.85) 0%, rgba(8,22,34,0.65) 45%, rgba(8,22,34,0.2) 100%)'
           }}
@@ -75,31 +94,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
       {/* Slider Controls - Bottom Pagination */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 z-20 flex items-center space-x-3">
-        {sliderImages.map((_, idx) => (
+        {heroSlides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`w-2 h-2 rounded-full transition-all duration-500 ${
-              currentSlide === idx ? 'bg-white w-8' : 'bg-white/40 hover:bg-white/80'
-            }`}
+            className={`w-2 h-2 rounded-full transition-all duration-500 ${currentSlide === idx ? 'bg-white w-8' : 'bg-white/40 hover:bg-white/80'
+              }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
         ))}
       </div>
 
       {/* Slider Controls - Arrows (Desktop) */}
-      <button 
-        onClick={() => setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length)}
+      <button
+        onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/20 transition hidden md:block"
       >
-         <ChevronRight className="w-6 h-6 rotate-180" />
+        <ChevronRight className="w-6 h-6 rotate-180" />
       </button>
 
-      <button 
-        onClick={() => setCurrentSlide((prev) => (prev + 1) % sliderImages.length)}
+      <button
+        onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/20 transition hidden md:block"
       >
-         <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
       {/* Content Container */}
@@ -136,28 +154,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
 
           {/* Main Headline */}
           <motion.h1 variants={staggerItemUp} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight leading-[1.12]">
-            World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-teal-300 to-teal-100">Dental Care</span> By Dr. Sheekha Shah
+            {heroSlides[currentSlide].title}
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p variants={staggerItemUp} className="text-base sm:text-lg text-slate-200 font-medium leading-relaxed">
-            Experience gentle, state-of-the-art cosmetic dentistry, Invisalign®, dental implants, and micro-endodontics in a serene, fear-free clinic environment.
+            {heroSlides[currentSlide].description}
           </motion.p>
 
           {/* Key Value Bullets */}
           <motion.div variants={staggerItemUp} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-left">
-            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>Zero-Pain Dentistry</span>
-            </div>
-            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>Free 3D iTero® Scan</span>
-            </div>
-            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>0% Interest EMI</span>
-            </div>
+            {heroSlides[currentSlide].features.map((feature, idx) => (
+              <div key={idx} className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
+                <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+                <span>{feature}</span>
+              </div>
+            ))}
           </motion.div>
 
           {/* Action Buttons: Book, Call, WhatsApp */}
@@ -186,41 +198,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
             </motion.a>
           </motion.div>
 
-          {/* Quick Service Selection Bar */}
-          <motion.div variants={staggerItemUp} className="pt-4">
-            <form
-              onSubmit={handleQuickBook}
-              className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-lg flex flex-col sm:flex-row items-center gap-2.5"
-            >
-              <div className="w-full sm:w-auto flex-1 text-left">
-                <label htmlFor="hero-quick-service" className="block text-[10px] font-extrabold text-teal-200 uppercase tracking-wider mb-0.5">
-                  Select Preferred Treatment
-                </label>
-                <select
-                  id="hero-quick-service"
-                  value={selectedQuickService}
-                  onChange={(e) => setSelectedQuickService(e.target.value)}
-                  className="w-full bg-white/80 border border-white/30 text-slate-800 text-xs sm:text-sm font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-400 focus:outline-none"
-                >
-                  {TREATMENTS.map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.title} ({t.startingPrice})
-                    </option>
-                  ))}
-                </select>
-              </div>
 
-              <motion.button
-                {...buttonHover}
-                type="submit"
-                id="hero-quick-submit-btn"
-                className="w-full sm:w-auto bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-teal-200" />
-                <span>Reserve Slot</span>
-              </motion.button>
-            </form>
-          </motion.div>
 
         </motion.div>
       </div>
