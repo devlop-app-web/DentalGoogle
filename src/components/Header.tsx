@@ -79,11 +79,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
+    { path: '/about', label: 'Our Story' },
     { path: '/treatments', label: 'Treatments', isMega: true },
     { path: '/smile-gallery', label: 'Smile Gallery' },
-    { path: '/testimonials', label: 'Testimonials' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/testimonials', label: 'Patient Reviews' },
+    { path: '/contact', label: 'Get In Touch' },
   ];
 
   const getCategoryIcon = (iconName: string) => {
