@@ -199,22 +199,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                           onMouseLeave={handleMouseLeave}
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[850px] bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 z-50"
                         >
-                          <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-                            <div>
-                              <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                                <Sparkles className="w-4 h-4 text-[#2E5B5B]" />
-                                All Treatment Categories
-                              </h3>
-                              <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
-                            </div>
-                            <Link
-                              to="/treatments"
-                              onClick={() => setTreatmentsMegaOpen(false)}
-                              className="text-xs font-bold text-[#2E5B5B] hover:text-[#204242] flex items-center space-x-1 bg-teal-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
-                            >
-                              <span>View Treatments Hub</span>
-                              <ChevronRight className="w-3.5 h-3.5" />
-                            </Link>
+                          <div className="pb-4 mb-4 border-b border-slate-100">
+                            <h3 className="text-base font-bold text-slate-800 flex items-center gap-2">
+                              <Sparkles className="w-4 h-4 text-[#2E5B5B]" />
+                              All Treatment Categories
+                            </h3>
+                            <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
                           </div>
 
                           {/* 12 Categories Grid */}
@@ -348,7 +338,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                   return (
                     <div key={link.path} className="space-y-1.5 my-1">
                       {/* Treatments Header Banner */}
-                      <div className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-teal-50 border border-teal-200 text-[#2E5B5B]">
+                      <div className="flex items-center justify-between px-3 py-2 bg-[#2E5B5B]/10 rounded-xl">
                         <Link
                           to="/treatments"
                           onClick={() => setMobileMenuOpen(false)}
@@ -356,14 +346,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                         >
                           <Sparkles className="w-4 h-4 text-[#2E5B5B]" />
                           <span>Treatments</span>
-                        </Link>
-                        <Link
-                          to="/treatments"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="text-[11px] font-extrabold text-[#2E5B5B] bg-white px-2.5 py-1 rounded-lg border border-teal-200 shadow-2xs flex items-center space-x-1"
-                        >
-                          <span>Treatments Hub</span>
-                          <ChevronRight className="w-3 h-3 text-[#2E5B5B]" />
                         </Link>
                       </div>
 
