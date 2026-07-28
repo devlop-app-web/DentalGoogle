@@ -1,42 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Sparkles,
   Star,
   Quote,
-  Calendar,
   Play,
   CheckCircle2,
-  Globe,
   ThumbsUp,
-  Filter,
   Search,
-  MessageSquare,
-  ShieldCheck,
-  Award,
   Clock,
-  ArrowRight,
-  X,
-  Send,
-  User,
-  Check,
-  ExternalLink,
-  ShieldAlert,
-  Smile,
-  PhoneCall
+  X
 } from 'lucide-react';
 import { PageWrapper } from '../components/ui/PageWrapper';
 import { PageBanner } from '../components/ui/PageBanner';
-import { fadeInUp, VIEWPORT_CONFIG } from '../lib/motion';
 import { generateDentalMacroImage } from '../utils/dentalImages';
 
 interface TestimonialsPageProps {
   onOpenBooking: () => void;
 }
 
-export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBooking }) => {
-  // State for Section 3: Video Modal
+export const TestimonialsPage: React.FC<TestimonialsPageProps> = () => {
+  // State for Video Modal
   const [activeVideo, setActiveVideo] = useState<{
     id: string;
     title: string;
@@ -45,11 +28,9 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
     treatment: string;
     quote: string;
     duration: string;
+    thumbnail: string;
   } | null>(null);
 
-  // State for Section 4: Written Reviews filter & search
-  const [writtenFilter, setWrittenFilter] = useState<'all' | '5star' | '4star'>('all');
-  const [searchQuery, setSearchQuery] = useState('');
   const [helpfulVotes, setHelpfulVotes] = useState<Record<string, number>>({
     'rev-1': 38,
     'rev-2': 29,
@@ -65,26 +46,6 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
       setHelpfulVotes(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
       setVotedReviews(prev => ({ ...prev, [id]: true }));
     }
-  };
-
-  // State for Section 5: Treatment-based Categories
-  const [activeCategoryTab, setActiveCategoryTab] = useState<'veneers' | 'implants' | 'ortho' | 'rootcanal' | 'whitening'>('veneers');
-
-  // State for Section 9: Leave a Review Form
-  const [reviewForm, setReviewForm] = useState({
-    rating: 5,
-    fullName: '',
-    email: '',
-    treatment: 'Porcelain Veneers & Makeovers',
-    comment: '',
-    wouldRecommend: true,
-  });
-  const [reviewSubmitted, setReviewSubmitted] = useState(false);
-
-  const handleReviewSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!reviewForm.fullName || !reviewForm.comment) return;
-    setReviewSubmitted(true);
   };
 
   // Mock Data for Written Reviews
@@ -169,20 +130,6 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
     }
   ];
 
-  const filteredWrittenReviews = writtenReviewsData.filter(rev => {
-    if (writtenFilter === '5star' && rev.rating !== 5) return false;
-    if (writtenFilter === '4star' && rev.rating !== 4) return false;
-    if (searchQuery.trim() !== '') {
-      const q = searchQuery.toLowerCase();
-      return (
-        rev.author.toLowerCase().includes(q) ||
-        rev.treatment.toLowerCase().includes(q) ||
-        rev.comment.toLowerCase().includes(q) ||
-        rev.location.toLowerCase().includes(q)
-      );
-    }
-    return true;
-  });
 
   return (
     <PageWrapper className="min-h-screen bg-slate-50">
@@ -194,43 +141,10 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
       />
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
 
-        {/* Quick Jump Pills */}
-        <div className="space-y-4">
-
-          {/* Jump Section Bar */}
-          <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
-            <span className="text-slate-400 uppercase tracking-wider shrink-0 text-[10px] font-bold">Jump to:</span>
-            {[
-              { id: 'sec-videostories', label: '1. Video Stories' },
-              { id: 'sec-written', label: '2. Written Reviews' },
-              { id: 'sec-categories', label: '3. By Treatment' },
-              { id: 'sec-googlereviews', label: '4. Google Reviews' },
-              { id: 'sec-featuredstory', label: '5. Featured Story' },
-              { id: 'sec-warranty', label: '6. Warranty Reviews' },
-              { id: 'sec-leavereview', label: '7. Leave Review' }
-            ].map((pill) => (
-              <a
-                key={pill.id}
-                href={`#${pill.id}`}
-                className="shrink-0 bg-white hover:bg-[#0B4F6C] hover:text-white text-slate-700 px-3 py-1.5 rounded-full border border-slate-200/80 shadow-xs transition-all"
-              >
-                {pill.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-
-
-
-
-        {/* ==========================================
-            SECTION 3: VIDEO TESTIMONIALS
-           ========================================== */}
+        {/* SECTION 1: VIDEO TESTIMONIALS */}
         <section id="sec-videostories" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 1</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800">
               Video Patient Testimonials
             </h2>
             <p className="text-slate-600 text-sm mt-1">
@@ -322,7 +236,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
                     </div>
                     <button
                       onClick={() => setActiveVideo(video)}
-                      className="text-[#0B4F6C] font-bold hover:underline flex items-center gap-1 text-[11px]"
+                      className="text-[#0B4F6C] font-bold hover:underline flex items-center gap-1 text-[11px] cursor-pointer"
                     >
                       <span>Watch</span>
                       <Play className="w-3 h-3 fill-current" />
@@ -357,7 +271,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
                     </div>
                     <button
                       onClick={() => setActiveVideo(null)}
-                      className="text-slate-400 hover:text-white transition-colors"
+                      className="text-slate-400 hover:text-white transition-colors cursor-pointer"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -403,60 +317,19 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
           </AnimatePresence>
         </section>
 
-
-        {/* ==========================================
-            SECTION 4: WRITTEN REVIEWS
-           ========================================== */}
+        {/* SECTION 2: PATIENT REVIEWS */}
         <section id="sec-written" className="scroll-mt-24 space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
-            <div>
-              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-                Written Patient Reviews
-              </h2>
-              <p className="text-slate-600 text-sm mt-1">
-                Filter and search genuine patient stories and clinical feedback.
-              </p>
-            </div>
-
-            {/* Filter & Search Controls */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="relative">
-                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3" />
-                <input
-                  type="text"
-                  placeholder="Search reviews..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-8 pr-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-hidden focus:border-[#0B4F6C] w-36 sm:w-48"
-                />
-              </div>
-
-              <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 text-xs font-semibold">
-                <button
-                  onClick={() => setWrittenFilter('all')}
-                  className={`px-3 py-1 rounded-lg transition-colors ${writtenFilter === 'all' ? 'bg-[#0B4F6C] text-white' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  All
-                </button>
-                <button
-                  onClick={() => setWrittenFilter('5star')}
-                  className={`px-3 py-1 rounded-lg transition-colors ${writtenFilter === '5star' ? 'bg-[#0B4F6C] text-white' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  5 Stars
-                </button>
-                <button
-                  onClick={() => setWrittenFilter('4star')}
-                  className={`px-3 py-1 rounded-lg transition-colors ${writtenFilter === '4star' ? 'bg-[#0B4F6C] text-white' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  4 Stars
-                </button>
-              </div>
-            </div>
+          <div className="border-b border-slate-200 pb-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800">
+              Patient Reviews
+            </h2>
+            <p className="text-slate-600 text-sm mt-1">
+              Explore genuine patient stories and clinical feedback.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredWrittenReviews.map((review) => (
+            {writtenReviewsData.map((review) => (
               <motion.div
                 key={review.id}
                 whileHover={{ y: -4 }}
@@ -506,7 +379,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
 
                     <button
                       onClick={() => handleVote(review.id)}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg transition-colors font-semibold ${votedReviews[review.id]
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg transition-colors font-semibold cursor-pointer ${votedReviews[review.id]
                           ? 'bg-emerald-100 text-emerald-700 font-bold'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                         }`}
@@ -520,504 +393,6 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
             ))}
           </div>
         </section>
-
-
-        {/* ==========================================
-            SECTION 5: TREATMENT-BASED REVIEW CATEGORIES
-           ========================================== */}
-        <section id="sec-categories" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 3</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Reviews by Treatment Category
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Explore patient satisfaction metrics and feedback broken down by specific specialty procedures.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-md space-y-6">
-            {/* Category Selector Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-100">
-              {[
-                { id: 'veneers', label: 'Veneers & Makeovers', count: '180+ Reviews', rating: '4.98 ★' },
-                { id: 'implants', label: 'Dental Implants', count: '140+ Reviews', rating: '4.96 ★' },
-                { id: 'ortho', label: 'Invisalign / Aligners', count: '110+ Reviews', rating: '4.95 ★' },
-                { id: 'rootcanal', label: 'Root Canals & Care', count: '95+ Reviews', rating: '4.97 ★' },
-                { id: 'whitening', label: 'Laser Whitening', count: '160+ Reviews', rating: '4.99 ★' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveCategoryTab(tab.id as any)}
-                  className={`px-4 py-2.5 rounded-2xl text-xs font-bold shrink-0 transition-all flex items-center gap-2 ${activeCategoryTab === tab.id
-                      ? 'bg-[#0B4F6C] text-white shadow-md'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                >
-                  <span>{tab.label}</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${activeCategoryTab === tab.id ? 'bg-white/20 text-teal-200' : 'bg-slate-200 text-slate-700'
-                    }`}>
-                    {tab.rating}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            {/* Category Dynamic Content Box */}
-            <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-4">
-              {activeCategoryTab === 'veneers' && (
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                    <h3 className="text-base font-bold text-slate-800">Porcelain Veneers & Digital Smile Design</h3>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                      99.8% Patient Approval Rate
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Patients consistently praise Dr. Sheekha Shah’s meticulous Digital Smile Design protocol, natural tooth-translucency matching, and ultra-thin 0.3mm Swiss ceramic handcrafting.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                      <p className="italic">"The 3D preview allowed me to see my exact final smile before touching a single tooth. Simply brilliant artistry!"</p>
-                      <span className="font-bold text-slate-900 block mt-2">— Elena M., Zurich</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                      <p className="italic">"No bulky or artificial chiclet look. Everyone thinks I was born with these perfect white teeth!"</p>
-                      <span className="font-bold text-slate-900 block mt-2">— Priya S., Mumbai</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeCategoryTab === 'implants' && (
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                    <h3 className="text-base font-bold text-slate-800">Guided Dental Implants & Full Mouth Restorations</h3>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                      99.6% Osseointegration Success
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Patients highlight zero post-surgical swelling, 3D CBCT guided surgical precision, and immediate fixed provisional teeth in a single day.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                      <p className="italic">"I can chew apples and steaks again with zero discomfort. Feels 100% like my original natural teeth."</p>
-                      <span className="font-bold text-slate-900 block mt-2">— Robert S., New York</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200">
-                      <p className="italic">"Flapless surgery meant no stitches and zero bleeding. Back at work the next morning!"</p>
-                      <span className="font-bold text-slate-900 block mt-2">— David K., Mumbai</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeCategoryTab === 'ortho' && (
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                    <h3 className="text-base font-bold text-slate-800">Invisalign® SmartTrack® Clear Aligners</h3>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                      100% Comfortable & Invisible
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Patients love the iTero® 3D impressionless digital scan and remote progress tracking that fits seamlessly into busy international travel schedules.
-                  </p>
-                </div>
-              )}
-
-              {activeCategoryTab === 'rootcanal' && (
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                    <h3 className="text-base font-bold text-slate-800">Microscopic Single-Visit Root Canals</h3>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                      100% Painless Guarantee
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    Patients praise computer-assisted anesthesia and German dental operating microscopes that complete complex root canals gently in just one 45-minute visit.
-                  </p>
-                </div>
-              )}
-
-              {activeCategoryTab === 'whitening' && (
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                    <h3 className="text-base font-bold text-slate-800">Laser Cold-Light Teeth Whitening</h3>
-                    <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                      Avg 8 Shades Lighter
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    In-office 60-minute light-activated whitening combined with anti-sensitivity remineralizing gel for instant Hollywood brightness.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 6: GOOGLE REVIEWS SHOWCASE
-           ========================================== */}
-        <section id="sec-googlereviews" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 4</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Google Reviews & Independent Verification
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Live feedback posted directly on our Google Maps business profile.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 text-white shadow-xl space-y-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-white/10 pb-6">
-              <div className="flex items-center gap-4">
-                {/* Google G Logo Styled Container */}
-                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center font-black text-2xl text-slate-900 shadow-md">
-                  <span className="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">G</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-extrabold text-white font-heading">Google Maps Rating</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-amber-400 font-extrabold text-base">4.9 ★★★★★</span>
-                    <span className="text-slate-300 text-xs font-medium">(520+ Reviews)</span>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href="https://google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all border border-white/20"
-              >
-                <span>View Live Google Profile</span>
-                <ExternalLink className="w-3.5 h-3.5 text-teal-300" />
-              </a>
-            </div>
-
-            {/* Google Review Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  name: "Ananya M. Roy",
-                  time: "2 weeks ago",
-                  text: "Dr. Sheekha Shah is hands down the best cosmetic dentist in the city. Clean clinic, extremely polite staff, and completely painless procedure. 5/5 stars!",
-                  likes: 12
-                },
-                {
-                  name: "Captain Vikram S.",
-                  time: "1 month ago",
-                  text: "Got full upper veneers done before resuming international flights. Fast turnaround, great hospitality, and flawless smile aesthetics.",
-                  likes: 19
-                },
-                {
-                  name: "Siddharth K.",
-                  time: "2 months ago",
-                  text: "The digital scanning experience was incredible. No gagging on trays! Dr. Shah explained every step with total transparency.",
-                  likes: 15
-                }
-              ].map((gRev, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-amber-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <span className="text-[10px] text-teal-300 font-bold uppercase tracking-wider">Verified Google User</span>
-                  </div>
-                  <p className="text-xs text-slate-200 leading-relaxed italic">"{gRev.text}"</p>
-                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
-                    <span className="font-bold text-white">{gRev.name}</span>
-                    <span className="text-slate-400">{gRev.time}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 7: FEATURED PATIENT STORY
-           ========================================== */}
-        <section id="sec-featuredstory" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 5</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Featured Patient Story: Sophia's 14-Day Transformation
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              An in-depth case spotlight from initial dental phobia to red-carpet smile confidence.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-
-            {/* Before/After Visual Side */}
-            <div className="lg:col-span-5 space-y-3">
-              <span className="inline-block bg-[#0B4F6C] text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">
-                Clinical Macro Photography
-              </span>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200 h-44 sm:h-52">
-                  <img
-                    src={generateDentalMacroImage({ type: 'makeover', state: 'before' })}
-                    alt="Before"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                  <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[10px] font-black px-2 py-0.5 rounded">
-                    BEFORE
-                  </span>
-                </div>
-                <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-500 h-44 sm:h-52">
-                  <img
-                    src={generateDentalMacroImage({ type: 'makeover', state: 'after' })}
-                    alt="After"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                  <span className="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded">
-                    AFTER
-                  </span>
-                </div>
-              </div>
-              <p className="text-[11px] text-slate-500 text-center font-medium">
-                10 Upper Swiss E-Max Porcelain Veneers + Laser Gum Recontouring
-              </p>
-            </div>
-
-            {/* Case Details Side */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#0B4F6C]">
-                <Award className="w-4 h-4 text-teal-600" />
-                <span>Patient Spotlight: Sophia R., 29 • London, UK</span>
-              </div>
-
-              <h3 className="text-xl font-bold font-heading text-slate-800">
-                "Dr. Sheekha Shah gave me the confidence to smile without hiding my face."
-              </h3>
-
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Sophia suffered from severe fluorosis staining and chipped front incisors since childhood, causing deep social anxiety. She booked a virtual video consultation from London and traveled to Dr. Sheekha Shah Dental Studio for a 14-day complete smile renewal.
-              </p>
-
-              {/* Journey Steps Timeline */}
-              <div className="grid grid-cols-3 gap-2 text-[11px] pt-2 border-t border-slate-100">
-                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                  <span className="font-bold text-slate-800 block">Day 1: 3D DSD Scan</span>
-                  <span className="text-slate-500">Intraoral scan & smile mockup</span>
-                </div>
-                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                  <span className="font-bold text-slate-800 block">Day 3: Painless Prep</span>
-                  <span className="text-slate-500">0.3mm micro-prep & temporaries</span>
-                </div>
-                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                  <span className="font-bold text-slate-800 block">Day 10: Final Bond</span>
-                  <span className="text-slate-500">Swiss ceramic porcelain placement</span>
-                </div>
-              </div>
-
-              <div className="p-3 bg-teal-50 border border-teal-200 rounded-xl text-xs text-slate-700 italic">
-                <strong>Doctor Note:</strong> "We utilized Digital Smile Design 3D facial modeling to create an organic, radiant smile arc tailored specifically to her lip dynamics." — Dr. Sheekha Shah
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 8: WARRANTY EXPERIENCE REVIEWS
-           ========================================== */}
-        <section id="sec-warranty" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 6</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Warranty & Long-Term Durability Reviews
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Hear from patients 3 to 7 years post-treatment evaluating our 10 to 15-Year Smile Guarantee.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                years: "5 Years Post-Treatment",
-                author: "Michael B.",
-                treatment: "10 E-Max Porcelain Veneers",
-                comment: "Five years later, my veneers still look brand new. Zero discoloration, zero chipping. The annual complimentary checkup keeps everything in pristine shape!"
-              },
-              {
-                years: "4 Years Post-Treatment",
-                author: "Kavita R. Patel",
-                treatment: "Full Upper Implant Bridge",
-                comment: "My dental implants feel as solid as day one. The 15-year warranty certificate gave me total peace of mind when making the investment."
-              },
-              {
-                years: "3 Years Post-Treatment",
-                author: "James H.",
-                treatment: "Invisalign® + Edge Bonding",
-                comment: "My teeth haven’t shifted a single millimeter thanks to the Vivera® custom retainers provided by Dr. Shah’s clinic."
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md space-y-3 flex flex-col justify-between">
-                <div className="space-y-2">
-                  <span className="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                    {item.years}
-                  </span>
-                  <h3 className="text-sm font-bold text-slate-800">{item.treatment}</h3>
-                  <p className="text-xs text-slate-600 italic leading-relaxed">"{item.comment}"</p>
-                </div>
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-                  <span className="font-bold text-slate-800">— {item.author}</span>
-                  <span className="text-teal-600 font-bold">15-Yr Warranty Active</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 9: LEAVE A REVIEW FORM
-           ========================================== */}
-        <section id="sec-leavereview" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 7</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Leave Your Patient Feedback
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Have you visited Dr. Sheekha Shah DENTAL STUDIO? Share your experience with our dental team.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md max-w-3xl mx-auto">
-            {reviewSubmitted ? (
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-center space-y-4 py-8"
-              >
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold font-heading text-slate-800">Thank You for Your Feedback!</h3>
-                <p className="text-slate-600 text-xs max-w-md mx-auto leading-relaxed">
-                  Your review has been submitted successfully to our patient relations team and will be published shortly following verification.
-                </p>
-                <button
-                  onClick={() => setReviewSubmitted(false)}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl transition-colors"
-                >
-                  Submit Another Response
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleReviewSubmit} className="space-y-6">
-
-                {/* Star Rating Picker */}
-                <div className="space-y-2 text-center">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
-                    Your Overall Rating
-                  </label>
-                  <div className="flex items-center justify-center gap-2">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        type="button"
-                        onClick={() => setReviewForm({ ...reviewForm, rating: star })}
-                        className="p-1 hover:scale-125 transition-transform"
-                      >
-                        <Star
-                          className={`w-8 h-8 ${star <= reviewForm.rating
-                              ? 'fill-amber-400 text-amber-400'
-                              : 'text-slate-300'
-                            }`}
-                        />
-                      </button>
-                    ))}
-                  </div>
-                  <span className="text-xs font-extrabold text-[#0B4F6C] block">
-                    {reviewForm.rating} / 5 Stars Selected
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Sarah Jenkins"
-                      value={reviewForm.fullName}
-                      onChange={(e) => setReviewForm({ ...reviewForm, fullName: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-hidden focus:border-[#0B4F6C]"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700">Email Address (Private) *</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="e.g. sarah@example.com"
-                      value={reviewForm.email}
-                      onChange={(e) => setReviewForm({ ...reviewForm, email: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-hidden focus:border-[#0B4F6C]"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700">Treatment Received *</label>
-                  <select
-                    value={reviewForm.treatment}
-                    onChange={(e) => setReviewForm({ ...reviewForm, treatment: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-hidden focus:border-[#0B4F6C]"
-                  >
-                    <option value="Porcelain Veneers & Makeovers">Porcelain Veneers & Makeovers</option>
-                    <option value="Guided Dental Implants">Guided Dental Implants</option>
-                    <option value="Invisalign® Aligners">Invisalign® Aligners</option>
-                    <option value="Microscopic Root Canal">Microscopic Root Canal</option>
-                    <option value="Laser Whitening & Hygiene">Laser Whitening & Hygiene</option>
-                    <option value="General Checkup & Routine Care">General Checkup & Routine Care</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-700">Your Review / Story *</label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="Tell us about your experience with Dr. Sheekha Shah and the clinic team..."
-                    value={reviewForm.comment}
-                    onChange={(e) => setReviewForm({ ...reviewForm, comment: e.target.value })}
-                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-hidden focus:border-[#0B4F6C]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold text-xs py-3.5 px-6 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Patient Review</span>
-                </button>
-              </form>
-            )}
-          </div>
-        </section>
-
 
       </div>
     </PageWrapper>
