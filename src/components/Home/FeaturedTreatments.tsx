@@ -103,10 +103,7 @@ const TreatmentCard: React.FC<{
         {treatment.duration}
       </span>
 
-      {/* Starting Price Pill */}
-      <span className="absolute bottom-4 right-4 bg-[#0B4F6C] text-white font-extrabold text-xs px-3 py-1.5 rounded-xl border border-cyan-300/40 shadow">
-        From {treatment.startingPrice}
-      </span>
+
     </div>
 
     {/* Body Content */}
@@ -242,10 +239,6 @@ export const FeaturedTreatments: React.FC<FeaturedTreatmentsProps> = ({ onOpenBo
                 <div className="flex justify-between">
                   <span>Duration:</span>
                   <span className="text-[#0B4F6C]">{activeTreatmentModal.duration}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Starting Price:</span>
-                  <span className="text-[#0B4F6C]">{activeTreatmentModal.startingPrice}</span>
                 </div>
               </div>
 
