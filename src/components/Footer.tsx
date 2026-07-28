@@ -56,16 +56,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
   ];
 
   const treatments = [
-    { label: 'General Dentistry', path: '/treatments' },
-    { label: 'Cosmetic Dentistry', path: '/treatments' },
-    { label: 'Dental Implants', path: '/treatments' },
-    { label: 'Root Canal Treatment', path: '/treatments' },
-    { label: 'Orthodontics', path: '/treatments' },
-    { label: 'Teeth Whitening', path: '/treatments' },
-    { label: 'Children\'s Dentistry', path: '/treatments' },
-    { label: 'Gum Treatment', path: '/treatments' },
-    { label: 'Oral Surgery', path: '/treatments' },
-    { label: 'Emergency Dentistry', path: '/treatments' },
+    { label: 'General Dentistry', path: '/treatments/general-dentistry' },
+    { label: 'Cosmetic Dentistry', path: '/treatments/cosmetic-dentistry' },
+    { label: 'Dental Implants', path: '/treatments/dental-implants' },
+    { label: 'Root Canal Treatment', path: '/treatments/root-canal-treatment' },
+    { label: 'Orthodontics', path: '/treatments/orthodontics' },
+    { label: 'Teeth Whitening', path: '/treatments/teeth-whitening' },
+    { label: "Children's Dentistry", path: '/treatments/childrens-dentistry' },
+    { label: 'Gum Treatment', path: '/treatments/gum-treatment' },
+    { label: 'Oral Surgery', path: '/treatments/oral-surgery' },
+    { label: 'Emergency Dentistry', path: '/treatments/emergency-dentistry' },
   ];
 
   const socialLinks = [
