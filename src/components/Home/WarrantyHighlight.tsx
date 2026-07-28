@@ -63,14 +63,16 @@ export const WarrantyHighlight: React.FC<WarrantyHighlightProps> = ({ onOpenBook
               <span>Learn More</span>
             </button>
 
-            <button
-              onClick={onOpenBooking}
-              className="w-full sm:w-auto bg-white text-[#0B4F6C] hover:bg-cyan-50 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 uppercase tracking-wider"
+            <a
+              href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-white text-[#0B4F6C] hover:bg-cyan-50 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 uppercase tracking-wider cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-[#0B4F6C]" />
               <span>Book Covered Care</span>
               <ChevronRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
 
         </motion.div>

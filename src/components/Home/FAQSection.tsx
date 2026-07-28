@@ -168,15 +168,17 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ onOpenBooking }) => {
             </p>
           </div>
 
-          <motion.button
+          <motion.a
             {...buttonHover}
-            onClick={onOpenBooking}
+            href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+            target="_blank"
+            rel="noopener noreferrer"
             id="faq-book-appointment-cta"
-            className="w-full sm:w-auto bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 whitespace-nowrap shrink-0 cursor-pointer"
+            className="w-full sm:w-auto bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2 whitespace-nowrap shrink-0 cursor-pointer transition-colors"
           >
             <Calendar className="w-4 h-4 text-cyan-300" />
             <span>Book Appointment</span>
-          </motion.button>
+          </motion.a>
         </motion.div>
 
       </div>

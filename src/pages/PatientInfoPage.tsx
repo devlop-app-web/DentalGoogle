@@ -401,12 +401,14 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
                   Every patient receives a written, itemized treatment cost outline valid for 6 months. No surprise fees ever.
                 </p>
               </div>
-              <button
-                onClick={onOpenBooking}
-                className="bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all shrink-0"
+              <a
+                href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all shrink-0 cursor-pointer"
               >
                 Request Cost Consultation
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -658,18 +660,20 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <motion.button
-                onClick={onOpenBooking}
+              <motion.a
+                href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="bg-white text-[#0B4F6C] hover:bg-cyan-50 font-extrabold text-sm px-8 py-4 rounded-2xl shadow-xl transition-all flex items-center gap-2 shrink-0"
+                className="bg-white text-[#0B4F6C] hover:bg-cyan-50 font-extrabold text-sm px-8 py-4 rounded-2xl shadow-xl transition-all flex items-center gap-2 shrink-0 cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-[#0B4F6C]" />
                 <span>Book First Visit Now</span>
-              </motion.button>
+              </motion.a>
 
               <a
-                href="https://wa.me/919876543210?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio,%20I%20have%20a%20question%20before%20booking%20my%20first%20visit."
+                href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio,%20I%20have%20a%20question%20before%20booking%20my%20first%20visit."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-4 rounded-2xl shadow-md transition-all flex items-center gap-2 shrink-0"

@@ -388,12 +388,14 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
                     <div>
                       <span className="font-bold text-slate-800">Treatment:</span> {activeVideo.treatment}
                     </div>
-                    <button
-                      onClick={onOpenBooking}
-                      className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold px-4 py-2 rounded-xl transition-colors"
+                    <a
+                      href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold px-4 py-2 rounded-xl transition-colors cursor-pointer"
                     >
                       Book Consultation
-                    </button>
+                    </a>
                   </div>
                 </motion.div>
               </motion.div>

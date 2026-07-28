@@ -156,12 +156,14 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
 
-                  <button
-                    onClick={onOpenBooking}
+                  <a
+                    href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs font-semibold text-slate-600 hover:text-[#2E5B5B] bg-slate-100 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
                   >
                     Book Visit
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -183,14 +185,16 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
             </p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
-            <motion.button
+            <motion.a
               {...buttonHover}
-              onClick={onOpenBooking}
+              href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white text-[#2E5B5B] hover:bg-teal-50 font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-[#2E5B5B]" />
               <span>Book Appointment</span>
-            </motion.button>
+            </motion.a>
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
