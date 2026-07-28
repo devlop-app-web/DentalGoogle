@@ -135,16 +135,6 @@ const TreatmentCard: React.FC<{
       <div className="pt-4 flex items-center gap-2">
         <motion.button
           {...buttonHover}
-          onClick={() => onOpenBookingWithService(treatment.id)}
-          id={`featured-book-${treatment.id}`}
-          className="flex-1 bg-[#0B4F6C] hover:bg-[#083A50] text-white font-extrabold text-xs py-3.5 rounded-xl shadow transition-all flex items-center justify-center space-x-1.5"
-        >
-          <Calendar className="w-3.5 h-3.5 text-cyan-300" />
-          <span>Book Service</span>
-        </motion.button>
-
-        <motion.button
-          {...buttonHover}
           onClick={() => {
             const fullItem = TREATMENTS.find(t => t.id === treatment.id) || {
               id: treatment.id,
@@ -161,7 +151,7 @@ const TreatmentCard: React.FC<{
             setActiveTreatmentModal(fullItem);
           }}
           id={`featured-readmore-${treatment.id}`}
-          className="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs rounded-xl transition-colors flex items-center space-x-1"
+          className="w-full justify-center px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs rounded-xl transition-colors flex items-center space-x-1"
         >
           <span>Read More</span>
           <ChevronRight className="w-3.5 h-3.5" />

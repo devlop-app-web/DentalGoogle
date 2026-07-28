@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  Calendar, 
-  ChevronDown, 
-  ChevronUp, 
-  ChevronRight, 
-  ArrowUp, 
-  Facebook, 
-  Instagram, 
-  Youtube, 
-  Linkedin, 
-  MessageCircle, 
-  ExternalLink, 
-  ShieldCheck, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+  ChevronRight,
+  ArrowUp,
+  Facebook,
+  Instagram,
+  Youtube,
+  Linkedin,
+  MessageCircle,
+  ExternalLink,
+  ShieldCheck,
   Map,
   Sparkles
 } from 'lucide-react';
@@ -71,9 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
   const socialLinks = [
     { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-blue-600 hover:bg-blue-50' },
     { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-600 hover:bg-pink-50' },
-    { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-600 hover:bg-red-50' },
     { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:text-blue-700 hover:bg-blue-50' },
-    { name: 'WhatsApp', icon: MessageCircle, href: `https://wa.me/${phoneClean}`, color: 'hover:text-emerald-600 hover:bg-emerald-50' },
   ];
 
   return (
@@ -83,9 +81,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
       <div className="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-[#599E9D]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Top CTA Banner - Slightly lighter than footer */}
-        <div className="bg-[#1E3A3A] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 border border-[#2C5454]">
+        {/* <div className="bg-[#1E3A3A] rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6 border border-[#2C5454]">
           <div className="space-y-2 text-center lg:text-left">
             <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md text-teal-200 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider border border-white/15">
               <Sparkles className="w-3.5 h-3.5 text-teal-300" />
@@ -117,19 +115,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               <span>Contact & Enquiry</span>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* Four Column Main Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 pb-8 border-b border-[#244545]">
-          
+
           {/* Column 1: Branding & About */}
           <div className="space-y-4">
             <Logo size={44} showText={true} lightText={true} />
 
-            <div className="inline-flex items-center space-x-1.5 bg-[#1E3434] text-teal-200 border border-[#284B4B] px-3 py-1.5 rounded-full text-xs font-extrabold shadow-2xs">
+            {/* <div className="inline-flex items-center space-x-1.5 bg-[#1E3434] text-teal-200 border border-[#284B4B] px-3 py-1.5 rounded-full text-xs font-extrabold shadow-2xs">
               <ShieldCheck className="w-4 h-4 text-teal-300" />
               <span>ISO 9001:2015 Certified Facility</span>
-            </div>
+            </div> */}
 
             <p className="text-slate-300 text-xs leading-relaxed font-medium">
               We provide state-of-the-art dental treatments using modern technology, personalized care, and evidence-based dentistry to help patients achieve healthy, confident smiles in a comfortable and welcoming environment.
@@ -244,7 +242,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
 
             {/* Accordion Content */}
             <div className={`mt-3 space-y-3.5 ${openSections.contact ? 'block' : 'hidden md:block'}`}>
-              
+
               {/* Address */}
               <div className="flex items-start space-x-2.5 text-xs">
                 <MapPin className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
@@ -279,7 +277,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               </div>
 
               {/* Timings */}
-              <div className="flex items-start space-x-2.5 text-xs">
+              {/* <div className="flex items-start space-x-2.5 text-xs">
                 <Clock className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
                 <div className="space-y-1 w-full">
                   <span className="font-bold text-white block">Clinic Timings</span>
@@ -294,10 +292,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Get Directions Map Button */}
-              <div className="pt-2">
+              {/* <div className="pt-2">
                 <a
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
@@ -308,7 +306,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                   <span>Get Directions / Open Google Maps</span>
                   <ExternalLink className="w-3 h-3 text-teal-400 group-hover:text-white transition-colors" />
                 </a>
-              </div>
+              </div> */}
 
             </div>
           </div>
@@ -321,7 +319,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
             © 2026 Dr. Sheekha Shah Dental Studio. All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-slate-300">
+          {/* <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold text-slate-300">
             <Link to="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
             <span className="text-teal-500/40">•</span>
             <Link to="/contact" className="hover:text-white transition-colors">Terms & Conditions</Link>
@@ -339,7 +337,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
               <span className="text-[11px] font-bold">Top</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
-          </div>
+          </div> */}
         </div>
 
       </div>

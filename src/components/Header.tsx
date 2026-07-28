@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Phone, Clock, MapPin, Menu, X, Calendar, Sparkles, ChevronDown, 
-  ChevronRight, MessageCircle, Stethoscope, Shield, Activity, Zap, 
-  Smile, Sun, Heart, ShieldAlert, Crosshair, AlertCircle, CheckCircle 
+import {
+  Phone, Clock, MapPin, Menu, X, Calendar, Sparkles, ChevronDown,
+  ChevronRight, MessageCircle, Stethoscope, Shield, Activity, Zap,
+  Smile, Sun, Heart, ShieldAlert, Crosshair, AlertCircle, CheckCircle
 } from 'lucide-react';
 import { CLINIC_INFO } from '../data/homeData';
 import { TREATMENT_CATEGORIES } from '../data/treatmentsData';
@@ -75,6 +75,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
 
   const phoneClean = CLINIC_INFO.phone.replace(/[^0-9]/g, '');
   const whatsappUrl = `https://wa.me/${phoneClean}?text=${encodeURIComponent('Hello Dr. Sheekha Shah DENTAL STUDIO, I would like to inquire about booking an appointment.')}`;
+  const customWhatsAppUrl = 'https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you.';
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -109,7 +110,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
       <div className="bg-[#2E5B5B] text-white text-xs py-2 px-4 border-b border-teal-400/20">
         <div className="max-w-[1536px] mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center space-x-4 sm:space-x-6 text-teal-100 font-medium">
-            <a 
+            {/* <a 
               href={whatsappUrl} 
               target="_blank"
               rel="noopener noreferrer"
@@ -118,7 +119,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-300 fill-emerald-300" />
               <span>WhatsApp Direct</span>
-            </a>
+            </a> */}
 
             <div className="hidden md:flex items-center space-x-1.5 text-teal-100/90">
               <Clock className="w-3.5 h-3.5 text-teal-300" />
@@ -127,8 +128,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <a 
-              href={`tel:${phoneClean}`} 
+            <a
+              href={`tel:${phoneClean}`}
               className="flex items-center space-x-1.5 text-teal-200 hover:text-white font-semibold text-xs py-0.5 transition-colors"
               id="top-bar-emergency-link"
             >
@@ -145,14 +146,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
       </div>
 
       {/* Main Glass Navigation Bar */}
-      <div className={`bg-white/95 backdrop-blur-md transition-all duration-300 border-b border-slate-200/80 ${
-        isScrolled ? 'shadow-md py-2.5' : 'py-3.5'
-      }`}>
+      <div className={`bg-white/95 backdrop-blur-md transition-all duration-300 border-b border-slate-200/80 ${isScrolled ? 'shadow-md py-2.5' : 'py-3.5'
+        }`}>
         <div className="max-w-[1536px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
-          
+
           {/* Logo & Brand Link */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center shrink-0 group focus:outline-none focus:ring-2 focus:ring-[#2E5B5B] rounded-lg p-0.5 text-left"
             id="header-brand-logo-link"
           >
@@ -162,25 +162,24 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 relative shrink-0" id="desktop-navbar" ref={megaMenuRef}>
             {navLinks.map((link) => {
-              const isActive = link.path === '/' 
-                ? location.pathname === '/' 
+              const isActive = link.path === '/'
+                ? location.pathname === '/'
                 : location.pathname.startsWith(link.path);
 
               if (link.isMega) {
                 return (
-                  <div 
-                    key={link.path} 
+                  <div
+                    key={link.path}
                     className="relative group"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
                     <button
                       onClick={() => setTreatmentsMegaOpen(!treatmentsMegaOpen)}
-                      className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 relative group ${
-                        isActive 
-                          ? 'text-[#2E5B5B] font-bold' 
+                      className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 flex items-center space-x-1 relative group ${isActive
+                          ? 'text-[#2E5B5B] font-bold'
                           : 'text-slate-700 hover:text-[#2E5B5B]'
-                      }`}
+                        }`}
                       id="mega-menu-trigger-btn"
                     >
                       <span>{link.label}</span>
@@ -208,8 +207,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                               </h3>
                               <p className="text-xs text-slate-500">Explore specialized procedures at Dr. Sheekha Shah DENTAL STUDIO</p>
                             </div>
-                            <Link 
-                              to="/treatments" 
+                            <Link
+                              to="/treatments"
                               onClick={() => setTreatmentsMegaOpen(false)}
                               className="text-xs font-bold text-[#2E5B5B] hover:text-[#204242] flex items-center space-x-1 bg-teal-50 px-3 py-1.5 rounded-lg whitespace-nowrap"
                             >
@@ -252,11 +251,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 relative group ${
-                    isActive 
-                      ? 'text-[#2E5B5B] font-bold' 
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 relative group ${isActive
+                      ? 'text-[#2E5B5B] font-bold'
                       : 'text-slate-700 hover:text-[#2E5B5B]'
-                  }`}
+                    }`}
                   id={`nav-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
@@ -279,22 +277,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <Phone className="w-4 h-4" />
             </a>
 
-            {/* WhatsApp Icon Link */}
-            <a
-              href={whatsappUrl}
+            {/* Book Appointment CTA */}
+            <motion.a
+              href={customWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              title="WhatsApp Chat"
-              aria-label="WhatsApp Chat"
-              className="w-10 h-10 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 flex items-center justify-center transition-all duration-200 border border-emerald-100/80 active:scale-95 shrink-0"
-              id="header-whatsapp-icon-btn"
-            >
-              <MessageCircle className="w-4 h-4 fill-emerald-600" />
-            </a>
-
-            {/* Book Appointment CTA */}
-            <motion.button
-              onClick={onOpenBooking}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               id="header-book-appointment-cta"
@@ -305,7 +292,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                 <span className="block w-full text-center">BOOK</span>
                 <span className="block w-full text-center">APPOINTMENT</span>
               </div>
-            </motion.button>
+            </motion.a>
           </div>
 
           {/* Mobile Navigation Toggle */}
@@ -318,22 +305,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
               <Phone className="w-4 h-4" />
             </a>
             <a
-              href={whatsappUrl}
+              href={customWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="sm:hidden w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100"
-            >
-              <MessageCircle className="w-4 h-4 fill-emerald-600" />
-            </a>
-            <button
-              onClick={onOpenBooking}
               className="sm:hidden bg-[#2E5B5B] text-white px-2.5 py-2 rounded-lg shadow-sm font-semibold text-xs flex items-center space-x-1 whitespace-nowrap"
               id="mobile-quick-book-btn"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book</span>
-            </button>
+            </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -360,8 +340,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           >
             <div className="flex flex-col space-y-1 mb-5">
               {navLinks.map((link) => {
-                const isActive = link.path === '/' 
-                  ? location.pathname === '/' 
+                const isActive = link.path === '/'
+                  ? location.pathname === '/'
                   : location.pathname.startsWith(link.path);
 
                 if (link.isMega) {
@@ -397,11 +377,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                               key={cat.id}
                               to={`/treatments/${cat.slug}`}
                               onClick={() => setMobileMenuOpen(false)}
-                              className={`flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
-                                isCatActive
+                              className={`flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${isCatActive
                                   ? 'bg-[#2E5B5B] text-white shadow-xs font-bold'
                                   : 'text-slate-700 hover:text-[#2E5B5B] hover:bg-slate-100/80'
-                              }`}
+                                }`}
                             >
                               <div className={`p-1.5 rounded-lg shrink-0 ${isCatActive ? 'bg-white/20' : 'bg-slate-100'}`}>
                                 {getCategoryIcon(cat.iconName)}
@@ -421,11 +400,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold text-base transition-colors ${
-                      isActive 
-                        ? 'bg-teal-50 text-[#2E5B5B] font-bold' 
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-left font-semibold text-base transition-colors ${isActive
+                        ? 'bg-teal-50 text-[#2E5B5B] font-bold'
                         : 'text-slate-700 hover:bg-slate-50'
-                    }`}
+                      }`}
                   >
                     <span>{link.label}</span>
                     <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -435,17 +413,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             </div>
 
             <div className="pt-4 border-t border-slate-100 flex flex-col space-y-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenBooking();
-                }}
+              <a
+                href={customWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-base py-3.5 rounded-xl shadow-md flex items-center justify-center space-x-2"
                 id="mobile-drawer-book-btn"
               >
                 <Calendar className="w-5 h-5 text-teal-200" />
                 <span>Book Appointment</span>
-              </button>
+              </a>
 
               <a
                 href={`tel:${phoneClean}`}

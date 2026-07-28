@@ -8,7 +8,7 @@ export const CLINIC_INFO = {
   studioName: "DENTAL STUDIO",
   fullName: "Dr. Sheekha Shah DENTAL STUDIO",
   tagline: "Premier DENTAL STUDIO & Implant Center",
-  phone: "(555) 234-5678",
+  phone: "+91 99240 83567",
   emergencyPhone: "(555) 911-DENT",
   email: "care@drsheekhashah.com",
   address: "742 Evergreen Suite 300, Medical Plaza, CA 90210",

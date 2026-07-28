@@ -1,14 +1,12 @@
 import React from 'react';
 import { Hero } from '../components/Home/Hero';
 import { WarrantyHighlight } from '../components/Home/WarrantyHighlight';
-import { QuickAppointmentActions } from '../components/Home/QuickAppointmentActions';
 import { TrustAchievementBar } from '../components/Home/TrustAchievementBar';
 import { FeaturedTreatments } from '../components/Home/FeaturedTreatments';
 import { WhyChooseUs } from '../components/Home/WhyChooseUs';
 import { MeetTheDentistPreview } from '../components/Home/MeetTheDentistPreview';
 import { SmileGalleryPreview } from '../components/Home/SmileGalleryPreview';
 import { TechnologyAndComfort } from '../components/Home/TechnologyAndComfort';
-import { PatientJourney } from '../components/Home/PatientJourney';
 import { TestimonialsSection } from '../components/Home/TestimonialsSection';
 import { FAQSection } from '../components/Home/FAQSection';
 import { WelcomePopup } from '../components/Home/WelcomePopup';
@@ -40,11 +38,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         onOpenBooking={onOpenBooking} 
       />
 
-      {/* 3. QUICK APPOINTMENT ACTIONS */}
-      <QuickAppointmentActions 
-        onOpenBooking={onOpenBooking} 
-      />
-
       {/* 4. TRUST & ACHIEVEMENT BAR */}
       <TrustAchievementBar />
 
@@ -69,11 +62,6 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 9. TECHNOLOGY & COMFORT */}
       <TechnologyAndComfort />
-
-      {/* 10. PATIENT JOURNEY */}
-      <PatientJourney 
-        onOpenBooking={onOpenBooking} 
-      />
 
       {/* 11. TESTIMONIALS PREVIEW */}
       <TestimonialsSection />

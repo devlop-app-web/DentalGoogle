@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone, ShieldCheck, Sparkles, Star, ChevronRight, CheckCircle2, Award, MessageCircle } from 'lucide-react';
 import { CLINIC_INFO, TREATMENTS } from '../../data/homeData';
-import ceoBgImg from '@/public/assets/Image/CEO BG.png';
-import ceo2Img from '@/public/assets/Image/CEO2.png';
+import clinicImg from '@/public/assets/Image/Clinic.jpeg';
+import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
+import waiting2Img from '@/public/assets/Image/Waiting 2.jpeg';
 import {
   staggerContainer,
   staggerItemUp,
@@ -14,6 +15,8 @@ import {
   VIEWPORT_CONFIG
 } from '../../lib/motion';
 
+const sliderImages = [clinicImg, clinic2Img, waiting2Img];
+
 interface HeroProps {
   onOpenBookingWithService?: (serviceId: string) => void;
   onOpenBooking: () => void;
@@ -22,15 +25,14 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBooking }) => {
   const [selectedQuickService, setSelectedQuickService] = useState('invisalign');
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY, currentTarget } = e;
-    const { width, height, left, top } = currentTarget.getBoundingClientRect();
-    const x = (clientX - left) / width - 0.5;
-    const y = (clientY - top) / height - 0.5;
-    setMousePos({ x, y });
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleQuickBook = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,240 +47,183 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBookingWithService, onOpenBook
   const phoneFormatted = CLINIC_INFO.phone.replace(/[^0-9+]/g, '');
 
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      className="relative bg-gradient-to-b from-slate-50 via-cyan-50/20 to-white pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden"
-    >
+    <section className="relative w-full h-[90vh] min-h-[700px] flex items-center overflow-hidden bg-slate-900">
+      
+      {/* Full-width Background Slider */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentSlide}
+            src={sliderImages[currentSlide]}
+            alt="Clinic Environment"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+        
+        {/* Dark Premium Gradient Overlay */}
+        <div 
+          className="absolute inset-0 z-10" 
+          style={{
+            background: 'linear-gradient(90deg, rgba(8,22,34,0.85) 0%, rgba(8,22,34,0.65) 45%, rgba(8,22,34,0.2) 100%)'
+          }}
+        />
+      </div>
 
-      {/* Background Ambient Floating Glows */}
-      <motion.div
-        {...floatAnimation}
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-200/20 rounded-full blur-3xl pointer-events-none -z-10"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          x: [0, -10, 0],
-          transition: { duration: 9, repeat: Infinity, ease: 'easeInOut' }
-        }}
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-100/30 rounded-full blur-3xl pointer-events-none -z-10"
-      />
+      {/* Slider Controls - Bottom Pagination */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 z-20 flex items-center space-x-3">
+        {sliderImages.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            className={`w-2 h-2 rounded-full transition-all duration-500 ${
+              currentSlide === idx ? 'bg-white w-8' : 'bg-white/40 hover:bg-white/80'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      {/* Slider Controls - Arrows (Desktop) */}
+      <button 
+        onClick={() => setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/20 transition hidden md:block"
+      >
+         <ChevronRight className="w-6 h-6 rotate-180" />
+      </button>
 
-          {/* Left Column: Value Proposition & Action CTAs */}
-          <motion.div
-            variants={staggerContainer(0.12, 0.05)}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-7 space-y-6 text-center lg:text-left"
-          >
+      <button 
+        onClick={() => setCurrentSlide((prev) => (prev + 1) % sliderImages.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/20 transition hidden md:block"
+      >
+         <ChevronRight className="w-6 h-6" />
+      </button>
 
-            {/* Badges Bar */}
-            <motion.div variants={staggerItemUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              {/* Google Rating */}
-              <div className="inline-flex items-center space-x-1.5 bg-white border border-teal-200/80 rounded-full px-3.5 py-1.5 shadow-2xs text-xs font-bold text-slate-800">
-                <div className="flex items-center space-x-0.5 text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span>4.9 / 5.0 Rating</span>
-                <span className="text-slate-300">•</span>
-                <span className="text-[#2E5B5B]">850+ Reviews</span>
+      {/* Content Container */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <motion.div
+          variants={staggerContainer(0.12, 0.05)}
+          initial="hidden"
+          animate="visible"
+          className="max-w-[650px] space-y-6 text-center md:text-left mx-auto md:mx-0 pt-16 md:pt-0"
+        >
+
+          {/* Badges Bar */}
+          <motion.div variants={staggerItemUp} className="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+            {/* Google Rating */}
+            <div className="inline-flex items-center space-x-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1.5 shadow-2xs text-xs font-bold text-white">
+              <div className="flex items-center space-x-0.5 text-amber-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                ))}
               </div>
+              <span>4.9 / 5.0 Rating</span>
+              <span className="text-white/50">•</span>
+              <span className="text-teal-200">850+ Reviews</span>
+            </div>
 
-              {/* Lifetime Warranty Badge */}
-              <div className="inline-flex items-center space-x-1.5 bg-[#1E3A3A] text-teal-100 border border-[#2C5454] px-3 py-1 rounded-full text-xs font-extrabold shadow-2xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-teal-300" />
-                <span>Lifetime Warranty Protection</span>
-              </div>
+            {/* Lifetime Warranty Badge */}
+            <div className="inline-flex items-center space-x-1.5 bg-[#1E3A3A]/80 backdrop-blur-md text-teal-100 border border-[#2C5454]/60 px-3 py-1 rounded-full text-xs font-extrabold shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-teal-300" />
+              <span>Lifetime Warranty Protection</span>
+            </div>
 
-              {/* ISO Certified */}
-              <div className="inline-flex items-center space-x-1 bg-teal-50 text-teal-900 border border-teal-200 px-3 py-1 rounded-full text-xs font-extrabold">
-                <Award className="w-3.5 h-3.5 text-[#2E5B5B]" />
-                <span>ISO 9001:2015</span>
-              </div>
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1 variants={staggerItemUp} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] font-heading tracking-tight leading-[1.12]">
-              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2E5B5B] via-[#3F7A79] to-[#599E9D]">Dental Care</span> By Dr. Sheekha Shah
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p variants={staggerItemUp} className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Experience gentle, state-of-the-art cosmetic dentistry, Invisalign®, dental implants, and micro-endodontics in a serene, fear-free clinic environment.
-            </motion.p>
-
-            {/* Key Value Bullets */}
-            <motion.div variants={staggerItemUp} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-left max-w-xl mx-auto lg:mx-0">
-              <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
-                <span>Zero-Pain Dentistry</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
-                <span>Free 3D iTero® Scan</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-700">
-                <CheckCircle2 className="w-4 h-4 text-[#2E5B5B] shrink-0" />
-                <span>0% Interest EMI</span>
-              </div>
-            </motion.div>
-
-            {/* Action Buttons: Book, Call, WhatsApp */}
-            <motion.div variants={staggerItemUp} className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-              <motion.button
-                {...buttonHover}
-                onClick={onOpenBooking}
-                id="hero-book-consultation-btn"
-                className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-[#2E5B5B]/20 border border-teal-400/30 flex items-center justify-center space-x-2 cursor-pointer"
-              >
-                <Calendar className="w-5 h-5 text-teal-200" />
-                <span>Book Appointment</span>
-                <ChevronRight className="w-4 h-4 ml-0.5" />
-              </motion.button>
-
-              <motion.a
-                {...buttonHover}
-                href={`tel:${phoneFormatted}`}
-                id="hero-phone-call-btn"
-                className="bg-white hover:bg-teal-50/60 text-[#2E5B5B] border border-[#2E5B5B] font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl shadow-2xs hover:shadow flex items-center justify-center space-x-2"
-              >
-                <Phone className="w-4 h-4 text-[#2E5B5B]" />
-                <span>Call Now</span>
-              </motion.a>
-
-              <motion.a
-                {...buttonHover}
-                href={`https://wa.me/${whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="hero-whatsapp-btn"
-                className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl shadow-2xs hover:shadow flex items-center justify-center space-x-2"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Quick Service Selection Bar */}
-            <motion.div variants={staggerItemUp} className="pt-2 max-w-xl mx-auto lg:mx-0">
-              <form
-                onSubmit={handleQuickBook}
-                className="bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-teal-200/80 shadow-lg shadow-teal-900/5 flex flex-col sm:flex-row items-center gap-2.5"
-              >
-                <div className="w-full sm:w-auto flex-1 text-left">
-                  <label htmlFor="hero-quick-service" className="block text-[10px] font-extrabold text-[#2E5B5B] uppercase tracking-wider mb-0.5">
-                    Select Preferred Treatment
-                  </label>
-                  <select
-                    id="hero-quick-service"
-                    value={selectedQuickService}
-                    onChange={(e) => setSelectedQuickService(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#2E5B5B] focus:outline-none"
-                  >
-                    {TREATMENTS.map((t) => (
-                      <option key={t.id} value={t.id}>
-                        {t.title} ({t.startingPrice})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <motion.button
-                  {...buttonHover}
-                  type="submit"
-                  id="hero-quick-submit-btn"
-                  className="w-full sm:w-auto bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-teal-200" />
-                  <span>Reserve Slot</span>
-                </motion.button>
-              </form>
-            </motion.div>
 
           </motion.div>
 
-          {/* Right Column: Doctor Image Hero Banner with Soft Parallax */}
-          <motion.div
-            initial={{ opacity: 0, x: 80, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            style={{
-              transform: `translate3d(${mousePos.x * 12}px, ${mousePos.y * 12}px, 0px)`
-            }}
-            className="lg:col-span-5 relative transition-transform duration-300 ease-out"
-          >
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Main Headline */}
+          <motion.h1 variants={staggerItemUp} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight leading-[1.12]">
+            World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-teal-300 to-teal-100">Dental Care</span> By Dr. Sheekha Shah
+          </motion.h1>
 
-              {/* Main Visual Image Frame with CEO BG.png */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-b from-[#395B5C] via-[#2D4A4B] to-[#1E3435] group">
-                <img
-                  src={ceoBgImg}
-                  alt="Dr. Sheekha Shah - DENTAL STUDIO Surgeon"
-                  className="w-full h-[460px] sm:h-[500px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  loading="eager"
-                />
+          {/* Subtitle */}
+          <motion.p variants={staggerItemUp} className="text-base sm:text-lg text-slate-200 font-medium leading-relaxed">
+            Experience gentle, state-of-the-art cosmetic dentistry, Invisalign®, dental implants, and micro-endodontics in a serene, fear-free clinic environment.
+          </motion.p>
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#112324]/90 via-transparent to-transparent pointer-events-none"></div>
-
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <div className="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 text-xs flex items-center justify-between shadow-lg">
-                    <div>
-                      <span className="font-extrabold block text-sm text-white">Dr. Sheekha Shah</span>
-                      <span className="text-teal-200 text-[11px] font-semibold">Founder & Lead Cosmetic Surgeon</span>
-                    </div>
-                    <span className="bg-[#2E5B5B] text-white font-extrabold px-2.5 py-1 rounded-lg text-[10px] uppercase tracking-wider shadow-2xs border border-teal-400/30">
-                      Available Today
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Badge 1: Top Doctor Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-4 -left-3 sm:-top-5 sm:-left-5 bg-white rounded-2xl p-2.5 sm:p-3 shadow-xl border border-teal-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
-              >
-                <img
-                  src={ceo2Img}
-                  alt="Dr. Sheekha Shah Profile"
-                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#2E5B5B]"
-                />
-                <div>
-                  <span className="text-xs font-extrabold text-slate-800 block">16+ Years Experience</span>
-                  <span className="text-[10px] text-[#2E5B5B] font-extrabold block">12,500+ Happy Patients</span>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2: Lifetime Warranty */}
-              <motion.div
-                initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 bg-white rounded-2xl p-2.5 sm:p-3.5 shadow-xl border border-teal-100 flex items-center space-x-2.5 sm:space-x-3 z-20"
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-50 flex items-center justify-center text-[#2E5B5B] shrink-0">
-                  <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#2E5B5B]" />
-                </div>
-                <div>
-                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 block font-heading leading-tight">Lifetime Warranty</span>
-                  <span className="text-[10px] font-bold text-slate-500 block">On Crowns & Implants</span>
-                </div>
-              </motion.div>
-
+          {/* Key Value Bullets */}
+          <motion.div variants={staggerItemUp} className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-left">
+            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+              <span>Zero-Pain Dentistry</span>
+            </div>
+            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+              <span>Free 3D iTero® Scan</span>
+            </div>
+            <div className="flex items-center space-x-2 text-xs sm:text-sm font-bold text-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+              <span>0% Interest EMI</span>
             </div>
           </motion.div>
 
-        </div>
+          {/* Action Buttons: Book, Call, WhatsApp */}
+          <motion.div variants={staggerItemUp} className="pt-4 flex flex-wrap items-center justify-center md:justify-start gap-3">
+            <motion.a
+              {...buttonHover}
+              href="https://wa.me/919924083567?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio%2C%0A%0AI%20would%20like%20to%20book%20an%20appointment.%0A%0AThis%20is%20a%20demo%20website%20for%20your%20clinic.%20Kindly%20let%20me%20know%20the%20available%20appointment%20slots.%0A%0AThank%20you."
+              target="_blank"
+              rel="noopener noreferrer"
+              id="hero-book-consultation-btn"
+              className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg shadow-[#2E5B5B]/30 border border-teal-400/30 flex items-center justify-center space-x-2 cursor-pointer"
+            >
+              <Calendar className="w-5 h-5 text-teal-200" />
+              <span>Book Appointment</span>
+              <ChevronRight className="w-4 h-4 ml-0.5" />
+            </motion.a>
+
+            <motion.a
+              {...buttonHover}
+              href={`tel:${phoneFormatted}`}
+              id="hero-phone-call-btn"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold text-sm sm:text-base px-5 py-3.5 rounded-xl shadow-2xs hover:shadow flex items-center justify-center space-x-2"
+            >
+              <Phone className="w-4 h-4 text-white" />
+              <span>Call Now</span>
+            </motion.a>
+          </motion.div>
+
+          {/* Quick Service Selection Bar */}
+          <motion.div variants={staggerItemUp} className="pt-4">
+            <form
+              onSubmit={handleQuickBook}
+              className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-lg flex flex-col sm:flex-row items-center gap-2.5"
+            >
+              <div className="w-full sm:w-auto flex-1 text-left">
+                <label htmlFor="hero-quick-service" className="block text-[10px] font-extrabold text-teal-200 uppercase tracking-wider mb-0.5">
+                  Select Preferred Treatment
+                </label>
+                <select
+                  id="hero-quick-service"
+                  value={selectedQuickService}
+                  onChange={(e) => setSelectedQuickService(e.target.value)}
+                  className="w-full bg-white/80 border border-white/30 text-slate-800 text-xs sm:text-sm font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-400 focus:outline-none"
+                >
+                  {TREATMENTS.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.title} ({t.startingPrice})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <motion.button
+                {...buttonHover}
+                type="submit"
+                id="hero-quick-submit-btn"
+                className="w-full sm:w-auto bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow flex items-center justify-center space-x-1.5 whitespace-nowrap cursor-pointer"
+              >
+                <Sparkles className="w-4 h-4 text-teal-200" />
+                <span>Reserve Slot</span>
+              </motion.button>
+            </form>
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   );
 };
-

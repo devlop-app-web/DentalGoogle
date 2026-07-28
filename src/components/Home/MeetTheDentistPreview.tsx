@@ -31,11 +31,11 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
       <div className="absolute top-1/2 right-0 w-80 h-80 bg-cyan-100/40 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
-          
+
           {/* Left Column: Doctor Photo Frame */}
-          <motion.div 
+          <motion.div
             variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
@@ -89,7 +89,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
           </motion.div>
 
           {/* Right Column: Information */}
-          <motion.div 
+          <motion.div
             variants={fadeInRight}
             initial="hidden"
             whileInView="visible"
@@ -141,7 +141,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
                 <span>Book Consultation With Dr. Shah</span>
               </motion.button>
 
-              <motion.button
+              {/* <motion.button
                 {...buttonHover}
                 onClick={() => setShowProfileModal(true)}
                 id="meet-dentist-profile-btn"
@@ -149,7 +149,7 @@ export const MeetTheDentistPreview: React.FC<MeetTheDentistPreviewProps> = ({ on
               >
                 <span>Read Full Profile</span>
                 <ChevronRight className="w-4 h-4 text-[#0B4F6C]" />
-              </motion.button>
+              </motion.button> */}
             </div>
 
           </motion.div>
