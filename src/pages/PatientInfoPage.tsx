@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { CLINIC_INFO } from '../data/homeData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { PageBanner } from '../components/ui/PageBanner';
 import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
 
 interface PatientInfoPageProps {
@@ -62,86 +63,33 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
   // State for Section 7: Treatment Preparation active tab
   const [activePrepTab, setActivePrepTab] = useState<'general' | 'veneers' | 'implants' | 'sedation' | 'aligners'>('general');
 
-  // State for Section 8: Aftercare Instructions active category
+  // State for Section 7: Aftercare Instructions active category
   const [activeAftercareTab, setActiveAftercareTab] = useState<'veneers' | 'implants' | 'whitening' | 'ortho'>('veneers');
 
-  // State for Section 9: Downloadable Patient Forms preview modal
-  const [downloadingForm, setDownloadingForm] = useState<string | null>(null);
-  const [downloadSuccessToast, setDownloadSuccessToast] = useState<string | null>(null);
-
-  // State for Section 10: Frequently Asked Questions accordion & search
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const [faqSearchQuery, setFaqSearchQuery] = useState<string>('');
-
-  const triggerFormDownload = (formTitle: string) => {
-    setDownloadingForm(formTitle);
-    setTimeout(() => {
-      setDownloadingForm(null);
-      setDownloadSuccessToast(`"${formTitle}" downloaded successfully!`);
-      setTimeout(() => setDownloadSuccessToast(null), 3500);
-    }, 1200);
-  };
-
-  // FAQs Data
-  const faqList = [
-    {
-      q: "How long does the initial consultation and first visit take?",
-      a: "The first visit typically takes 45 to 60 minutes. This includes digital health intake, 3D iTero® intraoral scanning, low-dose HD digital X-rays, and a dedicated 1-on-1 diagnostic consultation with Dr. Sheekha Shah."
-    },
-    {
-      q: "What if I have severe dental anxiety or fear of needles?",
-      a: "We specialize in anxiety-free dentistry. We offer computerized painless anesthesia (The Wand®), noise-canceling entertainment headphones, and certified Nitrous Oxide (laughing gas) or conscious sedation options in our luxury private suites."
-    },
-    {
-      q: "How do you assist international patients traveling for dental care?",
-      a: "Our Dental Tourism Concierge coordinates your treatment schedule in advance, assists with hotel bookings near our studio, provides airport transfers for major treatments, and guarantees expedited lab turnarounds within 3 to 7 days."
-    },
-    {
-      q: "Will my dental insurance cover treatments at Dr. Sheekha Shah Dental Studio?",
-      a: "We provide itemized superbills, ADA procedure coding, diagnostic radiographs, and doctor statements to help you file directly with your medical or dental insurance provider for maximum reimbursement."
-    },
-    {
-      q: "What is your appointment rescheduling policy?",
-      a: "We request at least 24 hours' notice for appointment changes. You can effortlessly reschedule via WhatsApp, our online portal, or by calling our concierge line at zero penalty."
-    },
-    {
-      q: "What payment options and financing plans are available?",
-      a: "We accept all major credit/debit cards, direct bank wire transfers, and offer 0% interest monthly EMI installment plans to spread treatment costs comfortably."
-    }
-  ];
-
-  const filteredFaqs = faqList.filter(
-    item => item.q.toLowerCase().includes(faqSearchQuery.toLowerCase()) || item.a.toLowerCase().includes(faqSearchQuery.toLowerCase())
-  );
-
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="PATIENT INFORMATION"
+        title="Patient Information"
+        subtitle="Everything you need to know about your first visit, insurance, payment options, and patient care guidelines."
+        breadcrumb="Patient Information"
+      />
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
         
-        {/* Breadcrumb Navigation & Quick Jump Pills */}
+        {/* Quick Jump Pills */}
         <div className="space-y-4">
-          <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-            <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-800 font-bold">Patient Information</span>
-          </nav>
 
           {/* Quick Jump Section Bar */}
           <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
             <span className="text-slate-400 uppercase tracking-wider shrink-0 text-[10px] font-bold">Jump to:</span>
             {[
-              { id: 'sec-welcome', label: '1. Welcome' },
-              { id: 'sec-firstvisit', label: '2. First Visit' },
-              { id: 'sec-appointment', label: '3. Appointments' },
-              { id: 'sec-whattobring', label: '4. What to Bring' },
-              { id: 'sec-comfort', label: '5. Patient Comfort' },
-              { id: 'sec-payment', label: '6. Payment' },
-              { id: 'sec-prep', label: '7. Preparation' },
-              { id: 'sec-aftercare', label: '8. Aftercare' },
-              { id: 'sec-forms', label: '9. Forms' },
-              { id: 'sec-faq', label: '10. FAQ' },
-              { id: 'sec-emergency', label: '11. Emergency' },
-              { id: 'sec-book', label: '12. Book Visit' },
+              { id: 'sec-firstvisit', label: '1. First Visit' },
+              { id: 'sec-whattobring', label: '2. What to Bring' },
+              { id: 'sec-comfort', label: '3. Patient Comfort' },
+              { id: 'sec-payment', label: '4. Payment' },
+              { id: 'sec-prep', label: '5. Preparation' },
+              { id: 'sec-aftercare', label: '6. Aftercare' },
+              { id: 'sec-book', label: '7. Book Visit' },
             ].map((pill) => (
               <a
                 key={pill.id}
@@ -154,115 +102,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
           </div>
         </div>
 
-        {/* ==========================================
-            SECTION 1: NEW PATIENT WELCOME
-           ========================================== */}
-        <section id="sec-welcome" className="scroll-mt-24 space-y-8">
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={VIEWPORT_CONFIG}
-            className="bg-gradient-to-r from-[#1A3848] via-[#0B4F6C] to-[#125D7F] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden"
-          >
-            {/* Background Decorative Graphic Accent */}
-            <div className="absolute -right-16 -top-16 w-80 h-80 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="relative z-10 max-w-4xl space-y-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 bg-teal-400/15 border border-teal-300/30 text-teal-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-                  Section 1: New Patient Welcome
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-white/10 text-cyan-100 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  <Globe className="w-3.5 h-3.5 text-teal-300" />
-                  NABH & ISO 9001:2015 Accredited
-                </span>
-              </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-                Welcome to Dr. Sheekha Shah DENTAL STUDIO
-              </h1>
-
-              <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-3xl">
-                Whether you reside locally or are traveling internationally for world-class cosmetic and implant dentistry, we welcome you to an elevated standard of dental healthcare defined by clinical precision, 3D technology, and genuine human warmth.
-              </p>
-
-              {/* Key Welcome Metrics / Accreditation Highlights */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 text-xs">
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-lg block">100%</span>
-                  <span className="text-slate-300">Painless Anesthesia Protocol</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-lg block">4 Languages</span>
-                  <span className="text-slate-300">English, Hindi, Gujarati, Marathi</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-lg block">3D iTero®</span>
-                  <span className="text-slate-300">Zero Impression Trays</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-lg block">VIP Lounge</span>
-                  <span className="text-slate-300">Private Consultation Suites</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Local vs International Patient Welcome Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-md hover:shadow-lg transition-all space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center text-[#0B4F6C]">
-                  <Smile className="w-6 h-6" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold font-heading text-slate-800">For Local Patients</h2>
-                  <p className="text-xs text-slate-500">Convenient, regular & preventive care</p>
-                </div>
-              </div>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                Enjoy hassle-free online booking, zero waiting room delays, flexible evening/weekend appointment slots, and a gentle personalized care plan for your entire family.
-              </p>
-              <ul className="space-y-2 text-xs text-slate-700 font-medium pt-2 border-t border-slate-100">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  Guaranteed zero waiting time with reserved time slots
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  Automated appointment reminders via SMS & WhatsApp
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-md hover:shadow-lg transition-all space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center text-teal-600">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold font-heading text-slate-800">For International & Dental Travel Guests</h2>
-                  <p className="text-xs text-slate-500">Dedicated concierge & fast-track care</p>
-                </div>
-              </div>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                Experience luxury medical tourism with virtual video pre-consultations, expedited 3-to-7 day ceramic lab turnarounds, hotel partner recommendations, and airport transportation coordination.
-              </p>
-              <ul className="space-y-2 text-xs text-slate-700 font-medium pt-2 border-t border-slate-100">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                  Pre-travel virtual smile design & photo evaluation
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
-                  Priority full-arch & veneer lab fabrication in 3–5 days
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
 
 
         {/* ==========================================
@@ -271,7 +111,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
         <section id="sec-firstvisit" className="scroll-mt-24 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
             <div>
-              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
+              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 1</span>
               <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
                 First Visit Process
               </h2>
@@ -357,79 +197,13 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
         </section>
 
 
-        {/* ==========================================
-            SECTION 3: APPOINTMENT PROCESS
-           ========================================== */}
-        <section id="sec-appointment" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 3</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Appointment Process & Concierge Booking
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Flexible scheduling designed around your busy lifestyle.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-md space-y-4">
-              <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-[#0B4F6C] flex items-center justify-center">
-                <Calendar className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-800">1. Instant Online Calendar</h3>
-              <p className="text-slate-600 text-xs leading-relaxed">
-                Choose your preferred date, time slot, and specialist directly through our live 24/7 web booking portal with instant SMS confirmation.
-              </p>
-              <button
-                onClick={onOpenBooking}
-                className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2"
-              >
-                <span>Book Slot Online</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            <div className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-md space-y-4">
-              <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
-                <MessageSquare className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-800">2. WhatsApp & Phone Booking</h3>
-              <p className="text-slate-600 text-xs leading-relaxed">
-                Prefer personal coordination? Connect directly with our treatment manager via WhatsApp for fast custom scheduling and questions.
-              </p>
-              <a
-                href="https://wa.me/919876543210?text=Hello%20Dr.%20Sheekha%20Shah%20Dental%20Studio,%20I%20would%20like%20to%20book%20an%20appointment."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2"
-              >
-                <MessageSquare className="w-3.5 h-3.5" />
-                <span>Chat on WhatsApp</span>
-              </a>
-            </div>
-
-            <div className="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-md space-y-4">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                <Clock className="w-5 h-5" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-800">3. Easy Rescheduling Policy</h3>
-              <p className="text-slate-600 text-xs leading-relaxed">
-                We understand schedules change. Adjust or modify your appointment up to 24 hours in advance with zero penalty fees.
-              </p>
-              <div className="bg-slate-50 p-3 rounded-xl text-[11px] text-slate-600 font-medium">
-                ⏱️ Smart reminders sent 48h & 2h before your visit.
-              </div>
-            </div>
-          </div>
-        </section>
-
 
         {/* ==========================================
             SECTION 4: WHAT TO BRING
            ========================================== */}
         <section id="sec-whattobring" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 4</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               What to Bring
             </h2>
@@ -504,7 +278,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
            ========================================== */}
         <section id="sec-comfort" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 5</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 3</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Patient Comfort & Luxury Amenities
             </h2>
@@ -577,7 +351,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
            ========================================== */}
         <section id="sec-payment" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 6</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 4</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Payment Options & Financial Guidance
             </h2>
@@ -643,7 +417,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
            ========================================== */}
         <section id="sec-prep" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 7</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 5</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Treatment Preparation Guidelines
             </h2>
@@ -741,7 +515,7 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
            ========================================== */}
         <section id="sec-aftercare" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 8</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 6</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Aftercare Instructions & Recovery Guides
             </h2>
@@ -847,250 +621,14 @@ export const PatientInfoPage: React.FC<PatientInfoPageProps> = ({ onOpenBooking,
 
 
         {/* ==========================================
-            SECTION 9: DOWNLOADABLE PATIENT FORMS
-           ========================================== */}
-        <section id="sec-forms" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 9</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Downloadable Patient Forms
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Download and complete these forms prior to your first visit to save time at check-in.
-            </p>
-          </div>
-
-          {/* Download Success Toast Notification */}
-          <AnimatePresence>
-            {downloadSuccessToast && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="bg-emerald-600 text-white p-4 rounded-2xl shadow-lg flex items-center justify-between text-xs font-bold"
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>{downloadSuccessToast}</span>
-                </div>
-                <button onClick={() => setDownloadSuccessToast(null)}><X className="w-4 h-4" /></button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "New Patient Registration Form",
-                size: "1.2 MB • PDF Format",
-                desc: "Personal contact details, preferred emergency contacts, and intake preferences."
-              },
-              {
-                title: "Medical & Dental History Form",
-                size: "850 KB • PDF Format",
-                desc: "Health history questionnaire, allergies, medications, and previous dental surgeries."
-              },
-              {
-                title: "Smile Design Goals Worksheet",
-                size: "920 KB • PDF Format",
-                desc: "Help us understand your aesthetic preferences regarding shade, shape, and smile line."
-              },
-              {
-                title: "Post-Op Surgical & Care Guide",
-                size: "1.5 MB • PDF Format",
-                desc: "Detailed dietary and medication protocols following implants, veneers, or extractions."
-              },
-              {
-                title: "Insurance Claim Consent Form",
-                size: "640 KB • PDF Format",
-                desc: "Direct authorization form required for submitting itemized superbills to insurance."
-              },
-              {
-                title: "Consent for Cosmetic Dentistry",
-                size: "780 KB • PDF Format",
-                desc: "Transparent procedural overview and informed consent form for ceramic veneers."
-              },
-            ].map((form, index) => (
-              <div key={index} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-md hover:shadow-lg transition-all space-y-4 flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-[#0B4F6C] flex items-center justify-center">
-                    <FileText className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-slate-800 font-heading">{form.title}</h3>
-                  <span className="text-[10px] font-bold text-slate-400 block">{form.size}</span>
-                  <p className="text-slate-600 text-xs leading-relaxed">{form.desc}</p>
-                </div>
-
-                <button
-                  onClick={() => triggerFormDownload(form.title)}
-                  disabled={downloadingForm === form.title}
-                  className="w-full bg-slate-900 hover:bg-[#0B4F6C] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2"
-                >
-                  {downloadingForm === form.title ? (
-                    <span>Downloading...</span>
-                  ) : (
-                    <>
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Download PDF</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 10: FREQUENTLY ASKED QUESTIONS
-           ========================================== */}
-        <section id="sec-faq" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 10</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-slate-600 text-sm mt-1">
-                Clear answers to common patient questions.
-              </p>
-            </div>
-
-            {/* Interactive Search Bar */}
-            <div className="relative w-full sm:w-72">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={faqSearchQuery}
-                onChange={(e) => setFaqSearchQuery(e.target.value)}
-                placeholder="Search FAQs..."
-                className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0B4F6C]"
-              />
-            </div>
-          </div>
-
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-md space-y-4">
-            {filteredFaqs.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-6">
-                No matching questions found for "{faqSearchQuery}". Try another keyword or call our team!
-              </p>
-            ) : (
-              filteredFaqs.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
-                return (
-                  <div key={idx} className="border border-slate-200/80 rounded-2xl overflow-hidden transition-all">
-                    <button
-                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                      className="w-full bg-slate-50 hover:bg-slate-100 p-4 text-left flex items-center justify-between gap-3 text-slate-800 font-bold text-xs sm:text-sm"
-                    >
-                      <span className="flex items-center gap-2">
-                        <HelpCircle className="w-4 h-4 text-[#0B4F6C] shrink-0" />
-                        {faq.q}
-                      </span>
-                      {isOpen ? <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />}
-                    </button>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="bg-white p-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100"
-                        >
-                          {faq.a}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })
-            )}
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 11: EMERGENCY INFORMATION
-           ========================================== */}
-        <section id="sec-emergency" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-rose-600 uppercase tracking-widest">Section 11</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Emergency Information & Urgent Care
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Immediate first-aid steps and priority same-day emergency appointments.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-r from-rose-950 via-rose-900 to-slate-900 text-white rounded-3xl p-8 shadow-xl space-y-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-rose-800/60 pb-6">
-              <div className="space-y-2">
-                <span className="inline-flex items-center gap-1.5 bg-rose-500/20 text-rose-300 text-[10px] font-black uppercase px-3 py-1 rounded-full border border-rose-500/30">
-                  <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-                  Same-Day Emergency Guarantee
-                </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-white">
-                  Severe Toothache or Dental Trauma?
-                </h3>
-                <p className="text-xs text-rose-100 max-w-xl">
-                  We reserve daily emergency appointment slots for acute pain, broken teeth, lost crowns, or facial swelling.
-                </p>
-              </div>
-
-              <a
-                href="tel:+919876543210"
-                className="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0"
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>Call Emergency Hotline: +91 98765 43210</span>
-              </a>
-            </div>
-
-            {/* First-Aid Emergency Guide Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-rose-100">
-              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2">
-                <span className="font-bold text-white text-sm block">1. Knocked-Out Tooth</span>
-                <p className="text-[11px] leading-relaxed text-slate-300">
-                  Touch crown only. Do not scrub root. Submerge in milk or saline and reach our clinic within 60 minutes.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2">
-                <span className="font-bold text-white text-sm block">2. Severe Toothache</span>
-                <p className="text-[11px] leading-relaxed text-slate-300">
-                  Rinse mouth with warm salt water. Floss gently to clear food debris. Never place aspirin directly against gums.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2">
-                <span className="font-bold text-white text-sm block">3. Broken Crown / Veneer</span>
-                <p className="text-[11px] leading-relaxed text-slate-300">
-                  Save any broken pieces. Cover sharp tooth edges with dental wax or temporary sugar-free gum.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2">
-                <span className="font-bold text-white text-sm block">4. Soft Tissue Bleeding</span>
-                <p className="text-[11px] leading-relaxed text-slate-300">
-                  Apply direct firm pressure with clean gauze for 15-20 minutes. Keep head elevated and contact us immediately.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 12: BOOK FIRST VISIT (CTA)
+            SECTION 8: BOOK FIRST VISIT (CTA)
            ========================================== */}
         <section id="sec-book" className="scroll-mt-24">
           <div className="bg-gradient-to-br from-[#0B4F6C] via-[#083A50] to-[#042433] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden space-y-8 border border-cyan-500/20">
             <div className="max-w-3xl space-y-4">
               <span className="inline-flex items-center gap-2 bg-teal-400/20 border border-teal-400/40 text-teal-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-                Section 12: Book Your First Visit
+                Section 7: Book Your First Visit
               </span>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">

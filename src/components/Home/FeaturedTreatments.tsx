@@ -32,7 +32,7 @@ const featuredCategories = [
     shortDescription: 'Custom porcelain veneers, smile makeovers, tooth reshaping, and aesthetic bonding for a picture-perfect smile.',
     imageUrl: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80',
     duration: '60 - 90 Mins',
-    startingPrice: '₹12,000',
+    startingPrice: '₹12,000 / tooth',
     features: ['Digital Smile Design 3D', 'Porcelain Veneers', 'Minimal Enamel Prep']
   },
   {
@@ -250,17 +250,15 @@ export const FeaturedTreatments: React.FC<FeaturedTreatmentsProps> = ({ onOpenBo
               </div>
 
               <div className="pt-2 flex gap-3">
-                <button
-                  onClick={() => {
-                    const id = activeTreatmentModal.id;
-                    setActiveTreatmentModal(null);
-                    onOpenBookingWithService(id);
-                  }}
-                  className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold py-3.5 rounded-xl shadow text-xs sm:text-sm flex items-center justify-center space-x-2"
+                <a
+                  href={`https://wa.me/919924083567?text=${encodeURIComponent(`Hello Dr. Sheekha Shah Dental Studio,\n\nI would like to book an appointment for ${activeTreatmentModal.title}.\n\nThis is a demo website for your clinic. Kindly let me know the available appointment slots.\n\nThank you.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#0B4F6C] hover:bg-[#083A50] text-white font-bold py-3.5 rounded-xl shadow text-xs sm:text-sm flex items-center justify-center space-x-2 cursor-pointer transition-colors"
                 >
                   <Calendar className="w-4 h-4 text-cyan-300" />
                   <span>Book Appointment Now</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>

@@ -8,6 +8,8 @@ import { PageWrapper } from '../components/ui/PageWrapper';
 import clinicImg from '@/public/assets/Image/Clinic.jpeg';
 import { buttonHover, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
 
+import { PageBanner } from '../components/ui/PageBanner';
+
 interface TreatmentsPageProps {
   onOpenBooking: () => void;
 }
@@ -22,52 +24,28 @@ export const TreatmentsPage: React.FC<TreatmentsPageProps> = ({ onOpenBooking })
   );
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="TREATMENTS"
+        title="Our Treatments"
+        subtitle="Explore our complete range of general, cosmetic, restorative, and surgical dental treatments offered at Dr. Sheekha Shah DENTAL STUDIO."
+        breadcrumb="Treatments"
+      />
+      <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
 
-        {/* Breadcrumb Navigation */}
-        <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#2E5B5B] transition-colors">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-bold">Treatments Hub</span>
-        </nav>
-
-        {/* Page Hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-gradient-to-r from-[#2E5B5B] via-[#204242] to-[#183333] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl"
-        >
-          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-[#599E9D]/20 rounded-full blur-3xl pointer-events-none"></div>
-
-          <div className="max-w-3xl space-y-4 relative z-10">
-            <span className="inline-flex items-center gap-2 bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-              Specialized Care Directory
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-              Advanced Dental Treatments & Procedures
-            </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-              Explore our complete range of general, cosmetic, restorative, and surgical dental treatments offered at Dr. Sheekha Shah DENTAL STUDIO.
-            </p>
-
-            {/* Quick Search Bar */}
-            <div className="pt-4 max-w-xl">
-              <div className="relative">
-                <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="Search treatments (e.g., Veneers, Root Canal, Aligners, Implants)..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#2E5B5B]/30 shadow-lg border border-white/20"
-                />
-              </div>
-            </div>
+        {/* Quick Search Bar */}
+        <div className="max-w-xl mx-auto">
+          <div className="relative">
+            <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search treatments (e.g., Veneers, Root Canal, Aligners, Implants)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-[#2E5B5B]/30 shadow-md border border-slate-200"
+            />
           </div>
-        </motion.div>
+        </div>
 
         {/* Real Studio Asset Feature Section */}
         <motion.div

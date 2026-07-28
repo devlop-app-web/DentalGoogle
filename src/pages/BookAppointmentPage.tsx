@@ -45,6 +45,7 @@ import {
 import { CLINIC_INFO, TREATMENTS } from '../data/homeData';
 import { TREATMENT_CATEGORIES } from '../data/treatmentsData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { PageBanner } from '../components/ui/PageBanner';
 import { fadeInUp, VIEWPORT_CONFIG } from '../lib/motion';
 
 export const BookAppointmentPage: React.FC = () => {
@@ -284,16 +285,17 @@ export const BookAppointmentPage: React.FC = () => {
   const chosenDoctorObj = DOCTORS.find(d => d.id === selectedDoctor) || DOCTORS[0];
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="BOOK APPOINTMENT"
+        title="Book An Appointment"
+        subtitle="Schedule your consultation with Dr. Sheekha Shah and experience gentle, stress-free dental care."
+        breadcrumb="Book Appointment"
+      />
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
 
         {/* Quick Jump Navigation Bar */}
         <div className="space-y-4">
-          <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-            <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-800 font-bold">Book Appointment</span>
-          </nav>
 
           <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
             <span className="text-slate-400 uppercase tracking-wider shrink-0 text-[10px] font-bold">Quick Jump:</span>

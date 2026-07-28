@@ -9,7 +9,7 @@ interface QuickAppointmentActionsProps {
 }
 
 export const QuickAppointmentActions: React.FC<QuickAppointmentActionsProps> = ({ onOpenBooking }) => {
-  const whatsappNumber = CLINIC_INFO.whatsapp || '919825000000';
+  const whatsappNumber = CLINIC_INFO.whatsapp || '919924083567';
   const phoneFormatted = CLINIC_INFO.phone.replace(/[^0-9+]/g, '');
 
   const actionCards = [

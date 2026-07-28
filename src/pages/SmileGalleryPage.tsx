@@ -23,6 +23,7 @@ import {
   Building
 } from 'lucide-react';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { PageBanner } from '../components/ui/PageBanner';
 import { BeforeAfterSlider } from '../components/ui/BeforeAfterSlider';
 import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
 import { generateDentalMacroImage } from '../utils/dentalImages';
@@ -243,98 +244,16 @@ export const SmileGalleryPage: React.FC<SmileGalleryPageProps> = ({ onOpenBookin
     : allCases.filter(c => c.category === selectedCategory);
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="SMILE GALLERY"
+        title="Smile Gallery"
+        subtitle="Real smile transformations, before & after case studies, and clinical results achieved at Dr. Sheekha Shah DENTAL STUDIO."
+        breadcrumb="Smile Gallery"
+      />
+      <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-20">
 
-        {/* Breadcrumb Navigation */}
-        <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#2E5B5B] transition-colors">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-bold">Smile Gallery</span>
-        </nav>
 
-        {/* ==========================================
-            1. GALLERY HERO
-        ========================================== */}
-        <section id="gallery-hero">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-gradient-to-r from-[#2E5B5B] via-[#204242] to-[#152929] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-teal-400/20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-          >
-            {/* Ambient Lighting Accents */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/15 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="lg:col-span-8 space-y-6 relative z-10">
-              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-teal-300/30 text-teal-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-                International Dental Clinic Gallery
-              </span>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.15] tracking-tight">
-                Real Patient Smiles. <br className="hidden sm:inline" />
-                <span className="text-teal-300">Exceptional Artistry.</span>
-              </h1>
-
-              <p className="text-teal-100/90 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                Explore documented before and after transformations handcrafted by <strong className="text-white font-semibold">Dr. Sheekha Shah</strong> at DENTAL STUDIO. Every smile is custom designed using 3D intraoral scans, digital smile architecture, and zero-pain micro-dentistry.
-              </p>
-
-              {/* Stats Row */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
-                  <span className="text-2xl font-extrabold text-cyan-300 block">10,000+</span>
-                  <span className="text-[11px] text-slate-200">Smiles Restored</span>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
-                  <span className="text-2xl font-extrabold text-cyan-300 block">99.4%</span>
-                  <span className="text-[11px] text-slate-200">Implant Success</span>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
-                  <span className="text-2xl font-extrabold text-cyan-300 block">100%</span>
-                  <span className="text-[11px] text-slate-200">3D Digital Design</span>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15">
-                  <span className="text-2xl font-extrabold text-cyan-300 block">16+ Yrs</span>
-                  <span className="text-[11px] text-slate-200">Mastery</span>
-                </div>
-              </div>
-
-              {/* CTA Row */}
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <motion.button
-                  onClick={onOpenBooking}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center space-x-2 cursor-pointer"
-                  id="hero-book-btn"
-                >
-                  <Calendar className="w-4 h-4 text-[#0B4F6C]" />
-                  <span>Book Free 3D Smile Scan</span>
-                </motion.button>
-              </div>
-            </div>
-
-            {/* Hero Image Badge Showcase */}
-            <div className="lg:col-span-4 relative hidden lg:flex justify-center">
-              <div className="rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-slate-900/80 p-4 space-y-4 text-white text-center">
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300">
-                  <Award className="w-8 h-8" />
-                </div>
-                <div>
-                  <h3 className="text-base font-bold font-heading">ISO 9001:2015 Accredited</h3>
-                  <p className="text-xs text-cyan-200 mt-1">Verified patient photo consent documentation on file.</p>
-                </div>
-                <div className="pt-2 border-t border-white/15 flex items-center justify-center space-x-2 text-xs font-semibold text-emerald-300">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>100% Genuine Clinical Cases</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
 
         {/* ==========================================
             2. TREATMENT CATEGORY FILTERS

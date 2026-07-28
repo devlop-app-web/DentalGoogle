@@ -50,6 +50,7 @@ import {
 import { CLINIC_INFO } from '../data/homeData';
 import { TREATMENT_CATEGORIES } from '../data/treatmentsData';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { PageBanner } from '../components/ui/PageBanner';
 import { fadeInUp, VIEWPORT_CONFIG } from '../lib/motion';
 
 interface ContactPageProps {
@@ -291,16 +292,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenBooking }) => {
   const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(CLINIC_INFO.address)}`;
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="CONTACT US"
+        title="Contact Us"
+        subtitle="Get in touch with our dental care team for enquiries, consultations, emergency appointments, or clinic location details."
+        breadcrumb="Contact Us"
+      />
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
 
-        {/* Breadcrumbs & Quick Jump Links Bar */}
+        {/* Quick Jump Links Bar */}
         <div className="space-y-4">
-          <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-            <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-800 font-bold">Contact & Clinical Enquiry Desk</span>
-          </nav>
 
           {/* Jump Section Bar */}
           <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
@@ -331,61 +333,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenBooking }) => {
         </div>
 
 
-        {/* ==========================================
-            SECTION 1: CONTACT HERO
-           ========================================== */}
-        <section id="sec-hero" className="scroll-mt-24 space-y-6">
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={VIEWPORT_CONFIG}
-            className="bg-gradient-to-r from-[#1A3848] via-[#0B4F6C] to-[#125D7F] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute -right-16 -top-16 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 max-w-4xl space-y-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 bg-teal-400/15 border border-teal-300/30 text-teal-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-                  Section 1: Unified Contact & Clinical Enquiry Desk
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-white/10 text-cyan-100 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  <Globe className="w-3.5 h-3.5 text-teal-300" />
-                  Serving Patients from 24+ Countries
-                </span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-                Contact Dr. Sheekha Shah DENTAL STUDIO
-              </h1>
-
-              <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-3xl">
-                Welcome to our single, unified patient communications desk. Whether you are submitting a general enquiry, scheduling a consultation, requesting a second opinion, or seeking 24/7 emergency trauma care, our clinical concierge team is ready to assist.
-              </p>
-
-              {/* Key Quick Highlight Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 text-xs font-medium">
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-xl block">15+ Years</span>
-                  <span className="text-slate-300">Clinical Mastery</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-xl block">24/7 Desk</span>
-                  <span className="text-slate-300">Emergency & Tourism</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-xl block">100% Pain-Free</span>
-                  <span className="text-slate-300">Microscopic Care</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-xl block">4.9 ★★★★★</span>
-                  <span className="text-slate-300">Google Verified Rating</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
 
 
         {/* ==========================================

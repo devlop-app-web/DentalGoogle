@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Sparkles, CheckCircle, HelpCircle, ArrowRight, ArrowLeft,
-  Calendar, Phone, Cpu, Activity, UserCheck, Shield, ChevronRight,
-  Eye, X, Clock, ShieldCheck, MessageCircle
+  CheckCircle, HelpCircle, ArrowRight, ArrowLeft,
+  Calendar, Activity, UserCheck, Shield, ChevronRight,
+  Eye, X, Clock, ShieldCheck, Phone
 } from 'lucide-react';
 import { TREATMENT_CATEGORIES, getCategoryBySlug, TreatmentSubcategory } from '../data/treatmentsData';
 import { CLINIC_INFO } from '../data/homeData';
 import { PageWrapper } from '../components/ui/PageWrapper';
-import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
+
+import { PageBanner } from '../components/ui/PageBanner';
 
 interface TreatmentCategoryPageProps {
   onOpenBooking: () => void;
@@ -57,59 +58,14 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
   const whatsappUrl = `https://wa.me/${phoneClean}?text=${encodeURIComponent(`Hello, I am interested in ${selectedQuickViewSub?.title || category.title} treatment.`)}`;
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-12">
-
-        {/* Breadcrumb Navigation */}
-        <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#2E5B5B] transition-colors">Home</Link>
-          <span>/</span>
-          <Link to="/treatments" className="hover:text-[#2E5B5B] transition-colors">Treatments</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-bold">{category.title}</span>
-        </nav>
-
-        {/* Category Hero Banner */}
-        <div className="bg-gradient-to-r from-[#2E5B5B] via-[#204242] to-[#183333] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-8 space-y-4 relative z-10">
-            <span className="bg-teal-400/10 border border-teal-400/30 text-teal-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-              Specialized Dental Service
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-              {category.title}
-            </h1>
-            <p className="text-slate-200 text-base sm:text-lg leading-relaxed">
-              {category.shortDesc}
-            </p>
-            <div className="pt-2 flex flex-wrap gap-3">
-              <motion.button
-                onClick={onOpenBooking}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-[#2E5B5B] hover:bg-[#204242] text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all flex items-center space-x-2 border border-teal-400/20 cursor-pointer"
-              >
-                <Calendar className="w-4 h-4 text-teal-200" />
-                <span>Book Consultation</span>
-              </motion.button>
-              <a
-                href={`tel:${phoneClean}`}
-                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors flex items-center space-x-2 backdrop-blur-sm"
-              >
-                <Phone className="w-4 h-4 text-teal-300" />
-                <span>{CLINIC_INFO.phone}</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="lg:col-span-4 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 h-60 sm:h-72 group">
-            <img
-              src={clinic2Img}
-              alt="Dr. Sheekha Shah DENTAL STUDIO Operatory"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        </div>
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="TREATMENT CATEGORY"
+        title={category.title}
+        subtitle={category.shortDesc || `Specialized ${category.title} procedures offered at Dr. Sheekha Shah DENTAL STUDIO.`}
+        breadcrumb={category.title}
+      />
+      <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
 
         {/* Category Overview & Indications */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -198,42 +154,10 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
                     className="w-full text-xs font-bold text-[#2E5B5B] hover:text-white bg-teal-50 hover:bg-[#2E5B5B] px-4 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer shadow-2xs border border-teal-200/80"
                   >
                     <Eye className="w-4 h-4 text-[#2E5B5B] group-hover:text-teal-200" />
-                    <span>Quick View</span>
+                    <span>Explore More</span>
                   </button>
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Treatment Procedure Timeline */}
-        <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-md space-y-6">
-          <h2 className="text-2xl font-bold font-heading text-slate-800">
-            Step-by-Step Treatment Procedure
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {category.procedureSteps.map((step, i) => (
-              <motion.div key={i} whileHover={{ y: -2 }} className="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 space-y-2 relative">
-                <span className="text-2xl font-black text-[#2E5B5B]/20 block">0{i + 1}</span>
-                <h3 className="text-base font-bold text-slate-800">{step.title}</h3>
-                <p className="text-slate-600 text-xs leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Technology Used */}
-        <div className="bg-[#152929] text-white rounded-3xl p-8 shadow-xl space-y-4 border border-[#244545]">
-          <h2 className="text-xl sm:text-2xl font-bold font-heading flex items-center gap-2">
-            <Cpu className="w-6 h-6 text-teal-300" />
-            Advanced Technology Used in {category.title}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-            {category.technologyUsed.map((tech, i) => (
-              <div key={i} className="bg-[#1E3A3A] backdrop-blur-md p-3.5 rounded-2xl border border-[#2C5454] flex items-center space-x-2.5">
-                <CheckCircle className="w-4 h-4 text-teal-300 shrink-0" />
-                <span className="text-xs font-semibold text-teal-100">{tech}</span>
-              </div>
             ))}
           </div>
         </div>
@@ -289,18 +213,8 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Header Badges & Title */}
+              {/* Header Title */}
               <div className="space-y-2 pr-8">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="bg-teal-50 border border-teal-200 text-[#2E5B5B] text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
-                    <Sparkles className="w-3 h-3 text-teal-400" />
-                    {category.title}
-                  </span>
-                  <span className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                    Starting From ₹1,500
-                  </span>
-                </div>
-
                 <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 leading-tight">
                   {selectedQuickViewSub.title}
                 </h2>
@@ -406,26 +320,26 @@ export const TreatmentCategoryPage: React.FC<TreatmentCategoryPageProps> = ({ on
 
               {/* CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row gap-3 border-t border-slate-100">
-                <button
-                  onClick={() => {
-                    setSelectedQuickViewSub(null);
-                    onOpenBooking();
-                  }}
-                  className="flex-1 bg-[#2E5B5B] hover:bg-[#204242] text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                <a
+                  href={`https://wa.me/919924083567?text=${encodeURIComponent(`Hello Dr. Sheekha Shah Dental Studio,\n\nI would like to book an appointment for ${selectedQuickViewSub.title}.\n\nThis is a demo website for your clinic. Kindly let me know the available appointment slots.\n\nThank you.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-[#2E5B5B] hover:bg-[#204242] text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer transition-colors"
                 >
                   <Calendar className="w-4 h-4 text-teal-200" />
                   <span>Book Appointment</span>
-                </button>
-
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Contact via WhatsApp</span>
                 </a>
+
+                <button
+                  onClick={() => {
+                    setSelectedQuickViewSub(null);
+                    navigate('/contact');
+                  }}
+                  className="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-extrabold text-xs sm:text-sm py-3.5 px-5 rounded-xl shadow-md flex items-center justify-center space-x-2 cursor-pointer transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-teal-300" />
+                  <span>Contact Us</span>
+                </button>
               </div>
             </motion.div>
           </div>

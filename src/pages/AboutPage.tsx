@@ -40,6 +40,73 @@ import clinic2Img from '@/public/assets/Image/Clinic 2.jpeg';
 import { PageWrapper } from '../components/ui/PageWrapper';
 import { AnimatedCounter } from '../components/ui/AnimatedCounter';
 import { fadeInUp, staggerContainer, staggerItemUp, VIEWPORT_CONFIG } from '../lib/motion';
+import { PageBanner } from '../components/ui/PageBanner';
+
+const specialistsData = [
+  {
+    id: "dr-sheekha-shah",
+    name: "Dr. Sheekha Shah",
+    role: "Founder & Lead Cosmetic Dentist",
+    specialities: ["Smile Makeovers", "Endodontics", "Cosmetic Dentistry"],
+    description: "Specialist in smile makeovers, micro-endodontics, and advanced cosmetic dentistry with 16+ years of clinical experience.",
+    experienceYears: 16,
+    imageUrl: ceoJpegImg
+  },
+  {
+    id: "dr-malav-parikh",
+    name: "Dr. Malav Parikh",
+    role: "Oral & Maxillofacial Surgeon",
+    specialities: ["Wisdom Tooth Surgery", "Facial Trauma", "Oral Surgery"],
+    description: "Expert in wisdom tooth surgery, facial trauma management, and complex oral surgical procedures.",
+    experienceYears: 14,
+    imageUrl: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "dr-shaily-shah",
+    name: "Dr. Shaily Shah",
+    role: "Orthodontist",
+    specialities: ["Braces", "Clear Aligners", "Teeth Alignment"],
+    description: "Specialist in braces, clear aligners, and correcting teeth alignment for all age groups.",
+    experienceYears: 11,
+    imageUrl: "https://images.unsplash.com/photo-1594824813566-78a9327a5d3f?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "dr-viral-shah",
+    name: "Dr. Viral Shah",
+    role: "Prosthodontist",
+    specialities: ["Crowns & Bridges", "Full-Mouth Rehab", "Veneers"],
+    description: "Specialist in crowns, bridges, dentures, veneers, full-mouth rehabilitation, and smile restoration.",
+    experienceYears: 15,
+    imageUrl: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "dr-jay-kothari",
+    name: "Dr. Jay Kothari",
+    role: "Endodontist",
+    specialities: ["Microscopic RCT", "Pain Management", "Tooth Preservation"],
+    description: "Expert in microscopic root canal treatment, dental pain management, and tooth preservation.",
+    experienceYears: 10,
+    imageUrl: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "dr-manini-parikh",
+    name: "Dr. Manini Parikh",
+    role: "Endodontist",
+    specialities: ["Root Canal Therapy", "Endodontics", "Preservation"],
+    description: "Specialist in advanced root canal therapy and conservative endodontic procedures.",
+    experienceYears: 9,
+    imageUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "dr-aayushi-akhani",
+    name: "Dr. Aayushi Akhani",
+    role: "Pediatric Dentist",
+    specialities: ["Pediatric Care", "Preventive Dentistry", "Kid Comfort"],
+    description: "Specialist in children's dental care, preventive dentistry, and creating a comfortable dental experience for young patients.",
+    experienceYears: 8,
+    imageUrl: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=800"
+  }
+];
 
 interface AboutPageProps {
   onOpenBooking: () => void;
@@ -86,127 +153,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
   ];
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="ABOUT US"
+        title="About Us"
+        subtitle="Discover our patient-first philosophy, world-class technology, and 16+ years of clinical excellence led by Dr. Sheekha Shah."
+        breadcrumb="About Us"
+      />
+      <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-20">
 
-        {/* Breadcrumb Navigation */}
-        <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-          <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
-          <span>/</span>
-          <span className="text-slate-800 font-bold">About Dr. Sheekha Shah & DENTAL STUDIO</span>
-        </nav>
 
-        {/* ==========================================
-            1. ABOUT HERO
-        ========================================== */}
-        <section id="about-hero" className="relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-gradient-to-r from-[#0B4F6C] via-[#09415A] to-[#073348] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden border border-cyan-500/20"
-          >
-            {/* Ambient Lighting Background Accents */}
-            <div className="absolute top-0 right-0 w-[30rem] h-[30rem] bg-cyan-400/15 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[24rem] h-[24rem] bg-teal-300/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="lg:col-span-7 space-y-6 z-10">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-cyan-300/30 text-cyan-200 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                World-Class Aesthetic & Implant Center
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white leading-[1.15] tracking-tight">
-                Redefining Dental Excellence with Precision & Compassion
-              </h1>
-
-              <p className="text-cyan-100/90 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                Welcome to <strong className="text-white font-semibold">Dr. Sheekha Shah DENTAL STUDIO</strong> — where state-of-the-art digital dentistry meets personalized aesthetic artistry. We deliver painless, transparent, and international-standard oral care engineered around your complete comfort.
-              </p>
-
-              {/* Quick Stat Badges */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-2">
-                <div className="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-cyan-300 block">
-                    <AnimatedCounter value={16} suffix="+" />
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-200 font-medium">Years Practice</span>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-cyan-300 block">
-                    <AnimatedCounter value={10000} suffix="+" />
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-200 font-medium">Smiles Restored</span>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-extrabold text-cyan-300 block">
-                    4.9<span className="text-amber-300 text-xl">★</span>
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-slate-200 font-medium">1,280+ Reviews</span>
-                </div>
-              </div>
-
-              {/* Hero CTA Action Row */}
-              <div className="pt-2 flex flex-wrap items-center gap-3.5">
-                <motion.button
-                  onClick={onOpenBooking}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white hover:bg-cyan-50 text-[#0B4F6C] font-extrabold text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all flex items-center space-x-2 cursor-pointer"
-                  id="about-hero-book-btn"
-                >
-                  <Calendar className="w-4 h-4 text-[#0B4F6C]" />
-                  <span>Schedule Consultation</span>
-                </motion.button>
-
-                <motion.button
-                  onClick={onOpenClinicTour}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm px-5 py-3.5 rounded-xl border border-white/25 transition-colors backdrop-blur-sm cursor-pointer flex items-center space-x-2"
-                  id="about-hero-tour-btn"
-                >
-                  <Building className="w-4 h-4 text-cyan-300" />
-                  <span>Virtual Studio Tour</span>
-                </motion.button>
-              </div>
-            </div>
-
-            {/* Hero Image Showcase */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 bg-gradient-to-b from-[#0B4F6C] via-[#09415A] to-[#073348] relative w-full max-w-md group"
-              >
-                <img
-                  src={ceoBgImg}
-                  alt="Dr. Sheekha Shah DENTAL STUDIO"
-                  className="w-full h-[460px] sm:h-[500px] object-contain object-bottom pt-4 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-
-                {/* Floating Badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 text-white flex items-center justify-between shadow-xl">
-                  <div className="flex items-center space-x-2.5">
-                    <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-400/40">
-                      <ShieldCheck className="w-4 h-4 text-cyan-300" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold block text-white">ISO 9001:2015 Facility</span>
-                      <span className="text-[10px] text-cyan-200">100% Sterile & Painless Tech</span>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-extrabold uppercase bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded-full border border-emerald-400/30">
-                    Verified
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </section>
 
         {/* ==========================================
             2. DR. SHEEKHA SHAH PROFILE
@@ -578,7 +534,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
         {/* ==========================================
             7. MESSAGE FROM THE DENTIST
         ========================================== */}
-        <section id="dentist-message">
+        {/* <section id="dentist-message">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -614,7 +570,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
               </div>
             </div>
           </motion.div>
-        </section>
+        </section> */}
 
         {/* ==========================================
             8. MEET THE TEAM
@@ -622,64 +578,64 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
         <section id="meet-the-team" className="space-y-8">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wider bg-cyan-50 px-3.5 py-1.5 rounded-full border border-cyan-100">
-              Clinical Specialists
+              OUR EXPERT TEAM
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-              Meet Our Dental Specialists
+              Meet Our Specialist Doctors
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed">
-              A highly trained, compassionate team dedicated to giving you an exceptional dental experience.
+              Our multidisciplinary team of experienced dental specialists works together to provide comprehensive, ethical, and patient-focused dental care under one roof.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DOCTORS.map((doc) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {specialistsData.map((doc) => (
               <motion.div
                 key={doc.id}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md flex flex-col justify-between group"
               >
-                <div className="h-64 sm:h-72 bg-slate-100 overflow-hidden relative">
-                  <img
-                    src={doc.imageUrl}
-                    alt={doc.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-full border border-white/20">
-                    {doc.experienceYears}+ Yrs Exp
+                <div>
+                  <div className="h-64 sm:h-72 bg-slate-100 overflow-hidden relative">
+                    <img
+                      src={doc.imageUrl}
+                      alt={doc.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-3 py-1 rounded-full border border-white/20">
+                      {doc.experienceYears}+ Yrs Exp
+                    </div>
+                  </div>
+
+                  <div className="p-6 space-y-3">
+                    <div>
+                      <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
+                        {doc.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#0B4F6C] mt-0.5">{doc.role}</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {doc.specialities.map((spec, idx) => (
+                        <span key={idx} className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {doc.description}
+                    </p>
                   </div>
                 </div>
 
-                <div className="p-6 space-y-4">
-                  <div>
-                    <h3 className="text-xl font-bold font-heading text-slate-900 group-hover:text-[#0B4F6C] transition-colors">
-                      {doc.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#0B4F6C] mt-0.5">{doc.role}</p>
-                    <p className="text-[11px] text-slate-500">{doc.credentials}</p>
-                  </div>
-
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                    {doc.bio}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {doc.specialties.map((spec, idx) => (
-                      <span key={idx} className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      onClick={onOpenBooking}
-                      className="w-full bg-slate-100 hover:bg-[#0B4F6C] hover:text-white text-slate-800 font-bold text-xs py-2.5 rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 cursor-pointer"
-                    >
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>Book Appointment</span>
-                    </button>
-                  </div>
+                <div className="p-6 pt-0">
+                  <button
+                    onClick={(e) => e.preventDefault()}
+                    className="w-full bg-slate-100 hover:bg-[#0B4F6C] hover:text-white text-slate-800 font-bold text-xs py-2.5 rounded-xl border border-slate-200 transition-colors flex items-center justify-center space-x-1.5 cursor-pointer"
+                  >
+                    <span>View Profile</span>
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -782,8 +738,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
               <button
                 onClick={() => setActiveTechTab('tech')}
                 className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'tech'
-                    ? 'bg-[#0B4F6C] text-white shadow-md'
-                    : 'text-slate-700 hover:text-slate-900'
+                  ? 'bg-[#0B4F6C] text-white shadow-md'
+                  : 'text-slate-700 hover:text-slate-900'
                   }`}
               >
                 Advanced Equipment
@@ -791,8 +747,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
               <button
                 onClick={() => setActiveTechTab('sterilisation')}
                 className={`px-5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${activeTechTab === 'sterilisation'
-                    ? 'bg-[#0B4F6C] text-white shadow-md'
-                    : 'text-slate-700 hover:text-slate-900'
+                  ? 'bg-[#0B4F6C] text-white shadow-md'
+                  : 'text-slate-700 hover:text-slate-900'
                   }`}
               >
                 Hospital Sterilisation
@@ -981,7 +937,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
             </div>
 
             {/* Bottom Global CTA */}
-            <div className="pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-[#0B4F6C] to-[#083E55] p-8 rounded-2xl text-white">
+            {/* <div className="pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-[#0B4F6C] to-[#083E55] p-8 rounded-2xl text-white">
               <div className="space-y-1 text-center sm:text-left">
                 <h3 className="text-xl font-bold font-heading text-white">
                   Experience World-Class Dental Care
@@ -1006,7 +962,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenBooking, onOpenClini
                   <span>Call Clinic</span>
                 </a>
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </section>
 

@@ -27,6 +27,7 @@ import {
   PhoneCall
 } from 'lucide-react';
 import { PageWrapper } from '../components/ui/PageWrapper';
+import { PageBanner } from '../components/ui/PageBanner';
 import { fadeInUp, VIEWPORT_CONFIG } from '../lib/motion';
 import { generateDentalMacroImage } from '../utils/dentalImages';
 
@@ -184,30 +185,29 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
   });
 
   return (
-    <PageWrapper className="min-h-screen bg-slate-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <PageWrapper className="min-h-screen bg-slate-50">
+      <PageBanner
+        badge="TESTIMONIALS"
+        title="Testimonials"
+        subtitle="Read real reviews and smile transformation stories from patients who experienced our gentle, technology-driven care."
+        breadcrumb="Testimonials"
+      />
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
 
-        {/* Breadcrumb Navigation & Quick Jump Pills */}
+        {/* Quick Jump Pills */}
         <div className="space-y-4">
-          <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2">
-            <Link to="/" className="hover:text-[#0B4F6C] transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-slate-800 font-bold">Patient Testimonials</span>
-          </nav>
 
           {/* Jump Section Bar */}
           <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none text-xs font-semibold">
             <span className="text-slate-400 uppercase tracking-wider shrink-0 text-[10px] font-bold">Jump to:</span>
             {[
-              { id: 'sec-hero', label: '1. Hero' },
-              { id: 'sec-rating', label: '2. Ratings' },
-              { id: 'sec-videostories', label: '3. Video Stories' },
-              { id: 'sec-written', label: '4. Written Reviews' },
-              { id: 'sec-categories', label: '5. By Treatment' },
-              { id: 'sec-googlereviews', label: '6. Google Reviews' },
-              { id: 'sec-featuredstory', label: '7. Featured Story' },
-              { id: 'sec-warranty', label: '8. Warranty Reviews' },
-              { id: 'sec-leavereview', label: '9. Leave Review' }
+              { id: 'sec-videostories', label: '1. Video Stories' },
+              { id: 'sec-written', label: '2. Written Reviews' },
+              { id: 'sec-categories', label: '3. By Treatment' },
+              { id: 'sec-googlereviews', label: '4. Google Reviews' },
+              { id: 'sec-featuredstory', label: '5. Featured Story' },
+              { id: 'sec-warranty', label: '6. Warranty Reviews' },
+              { id: 'sec-leavereview', label: '7. Leave Review' }
             ].map((pill) => (
               <a
                 key={pill.id}
@@ -221,160 +221,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
         </div>
 
 
-        {/* ==========================================
-            SECTION 1: TESTIMONIALS HERO
-           ========================================== */}
-        <section id="sec-hero" className="scroll-mt-24 space-y-8">
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={VIEWPORT_CONFIG}
-            className="bg-gradient-to-r from-[#1A3848] via-[#0B4F6C] to-[#125D7F] rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute -right-20 -top-20 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 max-w-4xl space-y-6">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 bg-teal-400/15 border border-teal-300/30 text-teal-200 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-                  Section 1: Verified Patient Feedback
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-white/10 text-cyan-100 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  <Globe className="w-3.5 h-3.5 text-teal-300" />
-                  International Dental Tourism Approved
-                </span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-                Patient Reviews & Smile Stories
-              </h1>
-
-              <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-3xl">
-                Discover unedited, verified feedback from patients who entrusted their smile transformations to Dr. Sheekha Shah. From local families to international dental travelers across 24+ countries.
-              </p>
-
-              {/* Key Trust Statistics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 text-xs">
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-2xl block">500+</span>
-                  <span className="text-slate-300 font-medium">5-Star Verified Reviews</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-2xl block">99.4%</span>
-                  <span className="text-slate-300 font-medium">Patient Satisfaction Score</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-2xl block">15+ Yrs</span>
-                  <span className="text-slate-300 font-medium">Clinical Excellence</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-teal-300 font-extrabold text-2xl block">24+</span>
-                  <span className="text-slate-300 font-medium">Countries Represented</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-
-        {/* ==========================================
-            SECTION 2: OVERALL PATIENT RATING
-           ========================================== */}
-        <section id="sec-rating" className="scroll-mt-24 space-y-8">
-          <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
-              Overall Patient Rating & Trust Index
-            </h2>
-            <p className="text-slate-600 text-sm mt-1">
-              Comprehensive ratings aggregated across Google, Practo, WhatClinic, and verified post-care surveys.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-
-            {/* Big Rating Summary */}
-            <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-800 to-[#0B4F6C] text-white p-8 rounded-2xl space-y-4 text-center shadow-xl">
-              <span className="text-xs font-extrabold text-teal-300 uppercase tracking-wider block">Aggregate Score</span>
-              <div className="text-6xl font-black font-heading text-white tracking-tight">4.9</div>
-
-              <div className="flex items-center justify-center text-amber-400 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-
-              <p className="text-xs text-slate-300 font-medium">
-                Based on <strong className="text-white">520+ Google & Verified Patient Reviews</strong>
-              </p>
-
-              <div className="pt-3 border-t border-white/10 flex items-center justify-center gap-2 text-[11px] text-teal-200 font-semibold">
-                <ShieldCheck className="w-4 h-4 text-teal-400" />
-                100% Independently Authenticated
-              </div>
-            </div>
-
-            {/* Rating Breakdown & Factor Bars */}
-            <div className="lg:col-span-8 space-y-6">
-              <h3 className="text-base font-bold text-slate-800 font-heading">
-                Rating Distribution & Quality Indicators
-              </h3>
-
-              {/* Star Rating Distribution Bars */}
-              <div className="space-y-2 text-xs font-semibold text-slate-600">
-                <div className="flex items-center gap-3">
-                  <span className="w-16 shrink-0 flex items-center gap-1 font-bold text-slate-800">
-                    5 Stars <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  </span>
-                  <div className="flex-1 bg-slate-100 h-3 rounded-full overflow-hidden">
-                    <div className="bg-emerald-500 h-full rounded-full" style={{ width: '96%' }} />
-                  </div>
-                  <span className="w-12 text-right font-extrabold text-slate-800">96%</span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="w-16 shrink-0 flex items-center gap-1 font-bold text-slate-800">
-                    4 Stars <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  </span>
-                  <div className="flex-1 bg-slate-100 h-3 rounded-full overflow-hidden">
-                    <div className="bg-teal-500 h-full rounded-full" style={{ width: '4%' }} />
-                  </div>
-                  <span className="w-12 text-right font-extrabold text-slate-800">4%</span>
-                </div>
-
-                <div className="flex items-center gap-3 opacity-40">
-                  <span className="w-16 shrink-0 flex items-center gap-1 font-bold text-slate-800">
-                    3 Stars <Star className="w-3.5 h-3.5 text-slate-400" />
-                  </span>
-                  <div className="flex-1 bg-slate-100 h-3 rounded-full" />
-                  <span className="w-12 text-right font-extrabold text-slate-800">0%</span>
-                </div>
-              </div>
-
-              {/* Specific Patient Satisfaction Metrics */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-100">
-                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-center space-y-1">
-                  <span className="text-emerald-600 font-extrabold text-base block">99.8%</span>
-                  <span className="text-[11px] text-slate-600 font-medium block">Painless Comfort</span>
-                </div>
-                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-center space-y-1">
-                  <span className="text-emerald-600 font-extrabold text-base block">100%</span>
-                  <span className="text-[11px] text-slate-600 font-medium block">Doctor Expertise</span>
-                </div>
-                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-center space-y-1">
-                  <span className="text-emerald-600 font-extrabold text-base block">100%</span>
-                  <span className="text-[11px] text-slate-600 font-medium block">Clinic Hygiene</span>
-                </div>
-                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-center space-y-1">
-                  <span className="text-emerald-600 font-extrabold text-base block">99.5%</span>
-                  <span className="text-[11px] text-slate-600 font-medium block">Fee Transparency</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
 
 
         {/* ==========================================
@@ -382,7 +229,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-videostories" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 3</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 1</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Video Patient Testimonials
             </h2>
@@ -561,7 +408,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
         <section id="sec-written" className="scroll-mt-24 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
             <div>
-              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 4</span>
+              <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 2</span>
               <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
                 Written Patient Reviews
               </h2>
@@ -678,7 +525,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-categories" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 5</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 3</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Reviews by Treatment Category
             </h2>
@@ -815,7 +662,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-googlereviews" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 6</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 4</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Google Reviews & Independent Verification
             </h2>
@@ -899,7 +746,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-featuredstory" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 7</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 5</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Featured Patient Story: Sophia's 14-Day Transformation
             </h2>
@@ -989,7 +836,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-warranty" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 8</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 6</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Warranty & Long-Term Durability Reviews
             </h2>
@@ -1043,7 +890,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onOpenBookin
            ========================================== */}
         <section id="sec-leavereview" className="scroll-mt-24 space-y-8">
           <div className="border-b border-slate-200 pb-4">
-            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 9</span>
+            <span className="text-xs font-extrabold text-[#0B4F6C] uppercase tracking-widest">Section 7</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-800 mt-1">
               Leave Your Patient Feedback
             </h2>

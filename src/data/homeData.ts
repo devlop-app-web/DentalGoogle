@@ -20,7 +20,7 @@ export const CLINIC_INFO = {
   rating: 4.9,
   reviewsCount: 1280,
   googleRatingCount: 850,
-  whatsapp: "919825000000",
+  whatsapp: "919924083567",
   googleMapsUrl: "https://maps.google.com"
 };
 
@@ -32,7 +32,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Discreet, removable clear aligners engineered to straighten your teeth comfortably without metal braces.",
     fullDescription: "Transform your smile invisibly using custom 3D SmartTrack® aligners. Designed for precision, speed, and supreme comfort with digital iTero® 3D scanning.",
     duration: "6 - 15 Months",
-    startingPrice: "$2,990",
+    startingPrice: "₹45,000",
     imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800",
     features: ["3D iTero® Digital Scan", "Custom Removable Aligners", "Invisible & Comfortable", "Fewer Clinic Visits"],
     popular: true
@@ -44,7 +44,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Ultra-thin, handcrafted ceramic shells that correct chips, gaps, alignment, and severe discoloration.",
     fullDescription: "Achieve your dream Hollywood smile. Custom ultra-thin porcelain veneers bond seamlessly to your natural enamel, crafting flawless shape and radiance.",
     duration: "2 - 3 Visits",
-    startingPrice: "$950 / tooth",
+    startingPrice: "₹12,000 / tooth",
     imageUrl: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800",
     features: ["Stain Resistant Porcelain", "Custom Digital Smile Design", "Natural Translucency", "15+ Year Longevity"],
     popular: true
@@ -56,7 +56,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Permanent, natural-looking titanium dental root replacements for single or full-arch tooth restorations.",
     fullDescription: "Permanent solution for missing teeth that preserves jawbone density and restores 100% chewing functionality with zero slippage.",
     duration: "3 - 6 Months",
-    startingPrice: "$1,850",
+    startingPrice: "₹25,000",
     imageUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
     features: ["Guided CBCT 3D Surgery", "Lifetime Titanium Post", "Natural Aesthetic Crown", "Preserves Bone Structure"],
     popular: true
@@ -68,7 +68,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Professional in-chair whitening that brightens enamel up to 8 shades in a single 60-minute relaxing session.",
     fullDescription: "Painless, high-potency LED light whitening system with specialized enamel protection that eliminates stubborn coffee, wine, and age stains instantly.",
     duration: "60 Minutes",
-    startingPrice: "$390",
+    startingPrice: "₹6,000",
     imageUrl: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800",
     features: ["Up to 8 Shades Whiter", "Zero Tooth Sensitivity Tech", "Long-lasting Results", "Includes At-Home Touchup Kit"]
   },
@@ -79,7 +79,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Fear-free, compassionate dental care designed specifically for infants, children, and teenagers.",
     fullDescription: "Making dental visits fun and comforting for little ones. Preventive care, dental sealants, gentle cleanings, and positive habit reinforcement.",
     duration: "45 Minutes",
-    startingPrice: "$120",
+    startingPrice: "₹1,500",
     imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=800",
     features: ["Kid-Friendly Environment", "Fluoride & Dental Sealants", "Painless Cleanings", "Parent Guidance"]
   },
@@ -90,7 +90,7 @@ export const TREATMENTS: Treatment[] = [
     shortDescription: "Painless single-visit micro-endodontics designed to save infected teeth and relieve pain instantly.",
     fullDescription: "Advanced rotary endodontic technology ensures 100% pain relief and saves your natural tooth structure under gentle local anesthesia.",
     duration: "60 - 90 Mins",
-    startingPrice: "$750",
+    startingPrice: "₹4,500",
     imageUrl: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=800",
     features: ["Microscopic Precision", "Instant Pain Relief", "99% Tooth Retention Rate", "Gentle Local Anesthesia"]
   }
